@@ -423,8 +423,7 @@
 												</select>
 												<span class="error-message" id="errorDesignation"></span>
 											</div>
-											<div class="col-sm-6 col-md-4 col-lg-6">
-											</div>
+											
 											<div class="col-sm-6 col-md-4 col-lg-6">
 												<label for="input2" class="form-label">Employment Status<span
 														class="requir-field">*</span></label>
@@ -435,6 +434,14 @@
 													<option value="Inactive">Inactive</option>
 												</select>
 												<span class="error-message" id="errorEmploymentStatus"></span>
+											</div>
+											<div class="col-sm-6 col-md-4 col-lg-6">
+												<label for="input2" class="form-label">WFO / WFH</label>
+												<select id="input7" class="form-select">
+													<option selected></option>
+													<option>Work From Home</option>
+													<option>Work From Office</option>
+												</select>
 											</div>
 											<div class="col-sm-6 col-md-4 col-lg-6">
 												<label for="input2" class="form-label">Is Traniee<span
@@ -519,8 +526,7 @@
 													<option> SME </option> -->
 												</select>
 											</div>
-											<div class="col-sm-6 col-md-4 col-lg-6">
-											</div>
+											
 											<div class="col-sm-6 col-md-4 col-lg-6">
 												<label for="input3" class="form-label">Source of Hiring Request<span
 														class="requir-field">*</span></label>
@@ -535,13 +541,20 @@
 												</select>
 												<span class="error-message" id="errorSourceOfHiringRequest"></span>
 											</div>
-											<div class="col-sm-6 col-md-4 col-lg-6">
-											</div>
+											
 											<div class="col-sm-6 col-md-4 col-lg-6">
 												<label for="input6" class="form-label">Permanent Date</label>
 												<input type="text" name="permanentDate"
 													class="form-control datepicker permanentDate"
 													placeholder="mm-dd-yyyy" />
+											</div>
+											<div class="col-sm-6 col-md-4 col-lg-6 ">
+												<label for="input3" class="form-label">Revenue Earning</label>
+												<select id="input7" class="form-select">
+													<option selected></option>
+													<option>Revenue Earning</option>
+													<option>Non-Revenue Earning</option>
+												</select>
 											</div>
 											<hr class="mt-4 mb-2" />
 
