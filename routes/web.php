@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\dashboardController;
+use App\Http\Controllers\Employee\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -13,6 +14,7 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
 
     Route::get('/', [dashboardController::class , 'dashboard'])->name('dashboard');
     Route::get('/logout', [AuthController:: class , 'logout'])->name('logout');
+    Route::post('/employee/basic/info', [EmployeeController::class , 'basicInfo'])->name('employeeBasicInfo');
 });
 
 
