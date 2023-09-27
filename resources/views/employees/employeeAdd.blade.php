@@ -8,9 +8,9 @@
 					<div class="ps-sm-1">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="./index"><i class="bx bx-home-alt"></i></a>
+								<li class="breadcrumb-item"><a href="{{url('/')}}"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item" aria-current="page"><a href="./employeeList"> Employee
+								<li class="breadcrumb-item" aria-current="page"><a href="{{url('/employeeList')}}"> Employee
 										List</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Add Employee</li>
 							</ol>
@@ -127,6 +127,7 @@
 												</label>
 												<input type="text" name="emergencyContact"
 													class="form-control emergencyContact" id="input6">
+													<span class="error-message" id="errorEmergencyContect"></span>
 											</div>
 											<div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
 												<label for="input3" class="form-label">Email</label>
@@ -499,6 +500,7 @@
 												<label for="input3" class="form-label">Salary</label>
 												<input type="text" name="salary" class="form-control salary"
 													id="input3">
+													<span class="error-message" id="errorSalary"></span>
 											</div>
 											<div class="col-sm-6 col-md-4 col-lg-6">
 												<label for="input6" class="form-label">Appraisal Cycle<span
@@ -1213,11 +1215,20 @@
 	<script>
 
 		//date-Picker
+
 		$(".datepicker").flatpickr(
 			{
 				dateFormat: "m-d-Y",
 			}
 		);
+		flatpickr('.datepicker.dateOfJoining', {
+        dateFormat: 'm-d-Y', 
+        maxDate: 'today',
+         });
+		 flatpickr('.datepicker.dateOfNotice', {
+        dateFormat: 'm-d-Y',
+        maxDate: 'today', 
+         });
 
 		//Open Search-List
 		function toggleSearchList() {
@@ -1339,6 +1350,8 @@
 			});
 
 
+
+
 			$("#previous").on("click", function () {
 				stepper3.previous();
 				$("#next").css("display", "block");
@@ -1361,6 +1374,7 @@
 				let SKID = $(".SKID").val()
 				let phone = $(".phone").val()
 				let age = $(".age").val();
+				let emergencyContect = $(".emergencyContact").val()
 
 				if (!name) {
 					error = {
@@ -1389,13 +1403,21 @@
 					error.age ="Please Enter only Number";
 				}
 
+				if (emergencyContect && !checkNumber(emergencyContect)) {
+					error.emergencyContect ="Please Enter only Number";
+				}
+
 
 				// Display error messages
 				if (error.name) {
 					$("#errorName").html(error.name);
 					$(".error-name").addClass("error-input");
+					$("#errorName").addClass("text-danger");
+					$(".name").addClass("error-input");
 				} else {
 					$("#name").removeClass("text-danger");
+					$(".name").removeClass("error-input");
+					$("#errorName").removeClass("text-danger");
 				}
 				if (error.skid) {
 					$("#errorSKID").html(error.skid);
@@ -1417,6 +1439,16 @@
 				} else {
 					$("#phone").removeClass("error-input");
 					$("#errorPhone").removeClass("text-danger");
+				}
+
+				if (error.emergencyContect) {
+					$("#errorEmergencyContect").html(error.emergencyContect);
+					$(".emergencyContact").addClass("error-input");
+					$("#errorEmergencyContect").addClass("text-danger");
+					$(".emergencyContact").addClass("error-input");
+				} else {
+					$(".emergencyContact").removeClass("error-input");
+					$("#errorEmergencyContect").removeClass("text-danger");
 				}
 
 				if (error.age) {
@@ -1539,6 +1571,8 @@
 			$("#file").on('change', function (e) {
 				const file = e.target.files[0];
 				if (file) {
+
+					if (file.size <= 2 * 1024 * 1024) {
 					const formData = new FormData();
 					formData.append('image', file);
 
@@ -1564,7 +1598,13 @@
 						error: function (xhr, status, error) {
 							console.error('Error uploading file:', error);
 						}
-					});
+					}) 
+				  }  else {
+               
+                         alert('File size exceeds the maximum limit of 2MB.');
+                
+                         $("#file").val('');
+                      }
 				}
 			})
 
@@ -1877,6 +1917,7 @@
 					let appraisalCycle = $('.appraisalCycle').val()
 					let sourceOfHiringRequest = $('.sourceOfHiringRequest').val()
 					let isTraniee = $('.isTraniee').val()
+					let salary =  $('.salary').val()
 
 					if (!designation) {
 						error = {
@@ -1925,6 +1966,22 @@
 							...error,
 							sourceOfHiringRequest: "Source of Hiring Request is required"
 						}
+					}
+
+					if (salary && !checkNumber(salary)) {
+					error.salary ="Please Enter only Number";
+				   }
+
+				   if (error.salary) {
+
+						$("#errorSalary").html(error.salary);
+						$(".salary").addClass("error-input");
+						$("#errorSalary").addClass("text-danger");
+
+					} else {
+						$("#errorSalary").html("");
+						$(".salary").removeClass("error-input");
+						$("#errorSalary").removeClass("text-danger");
 					}
 
 					if (error.designation) {
@@ -2010,6 +2067,8 @@
 						$(".sourceOfHiringRequest").removeClass("error-input");
 						$("#errorSourceOfHiringRequest").removeClass("text-danger");
 					}
+
+					
 
 					let dataObject = {
 						employeeId: $('#id').val(),
@@ -2519,6 +2578,8 @@
 			return true; // It's a phone number (contains only numeric characters).
 			}
 		}
+
+		
 	</script>
 	<script>
 		$('#fancy-file-upload').FancyFileUpload({

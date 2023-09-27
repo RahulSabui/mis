@@ -10,7 +10,7 @@
                         <div class="ps-sm-1">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mb-0 p-0">
-                                    <li class="breadcrumb-item"><a href="./index"><i
+                                    <li class="breadcrumb-item"><a href="{{url('/')}}"><i
                                                 class="bx bx-home-alt"></i></a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">Client List</li>
@@ -19,7 +19,7 @@
                         </div>
                     </div>
 
-                    <a href="./clientAdd" type="button" class="btn btn-primary px-md-4 ms-auto">Add
+                    <a href="{{url('/clientAdd')}}" type="button" class="btn btn-primary px-md-4 ms-auto">Add
                         Client</a>
                 </div>
                 <!--end breadcrumb-->

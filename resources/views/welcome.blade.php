@@ -148,6 +148,7 @@
 </div>
 @endsection
 
+@section('scripts')
 <script>
 	@if (session('success'))
 		toastr.success('{{ session('success') }}');
@@ -165,3 +166,4 @@
 		searchList.classList.remove('open');
 	});
 </script>
+@endsection

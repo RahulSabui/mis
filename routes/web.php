@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/signup', [AuthController::class, 'showLoginForm'])->name('loginForm');
 Route::post('/login', [AuthController::class, 'login'])->name('login1');
 
-Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function () {
+Route::middleware(['checkAuthentication'])->group(function () {
 
     Route::get('/', [dashboardController::class , 'dashboard'])->name('dashboard');
     Route::get('/logout', [AuthController:: class , 'logout'])->name('logout');

@@ -5,7 +5,14 @@
    @include('partials.styles')
     <title>@yield('title', 'Dashboard')</title>
 </head>
-
+<style>
+	.error-message {
+		color: red;
+	}
+	.error-input {
+		border-color: red;
+	}
+</style>
 <body>
 	<!--wrapper-->
 	<div class="wrapper">

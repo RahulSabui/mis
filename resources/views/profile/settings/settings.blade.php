@@ -9,7 +9,7 @@
                         <div class="ps-sm-1">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mb-0 p-0">
-                                    <li class="breadcrumb-item"><a href="./index"><i
+                                    <li class="breadcrumb-item"><a href="{{url('/')}}"><i
                                                 class="bx bx-home-alt"></i></a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">Settings</li>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="ms-auto d-flex align-items-center">
 
-                        <a href="./index" type="button" class="btn btn-primary px-md-4 ">Back to
+                        <a href="{{url('/')}}" type="button" class="btn btn-primary px-md-4 ">Back to
                             Dashboard</a>
                     </div>
 
@@ -28,7 +28,7 @@
 
                 <div class="row">
                     <div class="col-sm-6 col-md-4 col-xl-3 ">
-                        <a href="./manageUser" class="card settings-card">
+                        <a href="{{url('/manageUser')}}" class="card settings-card">
                             <div class="card-body">
                                 <div class="settings-svg">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px">
@@ -48,7 +48,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-md-4 col-xl-3 ">
-                        <a href="./span" class="card settings-card">
+                        <a href="{{url('/span')}}" class="card settings-card">
                             <div class="card-body">
                                 <div class="settings-svg">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
