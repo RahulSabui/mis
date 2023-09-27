@@ -8,9 +8,9 @@
 					<div class="ps-sm-1">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="./index"><i class="bx bx-home-alt"></i></a>
+								<li class="breadcrumb-item"><a href="{{url('/')}}"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item" aria-current="page"><a href="./employeeList"> Employee
+								<li class="breadcrumb-item" aria-current="page"><a href="{{url('/employeeList')}}"> Employee
 										List</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Add Employee</li>
 							</ol>

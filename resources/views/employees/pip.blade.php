@@ -9,7 +9,7 @@
                         <div class="ps-sm-1">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mb-0 p-0">
-                                    <li class="breadcrumb-item"><a href="./index"><i
+                                    <li class="breadcrumb-item"><a href="{{url('/')}}"><i
                                                 class="bx bx-home-alt"></i></a>
                                     </li>
 
@@ -27,7 +27,7 @@
                             <span class="calender-icon"><i class="bx bx-calendar fs-5"></i></span>
                         </div>
                         <a href="" class="btn btn-inverse-primary me-2 filter-button">Apply</a>
-                        <a href="./employeeAdd" type="button" class="btn btn-primary px-md-4 ">Add
+                        <a href="{{url('/employeeAdd')}}" type="button" class="btn btn-primary px-md-4 ">Add
                             Employee</a>
                     </div>
                 </div>
