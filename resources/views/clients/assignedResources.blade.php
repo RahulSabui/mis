@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'PIP Report')
+@section('title', 'Assigned Resources Report ')
 @section('content')
             <div class="page-content">
                 <!--breadcrumb-->
@@ -12,10 +12,9 @@
                                     <li class="breadcrumb-item"><a href="./index"><i
                                                 class="bx bx-home-alt"></i></a>
                                     </li>
-
-                                    <li class="breadcrumb-item" aria-current="page">Employees
+                                    <li class="breadcrumb-item" aria-current="page">Clients
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">PIP Report
+                                    <li class="breadcrumb-item active" aria-current="page">Assigned Resources Report
                                     </li>
                                 </ol>
                             </nav>
@@ -23,27 +22,30 @@
                     </div>
                     <div class="ms-auto d-flex align-items-center">
                         <div class="me-2 position-relative">
-                            <input type="text" class="form-control date-range" placeholder="From - To" />
+                            <input type="text" class="form-control date-format" placeholder="On a Given Date" />
                             <span class="calender-icon"><i class="bx bx-calendar fs-5"></i></span>
                         </div>
                         <a href="" class="btn btn-inverse-primary me-2 filter-button">Apply</a>
-                        <a href="./employeeAdd" type="button" class="btn btn-primary px-md-4 ">Add
-                            Employee</a>
+                        <a href="./clientAdd" type="button" class="btn btn-primary px-md-4 ">Add
+                            Client</a>
                     </div>
+
                 </div>
                 <!--end breadcrumb-->
-                <div class="card">
+
+
+                <div class="card w-100">
                     <div class="card-body">
-                        <div class="row g-3">
+                        <div class="row">
                             <div class="col-md-6 col-lg-4 col-xl-3 d-flex">
-                                <div class="card radius-10 btn-inverse-info w-100">
+                                <div class="card radius-10 btn-inverse-success w-100">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
                                             <div>
-                                                <p class="mb-0 text-secondary">Employees Under PIP</p>
+                                                <p class="mb-0 text-secondary">Assigned Resources</p>
                                                 <h4 class="my-1">62</h4>
                                             </div>
-                                            <div class="text-primary ms-auto font-35">⠁⠑
+                                            <div class="text-success ms-auto font-35">⠁⠏
                                             </div>
                                         </div>
                                     </div>
@@ -52,39 +54,37 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="card-title">Employee List</h5>
-                                <div class="ms-auto d-flex align-items-center">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control ps-5 radius-30"
-                                            placeholder="Search Employee">
-                                        <span class="position-absolute top-50 product-show translate-middle-y">
-                                            <i class="bx bx-search"></i>
-                                        </span>
-                                    </div>
-                                    <a href="javascript:;" class="icon-wrapper" title="Filter"><i
-                                            class="fadeIn bx bx-filter fs-3"></i></a>
-
-                                    <!-- <a href="javascript:;" class="icon-wrapper" title="Delete"><i
-                                    class='bx bxs-trash fs-5'></i></a> -->
-                                    <a href="javascript:;" class="icon-wrapper" title="Download"><i
-                                            class="bx bx-cloud-download fs-4"></i></a>
-
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title">List of Assigned Resources</h5>
+                            <div class="ms-auto d-flex align-items-center">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control ps-5 radius-30" placeholder="Search Client">
+                                    <span class="position-absolute top-50 product-show translate-middle-y">
+                                        <i class="bx bx-search"></i>
+                                    </span>
                                 </div>
+                                <a href="javascript:;" class="icon-wrapper" title="Filter"><i
+                                        class="fadeIn bx bx-filter fs-3"></i></a>
+                                <!-- <a href="javascript:;" class="icon-wrapper" title="Delete"><i
+                                    class='bx bxs-trash fs-5'></i></a> -->
+                                <a href="javascript:;" class="icon-wrapper" title="Download"><i
+                                        class="bx bx-cloud-download fs-4"></i></a>
                             </div>
-
-                            <hr class="mt-2 mb-4" />
-                            <table class="table  table-striped  align-middle mb-0">
+                        </div>
+                        <hr class="mt-2 mb-4" />
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0 table-striped">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Employee Name (SKID)</th>
-                                        <th>Designation</th>
+                                        <th>Client’s name</th>
+                                        <th>Process’ Name</th>
                                         <th>Span</th>
-                                        <th>Manager</th>
-                                        <th>Email</th>
+                                        <th>Number of Billable Resources</th>
+                                        <th>Number of Buffer Resources</th>
+                                        <th>Number of Managers</th>
                                         <th>
                                             <div class="d-flex justify-content-center">
                                                 Action
@@ -102,18 +102,17 @@
                                                 </div>
                                                 <div class="ms-2">
                                                     <h6 class="mb-1 font-14">Payment from Michle Jhon</h6>
-                                                    <p class="mb-0 font-13 text-secondary"> SKID #8547846</p>
+                                                    <p class="mb-0 font-13 text-secondary">SKID #8547846</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <h6 class="mb-1 font-14">Developer</h6>
-                                            </div>
+                                            <h6 class="mb-1 font-14">Process</h6>
                                         </td>
-                                        <td>Span</td>
-                                        <td>Manager</td>
-                                        <td>abc.67@gmail.com</td>
+                                        <td>Span1</td>
+                                        <td>24</td>
+                                        <td>65</td>
+                                        <td>21</td>
                                         <td>
                                             <div class="table-action">
                                                 <a href="">
@@ -130,23 +129,22 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="">
-                                                    <img src="assets/images/avatars/avatar-1.png" class="rounded-circle"
+                                                    <img src="assets/images/avatars/avatar-2.png" class="rounded-circle"
                                                         width="46" height="46" alt="" />
                                                 </div>
                                                 <div class="ms-2">
-                                                    <h6 class="mb-1 font-14">Payment from Michle Jhon</h6>
-                                                    <p class="mb-0 font-13 text-secondary"> SKID #8547846</p>
+                                                    <h6 class="mb-1 font-14">Payment from Pauline Bird</h6>
+                                                    <p class="mb-0 font-13 text-secondary">SKID #9653248</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <h6 class="mb-1 font-14">Developer</h6>
-                                            </div>
+                                            <h6 class="mb-1 font-14">Process</h6>
                                         </td>
-                                        <td>Span</td>
-                                        <td>Manager</td>
-                                        <td>abc.67@gmail.com</td>
+                                        <td>Span1</td>
+                                        <td>24</td>
+                                        <td>65</td>
+                                        <td>21</td>
                                         <td>
                                             <div class="table-action">
                                                 <a href="">
@@ -163,23 +161,22 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="">
-                                                    <img src="assets/images/avatars/avatar-1.png" class="rounded-circle"
+                                                    <img src="assets/images/avatars/avatar-3.png" class="rounded-circle"
                                                         width="46" height="46" alt="" />
                                                 </div>
                                                 <div class="ms-2">
-                                                    <h6 class="mb-1 font-14">Payment from Michle Jhon</h6>
-                                                    <p class="mb-0 font-13 text-secondary"> SKID #8547846</p>
+                                                    <h6 class="mb-1 font-14">Payment from Ralph Alva</h6>
+                                                    <p class="mb-0 font-13 text-secondary">SKID #7689524</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <h6 class="mb-1 font-14">Developer</h6>
-                                            </div>
+                                            <h6 class="mb-1 font-14">Process</h6>
                                         </td>
-                                        <td>Span</td>
-                                        <td>Manager</td>
-                                        <td>abc.67@gmail.com</td>
+                                        <td>Span1</td>
+                                        <td>24</td>
+                                        <td>65</td>
+                                        <td>21</td>
                                         <td>
                                             <div class="table-action">
                                                 <a href="">
@@ -196,23 +193,22 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="">
-                                                    <img src="assets/images/avatars/avatar-1.png" class="rounded-circle"
+                                                    <img src="assets/images/avatars/avatar-4.png" class="rounded-circle"
                                                         width="46" height="46" alt="" />
                                                 </div>
                                                 <div class="ms-2">
-                                                    <h6 class="mb-1 font-14">Payment from Michle Jhon</h6>
-                                                    <p class="mb-0 font-13 text-secondary"> SKID #8547846</p>
+                                                    <h6 class="mb-1 font-14">Payment from John Roman</h6>
+                                                    <p class="mb-0 font-13 text-secondary">SKID #8335884</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <h6 class="mb-1 font-14">Developer</h6>
-                                            </div>
+                                            <h6 class="mb-1 font-14">Process</h6>
                                         </td>
-                                        <td>Span</td>
-                                        <td>Manager</td>
-                                        <td>abc.67@gmail.com</td>
+                                        <td>Span1</td>
+                                        <td>24</td>
+                                        <td>65</td>
+                                        <td>21</td>
                                         <td>
                                             <div class="table-action">
                                                 <a href="">
@@ -229,23 +225,22 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="">
-                                                    <img src="assets/images/avatars/avatar-1.png" class="rounded-circle"
+                                                    <img src="assets/images/avatars/avatar-7.png" class="rounded-circle"
                                                         width="46" height="46" alt="" />
                                                 </div>
                                                 <div class="ms-2">
-                                                    <h6 class="mb-1 font-14">Payment from Michle Jhon</h6>
-                                                    <p class="mb-0 font-13 text-secondary"> SKID #8547846</p>
+                                                    <h6 class="mb-1 font-14">Payment from David Buckley</h6>
+                                                    <p class="mb-0 font-13 text-secondary">SKID #7865986</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <h6 class="mb-1 font-14">Developer</h6>
-                                            </div>
+                                            <h6 class="mb-1 font-14">Process</h6>
                                         </td>
-                                        <td>Span</td>
-                                        <td>Manager</td>
-                                        <td>abc.67@gmail.com</td>
+                                        <td>Span1</td>
+                                        <td>24</td>
+                                        <td>65</td>
+                                        <td>21</td>
                                         <td>
                                             <div class="table-action">
                                                 <a href="">
@@ -299,7 +294,6 @@
                 class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
 
-  
     <!-- search modal -->
     <div class="modal" id="SearchModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
@@ -368,21 +362,6 @@
                             <option>Holistic</option>
                         </select>
                     </div>
-                    <div class="col-12">
-                        <label for="input2" class="form-label">Designation</label>
-                        <select class="form-select lookup" data-placeholder="">
-                            <option></option>
-                            <option>Reactive</option>
-                            <option>Solution</option>
-                            <option>Conglomeration</option>
-                            <option>Algoritm</option>
-                            <option>Holistic</option>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <label for="input2" class="form-label">Salary Slabs</label>
-                        <input type="text" class="form-control" />
-                    </div>
 
                     <div class="col-12">
                         <a href="#" type="button" class="btn btn-primary px-md-4 w-100">Submit</a>
@@ -392,19 +371,14 @@
         </div>
     </div>
     <!--end switcher-->
-@endsection
 
+@endsection
    @section('scripts')
 
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
-            //date-Picker
-            $(".datepicker").flatpickr(
-                {
-                    dateFormat: "m-d-Y",
-                }
-            );
+
             var table = $('#example2').DataTable({
                 lengthChange: false,
                 buttons: ['copy', 'excel', 'pdf', 'print']
@@ -424,11 +398,57 @@
             var searchList = document.querySelector('.search-employee-list');
             searchList.classList.remove('open');
         });
+
+
+
+        //Number of Active Processes by Type of Business
+        var ClientsPipelineByBusiness = document
+            .getElementById("ClientsPipelineByBusiness")
+            .getContext("2d");
+        var myChart = new Chart(ClientsPipelineByBusiness, {
+            type: "bar",
+            data: {
+                labels: ["Business", "Business", "Business", "Business", "Business", "Business", "Business", "Business"],
+                datasets: [
+                    {
+                        label: "Number of Active Processes by Type of Business",
+                        data: [30, 20, 12, 9, 10, 15, 10, 5],
+                        backgroundColor: ["#ff670054"],
+                        lineTension: 0,
+                        borderColor: ["#ff6700"],
+                        borderWidth: 1,
+                    },
+                    // {
+                    //   label: "Facebook",
+                    //   data: [12, 30, 16, 23, 8, 14, 11],
+                    //   backgroundColor: ["#15ca20"],
+                    //   tension: 0,
+                    //   borderColor: ["#15ca20"],
+                    //   borderWidth: 3,
+                    // },
+                ],
+            },
+            options: {
+                maintainAspectRatio: false,
+                barPercentage: 0.6,
+                categoryPercentage: 0.5,
+                plugins: {
+                    legend: {
+                        position: "bottom",
+                        display: true,
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
+
     </script>
 
 
-
-    <!-- date-Picker -->
     <script>
 
         $(".datepicker").flatpickr(

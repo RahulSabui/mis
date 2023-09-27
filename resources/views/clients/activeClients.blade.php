@@ -1,5 +1,6 @@
+<?php phpinfo(); ?>
 @extends('layouts.app')
-@section('title', 'Demographics')
+@section('title', 'Clients Report')
 @section('content')
 			<div class="page-content">
 				<!--breadcrumb-->

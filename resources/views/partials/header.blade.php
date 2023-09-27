@@ -103,7 +103,7 @@
                             <a href="javascript:;">
                                 <div class="msg-header">
                                     <p class="msg-header-title">Notifications</p>
-                                    <a href="notification.html" class="msg-header-badge">View All</a>
+                                    <a href="{{url('/notification')}}" class="msg-header-badge">View All</a>
                                 </div>
                             </a>
                             <div class="header-notifications-list">
@@ -272,11 +272,11 @@
                     <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
                                 class="bx bx-user fs-5"></i><span>Profile</span></a>
                     </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="./settings.html"><i
+                    <li><a class="dropdown-item d-flex align-items-center" href="{{ url('/settings') }}"><i
                                 class="bx bx-cog fs-5"></i><span>Settings</span></a>
                     </li>
 
-                    <li><a class="dropdown-item d-flex align-items-center" href="/logout"><i
+                    <li><a class="dropdown-item d-flex align-items-center" href="{{ url('/logout') }}"><i
                                 class="bx bx-log-out-circle"></i><span>Logout</span></a>
                     </li>
                 </ul>

@@ -1,6 +1,6 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
-        <a href="{{ url('/index') }}" class="d-flex align-items-center">
+        <a href="{{ url('/') }}" class="d-flex align-items-center">
             <div class="logo">
                 <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
             </div>
@@ -13,7 +13,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-        <li class="mm-active"><a href="{{ url('/index') }}">
+        <li class="mm-active"><a href="{{ url('/') }}">
                 <div class="parent-icon">⠙⠁
                 </div>
                 <div class="menu-title">Dashboard</div>
@@ -49,7 +49,7 @@
                 </li>
                 <li> <a href="{{ url('/workFrom') }}"><i class='bx bx-radio-circle text-brown'></i>WFO / WFH </a>
                 </li>
-                <li> <a href="pip') }}"><i class='bx bx-radio-circle text-dark'></i>PIP</a>
+                <li> <a href="{{ url('/pip') }}"><i class='bx bx-radio-circle text-dark'></i>PIP</a>
                 </li>
             </ul>
         </li>
@@ -67,7 +67,7 @@
                 <li> <a href="{{ url('/activeProcesses') }}"><i class='bx bx-radio-circle text-orange'></i>
                         Processes</a>
                 </li>
-                <li> <a href="{{ url('/ClientsTransition') }}"><i class='bx bx-radio-circle text-warning'></i>Clients
+                <li> <a href="{{ url('/clientsTransition') }}"><i class='bx bx-radio-circle text-warning'></i>Clients
                         in
                         Transition</a>
                 </li>
