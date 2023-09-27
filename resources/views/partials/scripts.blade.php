@@ -1,0 +1,20 @@
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!--plugins-->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+        <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
+        <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+        <script src="assets/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+	    <script src="assets/plugins/bs-stepper/js/main.js"></script>
+        <script src="assets/plugins/chartjs/js/chart.js"></script>
+        <script src="assets/plugins/chartjs/js/chartjs-custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="assets/plugins/select2/js/select2-custom.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script src="assets/plugins/fancy-file-uploader/jquery.ui.widget.js"></script>
+	<script src="assets/plugins/fancy-file-uploader/jquery.fileupload.js"></script>
+	<script src="assets/plugins/fancy-file-uploader/jquery.iframe-transport.js"></script>
+	<script src="assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js"></script>
+	<script src="assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
+    <script src="./assets/js/jquery.validate.js"></script>

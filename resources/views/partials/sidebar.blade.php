@@ -1,6 +1,6 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
-        <a href="./index.html" class="d-flex align-items-center">
+        <a href="{{ url('/index') }}" class="d-flex align-items-center">
             <div class="logo">
                 <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
             </div>
@@ -13,7 +13,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-        <li class="mm-active"><a href="./index.html">
+        <li class="mm-active"><a href="{{ url('/index') }}">
                 <div class="parent-icon">⠙⠁
                 </div>
                 <div class="menu-title">Dashboard</div>
@@ -27,29 +27,29 @@
                 <div class="menu-title">Employees</div>
             </a>
             <ul>
-                <li> <a href="./activeEmployee.html"><i class='bx bx-radio-circle text-danger'></i>Active
+                <li> <a href="{{ url('/activeEmployee') }}"><i class='bx bx-radio-circle text-danger'></i>Active
                         Employees</a>
                 </li>
-                <li> <a href="./exEmployee.html"><i class='bx bx-radio-circle text-orange'></i>Ex-Employees</a>
+                <li> <a href="{{ url('/exEmployee') }}"><i class='bx bx-radio-circle text-orange'></i>Ex-Employees</a>
                 </li>
-                <li> <a href="./hiredEmployee.html"><i class='bx bx-radio-circle text-warning'></i>Hired
+                <li> <a href="{{ url('/hiredEmployee') }}"><i class='bx bx-radio-circle text-warning'></i>Hired
                         Employees</a>
                 </li>
-                <li> <a href="./attritionPercentage.html"><i
+                <li> <a href="{{ url('/attritionPercentage') }}"><i
                             class='bx bx-radio-circle text-success'></i>Attrition
                     </a>
                 </li>
-                <li> <a href="./noticeEmployee.html"><i class='bx bx-radio-circle text-primary'></i>Employees on
+                <li> <a href="{{ url('/noticeEmployee') }}"><i class='bx bx-radio-circle text-primary'></i>Employees on
                         Notice</a>
                 </li>
-                <li> <a href="./ijpEmployee.html"><i class='bx bx-radio-circle text-blue'></i>IJP</a>
+                <li> <a href="{{ url('/ijpEmployee') }}"><i class='bx bx-radio-circle text-blue'></i>IJP</a>
                 </li>
-                <li> <a href="./demographics.html"><i
+                <li> <a href="{{ url('/demographics') }}"><i
                             class='bx bx-radio-circle text-purple'></i>Demographics</a>
                 </li>
-                <li> <a href="./workFrom.html"><i class='bx bx-radio-circle text-brown'></i>WFO / WFH </a>
+                <li> <a href="{{ url('/workFrom') }}"><i class='bx bx-radio-circle text-brown'></i>WFO / WFH </a>
                 </li>
-                <li> <a href="pip.html"><i class='bx bx-radio-circle text-dark'></i>PIP</a>
+                <li> <a href="pip') }}"><i class='bx bx-radio-circle text-dark'></i>PIP</a>
                 </li>
             </ul>
         </li>
@@ -61,24 +61,24 @@
                 <div class="menu-title">Client</div>
             </a>
             <ul>
-                <li> <a href="./activeClients.html"><i class='bx bx-radio-circle text-danger'></i>Clients
+                <li> <a href="{{ url('/activeClients') }}"><i class='bx bx-radio-circle text-danger'></i>Clients
                         Report</a>
                 </li>
-                <li> <a href="./activeProcesses.html"><i class='bx bx-radio-circle text-orange'></i>
+                <li> <a href="{{ url('/activeProcesses') }}"><i class='bx bx-radio-circle text-orange'></i>
                         Processes</a>
                 </li>
-                <li> <a href="./ClientsTransition.html"><i class='bx bx-radio-circle text-warning'></i>Clients
+                <li> <a href="{{ url('/ClientsTransition') }}"><i class='bx bx-radio-circle text-warning'></i>Clients
                         in
                         Transition</a>
                 </li>
-                <li> <a href="./ProcessesTransition.html"><i
+                <li> <a href="{{ url('/ProcessesTransition') }}"><i
                             class='bx bx-radio-circle text-success'></i>Processes in
                         Transition</a>
                 </li>
-                <li> <a href="./assignedResources.html"><i class='bx bx-radio-circle text-primary'></i>Assigned
+                <li> <a href="{{ url('/assignedResources') }}"><i class='bx bx-radio-circle text-primary'></i>Assigned
                         Resources</a>
                 </li>
-                <li> <a href="./clientsNotice.html"><i class='bx bx-radio-circle text-blue'></i>Clients Under
+                <li> <a href="{{ url('/clientsNotice') }}"><i class='bx bx-radio-circle text-blue'></i>Clients Under
                         Notice</a>
                 </li>
             </ul>
@@ -86,7 +86,7 @@
 
         <li class="menu-label">Management</li>
         <li>
-            <a href="./hiringList.html">
+            <a href="{{ url('/hiringList') }}">
                 <div class="parent-icon">⠓⠍
                 </div>
                 <div class="menu-title">Hiring</div>
