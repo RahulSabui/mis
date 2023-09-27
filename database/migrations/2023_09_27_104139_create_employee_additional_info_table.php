@@ -14,29 +14,31 @@ return new class extends Migration {
     {
         Schema::create('employee_additional_info', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employeeId');
-            $table->unsignedBigInteger('designationId');
-            $table->string('employmentStatus');
-            $table->string('dateOfJoining'); // Storing date as a date
-            $table->string('serviceStatus');
-            $table->string('permanentDate'); // Storing date as a date
-            $table->unsignedBigInteger('reportingId');
-            $table->string('sourceOfHiringRequest');
-            $table->string('shiftTiming');
-            $table->string('salary');
-            $table->string('appraisalCycle');
-            $table->string('typeOfMedicalInsurance');
-            $table->string('chronicMedicalCondition');
-            $table->string('noticeStatus');
-            $table->string('dateOfNotice'); // Storing date as a date
-            $table->string('dateOfExit'); // Storing date as a date
-            $table->string('exitReason');
-            $table->boolean('istrainee');
+            $table->unsignedBigInteger('employeeId')->nullable();
+            $table->integer('designationId')->nullable();
+            $table->string('employmentStatus')->nullable();
+            $table->string('dateOfJoining')->nullable(); // Storing date as a date
+            $table->string('serviceStatus')->nullable();
+            $table->string('permanentDate')->nullable(); // Storing date as a date
+            $table->integer('reportingId')->nullable();
+            $table->string('sourceOfHiringRequest')->nullable();
+            $table->string('shiftTiming')->nullable();
+            $table->string('salary')->nullable();
+            $table->string('appraisalCycle')->nullable();
+            $table->string('typeOfMedicalInsurance')->nullable();
+            $table->string('chronicMedicalCondition')->nullable();
+            $table->string('noticeStatus')->nullable();
+            $table->string('dateOfNotice')->nullable(); // Storing date as a date
+            $table->string('dateOfExit')->nullable(); // Storing date as a date
+            $table->string('exitReason')->nullable();
+            $table->boolean('istrainee')->nullable();
             $table->string('isWfoOrWfh')->nullable(); // Making this column nullable
+            $table->timestamps();
+
 
             // Defining the foreign key constraints with ON DELETE CASCADE
             $table->foreign('employeeId')->references('id')->on('employee_basic_info')->onDelete('cascade');
-            $table->foreign('reportingId')->references('id')->on('employee_basic_info')->onDelete('cascade');
+            // $table->foreign('reportingId')->references('id')->on('employee_basic_info')->onDelete('cascade');
 
         });
     }
