@@ -10,14 +10,14 @@ return new class extends Migration
     {
         Schema::table('employee_additional_info', function (Blueprint $table) {
             // Check if the column exists before modifying it
-            if (Schema::hasColumn('employee_additional_info', 'spanId')) {
-                $table->unsignedBigInteger('spanId')->change();
+            if (Schema::hasColumn('employee_additional_info', 'designationId')) {
+                $table->unsignedBigInteger('designationId')->change();
             } else {
                 // If the column doesn't exist, add it
-                $table->unsignedBigInteger('spanId');
+                $table->unsignedBigInteger('designationId');
             }
     
-            $table->foreign('spanId')
+            $table->foreign('designationId')
                   ->references('id')
                   ->on('designation');
         });
