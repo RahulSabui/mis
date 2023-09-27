@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Clients in Transition Report ')
+@section('title', 'Processes in Transition Report')
 @section('content')
 			<div class="page-content">
 				<!--breadcrumb-->
@@ -11,9 +11,11 @@
 								<ol class="breadcrumb mb-0 p-0">
 									<li class="breadcrumb-item"><a href="./index"><i class="bx bx-home-alt"></i></a>
 									</li>
-									<li class="breadcrumb-item" aria-current="page">Clients
+
+									<li class="breadcrumb-item" aria-current="page">Client
 									</li>
-									<li class="breadcrumb-item active" aria-current="page">Clients in Transition Report
+									<li class="breadcrumb-item active" aria-current="page">Processes in Transition
+										Report
 									</li>
 								</ol>
 							</nav>
@@ -32,31 +34,60 @@
 				</div>
 				<!--end breadcrumb-->
 				<div class="row">
-
-					<div class="col-lg-8  d-flex">
+					<div class="col-md-6 col-xl-8 d-flex">
 						<div class="card w-100">
 							<div class="card-body">
-								<p class="mb-3 text-secondary">Clients in Pipeline by Type of Business</p>
+								<p class="mb-3 text-secondary">Processes in Pipeline by Client</p>
 								<div class="chart-container1">
-									<canvas id="ClientsPipelineByBusiness"></canvas>
+									<canvas id="ProcessPipelinebyClient"></canvas>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4 d-flex">
+					<div class="col-md-6 col-xl-4 d-flex">
 						<div class="card w-100">
 							<div class="card-body">
-								<div class="card radius-10 btn-inverse-success w-100">
+								<div class="card radius-10 btn-inverse-yellow w-100">
 									<div class="card-body">
-										<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center ">
 											<div>
-												<p class="mb-0 text-secondary">Clients in Pipeline</p>
+												<p class="mb-0 text-secondary">Process in Pipeline</p>
 												<h4 class="my-1">62</h4>
 											</div>
-											<div class="text-success ms-auto font-35">⠁⠏
+											<div class="text-warning ms-auto font-35">⠁⠑
 											</div>
 										</div>
 									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 d-flex">
+						<div class="card w-100">
+							<div class="card-body">
+								<p class="mb-3 text-secondary">Processes in Pipeline by Stage</p>
+								<div class="chart-container1">
+									<canvas id="ProcessPipelinebystage"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 d-flex">
+						<div class="card w-100">
+							<div class="card-body">
+								<p class="mb-3 text-secondary">Processes in Pipeline by Type of Business</p>
+								<div class="chart-container1">
+									<canvas id="ProcessPipelinebyBusiness"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 d-flex">
+						<div class="card w-100">
+							<div class="card-body">
+								<p class="mb-3 text-secondary">Processes in Pipeline by Type of Process</p>
+								<div class="chart-container1">
+									<canvas id="ProcessPipelinebyProcess"></canvas>
 								</div>
 							</div>
 						</div>
@@ -65,7 +96,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex justify-content-between">
-									<h5 class="card-title">List of Clients in Transition</h5>
+									<h5 class="card-title">List of Process in Transition</h5>
 									<div class="ms-auto d-flex align-items-center">
 										<div class="position-relative">
 											<input type="text" class="form-control ps-5 radius-30" placeholder="Search Client">
@@ -88,6 +119,7 @@
 										<thead class="table-light">
 											<tr>
 												<th>Client’s Name</th>
+												<th>Process Name</th>
 												<th>Go-live Date</th>
 												<th>Contract Date</th>
 												<th>Span</th>
@@ -113,6 +145,7 @@
 														</div>
 													</div>
 												</td>
+												<td>Process</td>
 												<td>03-04-2023</td>
 												<td>05-06-2023</td>
 												<td>Span</td>
@@ -129,6 +162,7 @@
 												</td>
 											</tr>
 											<tr>
+
 												<td>
 													<div class="d-flex align-items-center">
 														<div class="">
@@ -141,6 +175,7 @@
 														</div>
 													</div>
 												</td>
+												<td>Process</td>
 												<td>03-04-2023</td>
 												<td>05-06-2023</td>
 												<td>Span</td>
@@ -170,6 +205,7 @@
 														</div>
 													</div>
 												</td>
+												<td>Process</td>
 												<td>03-04-2023</td>
 												<td>05-06-2023</td>
 												<td>Span</td>
@@ -198,6 +234,7 @@
 														</div>
 													</div>
 												</td>
+												<td>Process</td>
 												<td>03-04-2023</td>
 												<td>05-06-2023</td>
 												<td>Span</td>
@@ -214,7 +251,6 @@
 												</td>
 											</tr>
 											<tr>
-
 												<td>
 													<div class="d-flex align-items-center">
 														<div class="">
@@ -227,6 +263,7 @@
 														</div>
 													</div>
 												</td>
+												<td>Process</td>
 												<td>03-04-2023</td>
 												<td>05-06-2023</td>
 												<td>Span</td>
@@ -284,7 +321,6 @@
 			<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 			<!--End Back To Top Button-->
 
-	
 
 		<!-- search modal -->
 		<div class="modal" id="SearchModal" tabindex="-1">
@@ -320,6 +356,17 @@
 					<hr class="mt-2 mb-4" />
 					<div class="row g-3">
 						<div class="col-12">
+							<label for="input2" class="form-label">Client</label>
+							<select class="form-select lookup" data-placeholder="">
+								<option></option>
+								<option>Reactive</option>
+								<option>Solution</option>
+								<option>Conglomeration</option>
+								<option>Algoritm</option>
+								<option>Holistic</option>
+							</select>
+						</div>
+						<div class="col-12">
 							<label for="input2" class="form-label">Stage</label>
 							<select class="form-select lookup" data-placeholder="">
 								<option></option>
@@ -332,6 +379,10 @@
 						</div>
 						<div class="col-12">
 							<label for="input2" class="form-label">Expected Revenue</label>
+							<input type="text" class="form-control" />
+						</div>
+						<div class="col-12">
+							<label for="input2" class="form-label">Type of Business</label>
 							<select class="form-select lookup" data-placeholder="">
 								<option></option>
 								<option>Reactive</option>
@@ -342,7 +393,7 @@
 							</select>
 						</div>
 						<div class="col-12">
-							<label for="input2" class="form-label">Type of Business</label>
+							<label for="input2" class="form-label">Type of Process</label>
 							<select class="form-select lookup" data-placeholder="">
 								<option></option>
 								<option>Reactive</option>
@@ -371,6 +422,7 @@
 
 		<script>
 			$(document).ready(function () {
+				$('#example').DataTable();
 
 				var table = $('#example2').DataTable({
 					lengthChange: false,
@@ -394,21 +446,21 @@
 
 
 
-			//Number of Active Processes by Type of Business
-			var ClientsPipelineByBusiness = document
-				.getElementById("ClientsPipelineByBusiness")
+			//Number of active clients by type of Client
+			var ProcessPipelinebyClient = document
+				.getElementById("ProcessPipelinebyClient")
 				.getContext("2d");
-			var myChart = new Chart(ClientsPipelineByBusiness, {
+			var myChart = new Chart(ProcessPipelinebyClient, {
 				type: "bar",
 				data: {
 					labels: ["Business", "Business", "Business", "Business", "Business", "Business", "Business", "Business"],
 					datasets: [
 						{
-							label: "Number of Active Processes by Type of Business",
+							label: "Number of Active Clients by Type of Business",
 							data: [30, 20, 12, 9, 10, 15, 10, 5],
-							backgroundColor: ["#ff670054"],
+							backgroundColor: ["#2861116e"],
 							lineTension: 0,
-							borderColor: ["#ff6700"],
+							borderColor: ["#286111"],
 							borderWidth: 1,
 						},
 						// {
@@ -438,6 +490,144 @@
 					},
 				},
 			});
+
+			//Number of processes in pipeline by stage
+			var ProcessPipelinebystage = document
+				.getElementById("ProcessPipelinebystage")
+				.getContext("2d");
+			var myChart = new Chart(ProcessPipelinebystage, {
+				type: "bar",
+				data: {
+					labels: ["Business", "Business", "Business", "Business", "Business", "Business", "Business", "Business"],
+					datasets: [
+						{
+							label: "Number of Processes in Pipeline by Stage",
+							data: [30, 20, 12, 9, 10, 15, 10, 5],
+							backgroundColor: ["#93550c82"],
+							lineTension: 0,
+							borderColor: ["#93550c"],
+							borderWidth: 1,
+						},
+						// {
+						//   label: "Facebook",
+						//   data: [12, 30, 16, 23, 8, 14, 11],
+						//   backgroundColor: ["#15ca20"],
+						//   tension: 0,
+						//   borderColor: ["#15ca20"],
+						//   borderWidth: 3,
+						// },
+					],
+				},
+				options: {
+					maintainAspectRatio: false,
+					barPercentage: 0.6,
+					categoryPercentage: 0.5,
+					plugins: {
+						legend: {
+							position: "bottom",
+							display: true,
+						},
+					},
+					scales: {
+						y: {
+							beginAtZero: true,
+						},
+					},
+				},
+			});
+
+
+			//Number of processes in pipeline by Business
+			var ProcessPipelinebyBusiness = document
+				.getElementById("ProcessPipelinebyBusiness")
+				.getContext("2d");
+			var myChart = new Chart(ProcessPipelinebyBusiness, {
+				type: "bar",
+				data: {
+					labels: ["Business", "Business", "Business", "Business", "Business", "Business", "Business", "Business"],
+					datasets: [
+						{
+							label: "Number of Processes in Pipeline by Type of Business",
+							data: [30, 20, 12, 9, 10, 15, 10, 5],
+							backgroundColor: ["#8a139366"],
+							lineTension: 0,
+							borderColor: ["#8a1393"],
+							borderWidth: 1,
+						},
+						// {
+						//   label: "Facebook",
+						//   data: [12, 30, 16, 23, 8, 14, 11],
+						//   backgroundColor: ["#15ca20"],
+						//   tension: 0,
+						//   borderColor: ["#15ca20"],
+						//   borderWidth: 3,
+						// },
+					],
+				},
+				options: {
+					maintainAspectRatio: false,
+					barPercentage: 0.6,
+					categoryPercentage: 0.5,
+					plugins: {
+						legend: {
+							position: "bottom",
+							display: true,
+						},
+					},
+					scales: {
+						y: {
+							beginAtZero: true,
+						},
+					},
+				},
+			});
+
+
+			//Number of processes in pipeline by Process
+			var ProcessPipelinebyProcess = document
+				.getElementById("ProcessPipelinebyProcess")
+				.getContext("2d");
+			var myChart = new Chart(ProcessPipelinebyProcess, {
+				type: "bar",
+				data: {
+					labels: ["Business", "Business", "Business", "Business", "Business", "Business", "Business", "Business"],
+					datasets: [
+						{
+							label: "Number of Processes in Pipeline by Type of Process",
+							data: [30, 20, 12, 9, 10, 15, 10, 5],
+							backgroundColor: ["#065ca37a"],
+							lineTension: 0,
+							borderColor: ["#065ca3"],
+							borderWidth: 1,
+						},
+						// {
+						//   label: "Facebook",
+						//   data: [12, 30, 16, 23, 8, 14, 11],
+						//   backgroundColor: ["#15ca20"],
+						//   tension: 0,
+						//   borderColor: ["#15ca20"],
+						//   borderWidth: 3,
+						// },
+					],
+				},
+				options: {
+					maintainAspectRatio: false,
+					barPercentage: 0.6,
+					categoryPercentage: 0.5,
+					plugins: {
+						legend: {
+							position: "bottom",
+							display: true,
+						},
+					},
+					scales: {
+						y: {
+							beginAtZero: true,
+						},
+					},
+				},
+			});
+
 
 		</script>
 

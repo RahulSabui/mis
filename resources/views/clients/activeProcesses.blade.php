@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Demographics')
+@section('title', 'Processes Report')
 @section('content')
 			<div class="page-content">
 				<!--breadcrumb-->

@@ -43,7 +43,9 @@ Route::view('/workFrom','employees.workFrom');
 //client view
 Route::view('/activeClients','clients.activeClients');
 Route::view('/activeProcesses','clients.activeProcesses');
-Route::view('/clientAdd','clients.clients.clientAdd');
+Route::view('/ProcessesTransition','clients.ProcessesTransition');
+Route::view('/assignedResources','clients.assignedResources');
+Route::view('/clientAdd','clients.clientAdd');
 Route::view('/clientList','clients.clientList');
 Route::view('/clientsNotice','clients.clientsNotice');
 Route::view('/clientsTransition','clients.clientsTransition');
@@ -56,3 +58,6 @@ Route::view('/hiringList','hiring.hiringList');
 Route::view('/manageUser','profile.settings.manageUser');
 Route::view('/settings','profile.settings.settings');
 Route::view('/span','profile.settings.span');
+
+Route::view('/createUser','profile.createUser');
+Route::view('/notification','profile.notification');
