@@ -24,7 +24,7 @@ Route::middleware(['check.authentication'])->group(function () {
 Route::get('/signup', [AuthController::class, 'showLoginForm'])->name('loginForm');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login1');
-Route::view('/login','login');
+
 
 //employees view
 

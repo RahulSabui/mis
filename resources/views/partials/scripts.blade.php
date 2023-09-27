@@ -18,3 +18,5 @@
 	<script src="assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js"></script>
 	<script src="assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
     <script src="./assets/js/jquery.validate.js"></script>
+    <script src="assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
+    <script src="assets/js/widgets.js"></script>
