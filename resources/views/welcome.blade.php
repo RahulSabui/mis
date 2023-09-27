@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="assets/css/dark-theme.css" />
 	<link rel="stylesheet" href="assets/css/semi-dark.css" />
 	<link rel="stylesheet" href="assets/css/header-colors.css" />
+	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 	<title>Dashboard</title>
 </head>
 
@@ -311,9 +313,15 @@
 	<script src="assets/js/index.js"></script>
 	<!--app JS-->
 	<script src="assets/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 
 	<script>
+		@if (session('success'))
+			toastr.success('{{ session('success') }}');
+		@endif
+
 		// Open Search-List
 		function toggleSearchList() {
 			var searchList = document.querySelector('.search-employee-list');

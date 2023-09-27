@@ -276,7 +276,7 @@
                                 class="bx bx-cog fs-5"></i><span>Settings</span></a>
                     </li>
 
-                    <li><a class="dropdown-item d-flex align-items-center" href="./signin.html"><i
+                    <li><a class="dropdown-item d-flex align-items-center" href="/logout"><i
                                 class="bx bx-log-out-circle"></i><span>Logout</span></a>
                     </li>
                 </ul>
@@ -284,4 +284,5 @@
         </nav>
     </div>
 </header>
+
 <!--end header -->

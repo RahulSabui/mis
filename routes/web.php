@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Dashboard\dashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['check.authentication'])->group(function () {
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', [dashboardController::class , 'dashboard'])->name('dashboard');
+    Route::get('/logout', [AuthController:: class , 'logout'])->name('logout');
 });
 
-Route::view('/login','login');
+// Route::view('/singup','login');
+Route::get('/signup', [AuthController::class, 'showLoginForm'])->name('loginForm');
+
+Route::post('/login', [AuthController::class, 'login'])->name('login1');
