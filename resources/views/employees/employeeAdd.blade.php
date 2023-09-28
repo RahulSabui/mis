@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div class="step" data-target="#test-vl-4">
+                        <div class="step processAssignmentDiv" data-target="#test-vl-4">
                             <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
                                 <div class="bs-stepper-circle"><i class="fadeIn animated bx bx-message-edit fs-4"></i></div>
                                 <div class="">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="step" data-target="#test-vl-5">
+                        <div class="step ijpDiv" data-target="#test-vl-5">
                             <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
                                 <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                 <div class="">
@@ -76,15 +76,25 @@
                             </div>
                         </div>
 
-                        <div class="step" style="display: none" data-target="#test-vl-6">
-                            <div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
-                                <div class="bs-stepper-circle"><i class="fadeIn animated bx bx-history fs-3"></i></div>
-                                <div class="">
-                                    <h5 class="mb-0 steper-title">History</h5>
-                                    <p class="mb-0 steper-sub-title">Previous History</p>
-                                </div>
-                            </div>
-                        </div>
+						<div class="step pipDiv" data-target="#test-vl-6">
+							<div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
+								<div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
+								<div class="">
+									<h5 class="mb-0 steper-title">PIP</h5>
+									<p class="mb-0 steper-sub-title">Personal Improvement Plan</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="step historyDiv" data-target="#test-vl-7">
+							<div class="step-trigger" role="tab" id="stepper3trigger7" aria-controls="test-vl-7">
+
+								<div class="btn btn-primary d-flex align-items-center w-100 py-2">
+									<i class="fadeIn animated bx bx-history fs-3"></i>
+									<h5 class="mb-0 steper-title text-white">History</h5>
+								</div>
+							</div>
+						</div>
                     </div>
 
                     <div class="bs-stepper-content w-100">
@@ -177,15 +187,23 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
-                                        <label for="input3" class="form-label">Qualification</label>
-                                        <input type="text" name="qualification" class="form-control qualification"
-                                            id="input3">
-                                    </div>
+										<label for="input3" class="form-label">Qualification</label>
+										<select id="input7" name="qualification" class="form-select qualification">
+											<option selected></option>
+											<option>HS</option>
+											<option>Graduate</option>
+											<option>MCA</option>
+										</select>
+									</div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
-                                        <label for="input3" class="form-label">Academic Stream</label>
-                                        <input type="text" name="academicStream" class="form-control academicStream"
-                                            id="input3">
-                                    </div>
+										<label for="input3" class="form-label">Academic Stream</label>
+										<select id="input7" name="academicStream" class="form-select academicStream">
+											<option selected></option>
+											<option>Academic1</option>
+											<option>Academic2</option>
+											<option>Academic3</option>
+										</select>
+									</div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input3" class="form-label">School</label>
                                         <input type="text" name="school" class="form-control school" id="input3">
@@ -384,12 +402,14 @@
                                         <span class="error-message" id="errorResidentialPin"></span>
                                     </div>
                                     <div class="col-12">
-                                        <label for="input3" class="form-label">Drop Location<span
-                                                class="requir-field">*</span></label>
-                                        <input type="text" name="dropLocation" class="form-control dropLocation"
-                                            id="input3">
-                                        <span class="error-message" id="errorDropLocation"></span>
-                                    </div>
+										<label for="input3" class="form-label">Drop Location<span class="requir-field">*</span></label>
+										<select id="input7" name="dropLocation" class="form-select dropLocation">
+											<option selected></option>
+											<option>Location</option>
+											<option>Location</option>
+											<option>Location</option>
+										</select>
+									</div>
                                 </div>
                                 <!---end row-->
 
@@ -450,9 +470,13 @@
                                         <label for="input6" class="form-label">Shift Timing
                                         </label>
                                         <select id="input7" name="shiftTiming" class="form-select shiftTiming">
-                                            <option value="" disabled selected>Select</option>
-                                            <option value="day">day</option>
-                                            <option value="night">night</option>
+                                            <option selected></option>
+													<option>8:00 pm to 3:00 am EST</option>
+													<option>8:00 pm to 3:00 am CST</option>
+													<option>8:00 pm to 3:00 am MST</option>
+													<option>8:00 pm to 3:00 am PST</option>
+													<option>Day – Regular</option>
+													<option>Day - Late</option>
                                         </select>
 										<span class="error-message" id="errorShiftTiming"></span>
                                     </div>
@@ -463,6 +487,21 @@
                                             class="form-control datepicker dateOfJoining" placeholder="mm-dd-yyyy" />
                                         <span class="error-message" id="errorDateOfJoining"></span>
                                     </div>
+									<div class="col-auto cursor-pointer">
+										<!-- <input id="fancy-file-upload" type="file" name="files"
+											accept=".jpg, .png, image/jpeg, image/png" multiple> -->
+										<div class="file-upload">
+											<input type="file" name="files" class="upload-input">
+											<div class="uploaded-img">
+												<!-- <img src="./assets/images/uploadimg-dummy.webp" alt=""> -->
+												<i class="fadeIn animated bx bx-user fs-4"></i>
+											</div>
+											<div class="uploaded-des">
+												<p>Upload Aadhaar Card</p>
+												Maximum size 2MB
+											</div>
+										</div>
+									</div>
                                     <hr class="mt-4 mb-2" />
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Type of Medical Insurance
@@ -859,7 +898,7 @@
                                                                 <option value="buffer">buffer</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 contributionDiv">
                                                             <label for="input3" class="form-label">Contribution
                                                                 %
                                                             </label>
@@ -1130,50 +1169,193 @@
 
                             </div>
 
-                            <!-- History -->
-                            <div id="test-vl-6" role="tabpane3" class="bs-stepper-pane content fade"
-                                aria-labelledby="stepper3trigger6">
-                                <h5 class="mb-4">Previous History</h5>
-                                <div class="list-group notification-list">
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Daisy Anderson<span
-                                                    class="msg-time float-end">05/28/2023</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Maisy Anderson<span
-                                                    class="msg-time float-end">05/28/2023</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
+                           <!-- Card of PIP Status -->
+									<div id="test-vl-6" role="tabpane3" class="bs-stepper-pane content fade"
+									aria-labelledby="stepper3trigger6">
+									<div class="d-flex justify-content-between mb-4">
+										<h5>Personal Improvement Plan</h5>
+										<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PIP">Add
+											PIP</button>
+										<div class="modal fade" id="PIP" tabindex="-1" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title">Add Personal Improvement Plan
+														</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal"
+															aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<div class="row g-3">
+															<div class="col-12">
+																<label for="input3" class="form-label">PIP ID</label>
+																<input type="text" class="form-control" id="input3">
+															</div>
+															<div class="col-12 ">
+																<label for="input6" class="form-label">Raised on
+																</label>
+																<input type="text" class="form-control datepicker" placeholder="mm-dd-yyyy" />
+															</div>
+															<div class="col-12">
+																<label for="input2" class="form-label">Status</label>
+																<select id="input7" class="form-select">
+																	<option selected></option>
+																	<option>Open</option>
+																	<option>Resolved </option>
+																</select>
+															</div>
 
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Paisy Anderson<span
-                                                    class="msg-time float-end">09/13/2023</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Laisy Anderson<span
-                                                    class="msg-time float-end">09/13/2023</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Naisy Anderson<span class="msg-time float-end">5 sec
-                                                    ago</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
-                                    </a>
-                                </div>
+															<div class="col-12">
+																<label for=" input2" class="form-label">Closed on
+																</label>
+																<input type="text" class="form-control datepicker" placeholder="mm-dd-yyyy" />
+															</div>
+															<div class="col-12">
+																<label for=" input2" class="form-label">Reason
+																</label>
+																<textarea class="form-control" id="input11" rows="4"></textarea>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+														<button type="button" class="btn btn-primary">Add</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<table class="table mb-0 table-striped">
+										<thead>
+											<tr>
+												<th scope="col">PIP ID</th>
+												<th scope="col">Raised on</th>
+												<th scope="col">Status</th>
+												<th scope="col">Closed on</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
 
-                            </div>
+												<td>PIP-1234567890</td>
+												<td>03-21-23</td>
+												<td>Open</td>
+												<td>03-21-28</td>
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Resolved</td>
+												<td>03-21-28</td>
+
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Resolved </td>
+												<td>03-21-28</td>
+
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Open</td>
+												<td>03-21-28</td>
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Resolved </td>
+												<td>03-21-28</td>
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Resolved </td>
+												<td>03-21-28</td>
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+								<!-- History -->
+								<div id="test-vl-7" role="tabpane3" class="bs-stepper-pane content fade"
+								aria-labelledby="stepper3trigger7">
+								<h5 class="mb-4">Previous History</h5>
+								<div class="list-group notification-list">
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Daisy Anderson<span class="msg-time float-end">05/28/2023</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+									</a>
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Maisy Anderson<span class="msg-time float-end">05/28/2023</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+
+									</a>
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Paisy Anderson<span class="msg-time float-end">09/13/2023</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+									</a>
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Laisy Anderson<span class="msg-time float-end">09/13/2023</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+									</a>
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Naisy Anderson<span class="msg-time float-end">5 sec
+													ago</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+									</a>
+								</div>
+
+							</div>
                         </form>
                     </div>
                 </div>
@@ -1367,11 +1549,21 @@
             $('.appraisalCycle option:eq(' + (currentMonth + 1) + ')').prop('selected', true);
 
 
+			$('.modelBillable').change(function () {
+				var modelBillable = $(this).val();
+				if(modelBillable == 'buffer'){
+					$('.contributionDiv').show();
+				}else{
+					$('.contributionDiv').hide();
+				}
+
+			})
 
 			
         var employmentStatus = $('.employmentStatus').val();
 
         if (employmentStatus === 'Active') {
+			$('.contributionDiv').hide();
 			$('.permanentDateDiv').hide();
 			$('.dateOfExitDiv').hide();
 			$('.dateOfExitReasonDiv').hide();
