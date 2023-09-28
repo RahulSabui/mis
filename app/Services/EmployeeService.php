@@ -105,6 +105,7 @@ class EmployeeService
 
         // Prepare data for update or insert
         $employeeData = [
+            'employeeId' => $employeeId,
             'designationId' => isset($data["designation"]) ? $data["designation"] : null,
             'employmentStatus' => isset($data["employmentStatus"]) ? $data["employmentStatus"] : null,
             'dateOfJoining' => isset($data["dateOfJoining"]) && $data["dateOfJoining"] != "" ? date_create_from_format('m-d-Y', $data["dateOfJoining"])->format('Y-m-d') : null,
@@ -160,10 +161,14 @@ class EmployeeService
     }
     public function createOrUpdateEmployeeIjp($data)
     {
+      
         $insertResults = [];
 
         $employeeId = $data['employeeId'];
         $dataArr = $data['arr2'];
+
+        // First, delete existing records for the employee
+        EmployeeIjp::where('employeeId', $employeeId)->delete();
 
         foreach ($dataArr as $value) {
             $insertData = [
@@ -175,7 +180,7 @@ class EmployeeService
                 'spanId' => $value['IjpSpan'],
                 'processId' => $value['IjpProcess'],
                 'clientId' => $value['IjpClient'],
-                'billableStatus' => $value['billableStatus'],
+                'billableStatus' => $value['IjpBillableStatus'],
             ];
 
             // Use Eloquent to create a new EmployeeIjp record
