@@ -48,6 +48,21 @@ public function designation(){
     }
 }
 
+public function droplocation(){
+    try {
+
+        $data = $this->GlobalService->dropLocation();
+
+        return response()->json(['data'=>$data]);
+        
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+}
+
 public function fileUpload(Request $request)
 {
     try {

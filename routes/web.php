@@ -13,6 +13,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login1');
 
 Route::get('/states', [GlobalController::class, 'states'])->name('states');
 Route::get('/designations', [GlobalController::class, 'designation'])->name('designation');
+Route::get('/droplocation', [GlobalController::class, 'droplocation'])->name('droplocation');
 
 Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function () {
 
@@ -28,6 +29,7 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::post('/fileUpload', [GlobalController::class, 'fileUpload'])->name('fileUpload');
     Route::post('/aadhar/upload', [GlobalController::class, 'aadharUpload'])->name('aadharUpload');
     Route::post('/check/skid', [GlobalController::class, 'checkSkid'])->name('checkSkid');
+
 
 
 

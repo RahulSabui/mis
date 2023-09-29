@@ -66,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="step ijpDiv" data-target="#test-vl-5">
+                        <div class="step ijpDiv" style="display: none" data-target="#test-vl-5">
                             <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
                                 <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                 <div class="">
@@ -76,7 +76,7 @@
                             </div>
                         </div>
 
-						<div class="step pipDiv" data-target="#test-vl-6">
+						<div class="step pipDiv" style="display: none" data-target="#test-vl-6">
 							<div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
 								<div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
 								<div class="">
@@ -86,7 +86,7 @@
 							</div>
 						</div>
 
-						<div class="step historyDiv" data-target="#test-vl-7">
+						<div class="step historyDiv" style="display: none" data-target="#test-vl-7">
 							<div class="step-trigger" role="tab" id="stepper3trigger7" aria-controls="test-vl-7">
 
 								<div class="btn btn-primary d-flex align-items-center w-100 py-2">
@@ -189,19 +189,35 @@
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
 										<label for="input3" class="form-label">Qualification</label>
 										<select id="input7" name="qualification" class="form-select qualification">
-											<option selected></option>
-											<option>HS</option>
-											<option>Graduate</option>
-											<option>MCA</option>
+											<option value="" disabled selected>Select</option>
+											<option value="Higher Secondary – grade 10">Higher Secondary – grade 10</option>
+											<option value="Higher Secondary – grade 12 ">Higher Secondary – grade 12 </option>
+                                            <option value="Bachelor’s degree - Arts">Bachelor’s degree - Arts</option>
+											<option value="Bachelor’s degree - Architecture">Bachelor’s degree - Architecture</option>
+											<option value="Bachelor’s degree - Agricultural">Bachelor’s degree - Agricultural</option>
+                                            <option value="Bachelor’s degree - Veterinary">Bachelor’s degree - Veterinary</option>
+											<option value="Bachelor’s degree - Civil Aviation and Merchant Navy">Bachelor’s degree - Civil Aviation and Merchant Navy</option>
+											<option value="Bachelor’s degree - Commerce">Bachelor’s degree - Commerce</option>
+                                            <option value="Bachelor’s degree - Engineering">Bachelor’s degree - Engineering</option>
+											<option value="Bachelor’s degree - Fashion and Interior Designing">Bachelor’s degree - Fashion and Interior Designing</option>
+											<option value="Bachelor’s degree - Information Technology">Bachelor’s degree - Information Technology</option>
+                                            <option value="Bachelor’s degree - Law">Bachelor’s degree - Law</option>
+											<option value="Bachelor’s degree - Management">Bachelor’s degree - Management</option>
+											<option value="Bachelor’s degree - Mass Communications">Bachelor’s degree - Mass Communications</option>
+                                            <option value="Bachelor’s degree - Medical">Bachelor’s degree - Medical</option>
+											<option value="Bachelor’s degree - Multimedia">Bachelor’s degree - Multimedia</option>
+											<option value="Bachelor’s degree - Science">Bachelor’s degree - Science</option>
+                                            <option value="Master’s degree">Master’s degree</option>
+											<option value="Diploma">Diploma</option>
 										</select>
 									</div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
 										<label for="input3" class="form-label">Academic Stream</label>
 										<select id="input7" name="academicStream" class="form-select academicStream">
-											<option selected></option>
-											<option>Academic1</option>
-											<option>Academic2</option>
-											<option>Academic3</option>
+											<option value="" disabled selected>Select</option>
+											<option value="Academic1">Academic1</option>
+											<option value="Academic2">Academic2</option>
+											<option value="Academic3">Academic3</option>
 										</select>
 									</div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
@@ -406,10 +422,10 @@
                                     <div class="col-12">
 										<label for="input3" class="form-label">Drop Location<span class="requir-field">*</span></label>
 										<select id="input7" name="dropLocation" class="form-select dropLocation">
-											<option selected></option>
+											<option value="" disabled selected>Select</option>
+											{{-- <option>Location</option>
 											<option>Location</option>
-											<option>Location</option>
-											<option>Location</option>
+											<option>Location</option> --}}
 										</select>
 									</div>
                                 </div>
@@ -427,7 +443,7 @@
                                         <label for="input3" class="form-label">Designation<span
                                                 class="requir-field">*</span></label>
                                         <select class="form-select lookup designation" name="designation"
-                                            id="prepend-text-single-field" data-placeholder="">
+                                            id="prepend-text-single-field" >
                                             <option selected disabled value="">Select</option>
                                             {{-- <option value="1">Reactive</option>
                          <option value="2">Solution</option>
@@ -472,13 +488,13 @@
                                         <label for="input6" class="form-label">Shift Timing
                                         </label>
                                         <select id="input7" name="shiftTiming" class="form-select shiftTiming">
-                                            <option selected></option>
-													<option>8:00 pm to 3:00 am EST</option>
-													<option>8:00 pm to 3:00 am CST</option>
-													<option>8:00 pm to 3:00 am MST</option>
-													<option>8:00 pm to 3:00 am PST</option>
-													<option>Day – Regular</option>
-													<option>Day - Late</option>
+                                            <option value="" disabled selected>Select</option>
+													<option value="8:00 pm to 3:00 am EST">8:00 pm to 3:00 am EST</option>
+													<option value="8:00 pm to 3:00 am CST">8:00 pm to 3:00 am CST</option>
+													<option value="8:00 pm to 3:00 am MST">8:00 pm to 3:00 am MST</option>
+													<option value="8:00 pm to 3:00 am PST">8:00 pm to 3:00 am PST</option>
+													<option value="Day - Regular">Day – Regular</option>
+													<option value="Day - Late">Day - Late</option>
                                         </select>
 										<span class="error-message" id="errorShiftTiming"></span>
                                     </div>
@@ -525,8 +541,8 @@
                                                 class="requir-field">*</span></label>
                                         <select id="input7" name="serviceStatus" class="form-select serviceStatus">
                                             <option value="" disabled>Select</option>
-                                            <option selected value="probation">probation</option>
-                                            <option value="permanent">permanent</option>
+                                            <option selected value="Probation">Probation</option>
+                                            <option value="Permanent">Permanent</option>
                                         </select>
                                         <span class="error-message" id="errorServiceStatus"></span>
                                     </div>
@@ -559,7 +575,7 @@
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input2" class="form-label">Reporting</label>
                                         <select name="reporting" class="form-select lookup reporting">
-                                            <option disabled value="">Select</option>
+                                            <option disabled selected value="">Select</option>
 											
                                             <!-- <option>Span head</option>
                          <option>Manager</option>
@@ -610,12 +626,12 @@
                                         <label for="input2" class="form-label">Notice Status</label>
                                         <select id="input7" name="noticeStatus" class="form-select noticeStatus">
                                             <option value="" disabled >Select</option>
-                                            <option value="under notice">under notice</option>
-                                            <option selected value="not">not</option>
+                                            <option value="Under Notice">Under Notice</option>
+                                            <option selected value="Not">Not</option>
                                         </select>
 										<span class="error-message" id="errorNoticeStatus"></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-4 col-lg-6">
+                                    <div class="col-sm-6 col-md-4 col-lg-6 dateOfNoticeDiv">
                                         <label for="input6" class="form-label">Date of Notice
                                         </label>
                                         <input type="text" name="dateOfNotice"
@@ -1074,8 +1090,8 @@
                                                             <select id="input7"
                                                                 class="form-select modalBillableIjpStatus">
                                                                 <option disabled selected>Select</option>
-                                                                <option>billable</option>
-                                                                <option>buffer</option>
+                                                                <option value="Billable">Billable</option>
+                                                                <option value="Buffer">Buffer</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-12">
@@ -1481,6 +1497,23 @@ $.each(response?.data, function(index, item) {
     selectElement.append(option);
 });
 
+         $.ajax({
+                type: "get",
+                url: "/droplocation",
+              
+                success: function(response) {
+                    console.log(response, "responseee");
+                    $.each(response?.data, function(index, item) {
+                        var option = $("<option>")
+                            .attr("value", item.id)
+                            .text(item.name);
+
+                        $(".dropLocation").append(option);
+
+                    });
+                }
+            });
+
                    
 var selectElement = $(".residentialState");
 selectElement.empty(); 
@@ -1510,38 +1543,11 @@ $.each(response.data, function(index, item) {
                 }
             });
 
-            function checkSkid() {
-            var skidValue = $(".SKID").val();
-            $.ajaxSetup({
-                         headers: {
-                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                             }
-                          });
-           
-            $.ajax({
-                url: "/check/skid", 
-                method: "POST",
-                data: {
-                    skid: skidValue
-                },
-                success: function (response) {
-                    if (response.exists) {
-                        $(".SKID").addClass("error-input");
-                        $("#errorSKID").text("SKID already exists");
-                    } else {
-                        $(".SKID").removeClass("error-input");
-                        $("#errorSKID").text("");
-                    }
-                },
-                error: function () {
-                    console.log("An error occurred while checking SKID.");
-                }
-            });
-        }
 
-        $(".SKID").on("keyup", function () {
-            checkSkid();
-        });
+
+
+
+
             // $("#myform").validate({
             // 	rules: {
             // 		name: {
@@ -1625,14 +1631,65 @@ $.each(response.data, function(index, item) {
 				}
 
 			})
+
+
+        $(".SKID").on("keyup", function (){
+            
+            let skidValues = $(this).val();
+            console.log('skidValue:', skidValues);
+           if (/^SK/.test(skidValues)) {
+              if (skidValues.length > 8) {
+             $(this).val(skidValues.slice(0, 8));
+              // Update the value of the current input field
+           }
+   
+          } else {
+            $(this).addClass("error-input");
+            $("#errorSKID").text('Invalid SKID: Must start with "SK"');
+           }
+           checkSkid(skidValues);
+        });
+
+        function checkSkid(skidValues) {
+            $.ajaxSetup({
+                         headers: {
+                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                          });
+           
+            $.ajax({
+                url: "/check/skid", 
+                method: "POST",
+                data: {
+                    skid: skidValues
+                },
+                success: function (response) {
+                    if (response.exists) {
+                        $(".SKID").addClass("error-input");
+                        $("#errorSKID").text("SKID already exists");
+                    } else {
+                        // $(".SKID").removeClass("error-input");
+                        // $("#errorSKID").text("");
+                    }
+                },
+                error: function () {
+                    console.log("An error occurred while checking SKID.");
+                }
+            });
+        }
             
 
 			
         var employmentStatus = $('.employmentStatus').val();
 
+        $('.dateOfNoticeDiv').hide();
+        $('.permanentDateDiv').hide();
+       
+        // $('.ijpDiv').hide();
+        // $('.pipDiv').hide();
+        // $('.historyDiv').hide();
+
         if (employmentStatus === 'Active') {
-			$('.contributionDiv').hide();
-			$('.permanentDateDiv').hide();
 			$('.dateOfExitDiv').hide();
 			$('.dateOfExitReasonDiv').hide();
 			$("#errorDateOfExit").html("");
@@ -2094,7 +2151,7 @@ $.each(response.data, function(index, item) {
 	$('.serviceStatus').change(function () {
         var serviceStatus = $(this).val();
 
-        if (serviceStatus === 'permanent') {
+        if (serviceStatus === 'Permanent') {
 			$('.permanentDateDiv').show();
 			let error = {}
 			let permanentDate = $(".permanentDate").val()
@@ -2129,6 +2186,45 @@ $.each(response.data, function(index, item) {
              $(".permanentDate").removeClass("error-input");
 		}
 	})
+
+    $('.noticeStatus').change(function () {
+
+        var noticeStatus = $(this).val();
+        if(noticeStatus === 'Under Notice'){
+            $('.dateOfNoticeDiv').show();
+            let error = {}
+			let dateOfNotice = $(".dateOfNotice").val()
+
+			if (!dateOfNotice) {
+                    error = {
+                        ...error,
+                        dateOfNotice: "Date Of Notice is required"
+                    }
+                }
+
+                if (error.dateOfNotice) {
+                    $("#errorDateOfNotice").html(error.permanentDate);
+                    $("#errorDateOfNotice").addClass("text-danger");
+                    $(".dateOfNotice").addClass("error-input");
+                } else {
+                    $("#errorDateOfNotice").removeClass("text-danger");
+                    $(".dateOfNotice").removeClass("error-input");
+                  
+                }
+
+				if (Object.keys(error).length === 0) {
+
+                      let activeStep = $('.step.active').data('target');
+                       Steps(activeStep, 'next');
+
+                     }
+        }else{
+            $('.dateOfNoticeDiv').hide();
+            $("#errorDateOfNotice").html("");
+             $(".dateOfNotice").removeClass("error-input");
+        }
+
+    })
 
 
             $("#next").on("click", function() {
@@ -2321,7 +2417,7 @@ $.each(response.data, function(index, item) {
                     case '#test-vl-4':
                         stepFour(clickType)
                         $("#next").css("display", "none");
-                        $("#submit").css("display", "block");
+                        
                         break;
                     case '#test-vl-5':
                         stepFive(clickType)
@@ -2445,6 +2541,8 @@ $.each(response.data, function(index, item) {
                 var imageElement = document.getElementById('uploadedImage');
                 var imageSrc = imageElement.getAttribute('src');
 
+              
+
                 let dataObject = {
                     buttonText: $(this).text(),
                     id: $('#id').val(),
@@ -2475,7 +2573,7 @@ $.each(response.data, function(index, item) {
 
                 $.ajax({
                     type: 'POST',
-                    url: '/employee/basic/info', // Laravel will generate the URL
+                    url: '/employee/basic/info',
                     data: {
                         data: stepOneData,
                     },
@@ -2489,7 +2587,7 @@ $.each(response.data, function(index, item) {
                         }
                         if (clickType == 'submit' || clickType == 'next') {
                             $('#previous').css('display', 'block');
-							toastr.success('Form submitted successfully!')
+							toastr.success('Basic Information submitted successfully!')
                             stepper3.next();
                         }
                     },
@@ -2920,7 +3018,7 @@ $.each(response.data, function(index, item) {
                         $("#errorSourceOfHiringRequest").removeClass("text-danger");
                     }
 
-                    var aadharImageElement = document.getElementById('aadharImage');
+                    var aadharImageElement = document.getElementById('uploadedAadharImage');
                     var aadharImageSrc = aadharImageElement.getAttribute('src');
 
                     let dataObject = {
@@ -2966,6 +3064,8 @@ $.each(response.data, function(index, item) {
                                 }
                                 if (clickType == 'submit' || clickType == 'next') {
 									toastr.success('Employee Information submitted successfully!')
+                                    $("#submit").css("display", "block");
+                                    $("#next").css("display", "none");
                                     stepper3.next();
                                 }
                             }
@@ -3052,10 +3152,29 @@ $.each(response.data, function(index, item) {
                 var tableData2 = [];
                 $("#asssignIjpTbody tr").each(function() {
                     var row = $(this);
+                    var statusElement = row.find(".ijpStatus");
+    var statusText = statusElement.text().trim();
+
+    
+    var IjpStatus;
+    switch (statusText) {
+        case "Pending":
+            IjpStatus = "Pending";
+            break;
+        case "Processing":
+            IjpStatus = "Processing";
+            break;
+        case "Completed":
+            IjpStatus = "Completed";
+            break;
+        default:
+           
+            IjpStatus = "Unknown";
+    }
                     var rowData = {
                         IjpName: row.find(".ijpName").text(),
                         IjpDateOfApplication: row.find(".dateOfApplication").text(),
-                        IjpStatus: row.find(".ijpStatus").text(),
+                        IjpStatus: IjpStatus,
 						IjpBillableStatus: row.find(".ijpBillableStatus").text(),
                         IjpClosure: row.find(".dateOfClosure").text(),
                         IjpSpan: row.find(".ijpSpan").text(),
@@ -3186,6 +3305,7 @@ $.each(response.data, function(index, item) {
             });
 
             $('#openProcess').click(function() {
+                $('.contributionDiv').hide();
                 $("#updateProcessButton").css("display", "none");
                 $("#addProcessButton").css("display", "block");
                 $(".editModal").find("input, select").val("");
@@ -3206,6 +3326,7 @@ $.each(response.data, function(index, item) {
         }
 
         $("#addProcessButton").click(function () {
+           
           let row = $("#asssignProcessTbody").find(`tr[data-row-id]`).length;
           let spanId = $(".modelSpan").val();
           let spanName = $(".modelSpan option:selected").text();
@@ -3362,7 +3483,30 @@ $.each(response.data, function(index, item) {
 													<td class="ijpSpan">${IjpSpan}</td>
 													<td class="ijpProcess">${IjpProcess}</td>
 													<td class="ijpClient">${IjpClient}</td>
-													<td class="ijpStatus">${IjpStatus}</td>
+													<td class="ijpStatus">        ${(() => {
+            switch (IjpStatus) {
+                case 'Pending':
+                    return `
+                        <div class="d-flex align-items-center text-danger">
+                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
+                            <span>Pending</span>
+                        </div>`;
+                case 'Processing':
+                    return `
+                        <div class="d-flex align-items-center text-primary">
+                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
+                            <span>Processing</span>
+                        </div>`;
+                case 'Completed':
+                    return `
+                        <div class="d-flex align-items-center text-success">
+                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
+                            <span>Completed</span>
+                        </div>`;
+                default:
+                    return ''; 
+            }
+        })()}</td>
 													<td>
 														<div class="d-flex justify-content-end">
 															<i class="fadeIn animated bx bx-pencil fs-5 editIjpRow"></i>
@@ -3433,19 +3577,34 @@ $.each(response.data, function(index, item) {
                 let rowToUpdate = $("#asssignIjpTbody").find(`tr[data-row-id="${editedIjpRowId}"]`);
                 rowToUpdate.find(".ijpName").text(editedIjpNameValue);
                 rowToUpdate.find(".dateOfApplication").text(editedAppDateValue);
-                rowToUpdate.find(".ijpStatus").text(editedStatusValue);
+                //rowToUpdate.find(".ijpStatus").removeClass().addClass(getStatusClass(editedStatusValue));
                 rowToUpdate.find(".dateOfClosure").text(editedClosureDateValue);
                 rowToUpdate.find(".ijpSpan").text(editedSpanValue);
                 rowToUpdate.find(".ijpProcess").text(editedProcessValue);
                 rowToUpdate.find(".ijpClient").text(editedClientValue);
+                let ijpStatusCell = rowToUpdate.find(".ijpStatus");
+    ijpStatusCell.find("i").removeClass(); // Remove existing classes from the <i> element
+    ijpStatusCell.find("i").addClass(getStatusIconClass(editedStatusValue)); // Set the appropriate class for the <i> element
+    ijpStatusCell.find("span").text(editedStatusValue); // Update the text content
 
 
                 $(".editIjpModal").modal("hide");
             });
 
-
-
         });
+
+        function getStatusIconClass(status) {
+    switch (status) {
+        case 'Pending':
+            return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-danger';
+        case 'Processing':
+            return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-primary';
+        case 'Completed':
+            return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-success';
+        default:
+            return ''; // Handle other cases as needed
+    }
+}
 
         function createObjectFromArrays(keys, values) {
             if (keys.length !== values.length) {

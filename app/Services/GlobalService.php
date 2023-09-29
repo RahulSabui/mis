@@ -5,6 +5,7 @@ use App\Models\state;
 use App\Models\Designation;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Employee;
+use App\Models\Droplocation;
 class GlobalService
 {
     public function state(){
@@ -13,6 +14,10 @@ class GlobalService
 
     public function designation(){
         return $data =  Designation::all();
+    }
+
+    public function dropLocation(){
+        return $data = Droplocation::all();
     }
 
     public function imageUrl($uploadedFile){
