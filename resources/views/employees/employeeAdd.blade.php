@@ -253,9 +253,11 @@
                                                         <select id="input7" name="relationWithRelative"
                                                             class="form-select relationWithRelative">
                                                             <option disabled value="" selected>Select</option>
-                                                            <option value="A">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="C">C</option>
+                                                            <option value="Sibling">Sibling</option>
+							                            	<option value="Spouse">Spouse</option>
+								                            <option value="Partner">Partner</option>
+								                            <option value="Parent">Parent</option>
+								                            <option value="Cousin">Cousin</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -491,9 +493,11 @@
 										<!-- <input id="fancy-file-upload" type="file" name="files"
 											accept=".jpg, .png, image/jpeg, image/png" multiple> -->
 										<div class="file-upload">
-											<input type="file" name="files" class="upload-input">
-											<div class="uploaded-img">
+											<input id="aadharfile" type="file" name="files" class="upload-input">
+											<div class="uploaded-img aadhar-img">
 												<!-- <img src="./assets/images/uploadimg-dummy.webp" alt=""> -->
+                                                <img id="uploadedAadharImage" src="" alt=""
+                                                style="display: none;">
 												<i class="fadeIn animated bx bx-user fs-4"></i>
 											</div>
 											<div class="uploaded-des">
@@ -1457,22 +1461,52 @@
                 url: "/states",
                 success: function(response) {
                     console.log(response, "states");
-                    $.each(response?.data, function(index, item) {
-                        var option = $("<option>")
-                            .attr("value", item.id)
-                            .text(item.name);
+                   
+var selectElement = $(".state"); 
+selectElement.empty(); 
 
-                        $(".state").append(option);
 
-                    });
-                    $.each(response?.data, function(index, item) {
-                        var option = $("<option>")
-                            .attr("value", item.id)
-                            .text(item.name);
+var selectOption = $("<option>")
+    .attr("value", "")
+    .attr("disabled", "disabled")
+    .attr("selected", "selected")
+    .text("Select");
 
-                        $(".residentialState").append(option);
+selectElement.append(selectOption);
 
-                    });
+$.each(response?.data, function(index, item) {
+    var option = $("<option>")
+        .attr("value", item.id)
+        .text(item.name);
+    selectElement.append(option);
+});
+
+                   
+var selectElement = $(".residentialState");
+selectElement.empty(); 
+
+
+var selectOption = $("<option>")
+    .attr("value", "")
+    .attr("disabled", "disabled")
+    .attr("selected", "selected")
+    .text("Select");
+
+selectElement.append(selectOption);
+
+response.data.sort(function(a, b) {
+    return a.name.localeCompare(b.name);
+});
+
+$.each(response.data, function(index, item) {
+    var option = $("<option>")
+        .attr("value", item.id)
+        .text(item.name);
+
+    
+    selectElement.append(option);
+});
+
                 }
             });
 
@@ -2344,6 +2378,52 @@
                 }
             })
 
+            $("#aadharfile").on('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+
+                    if (file.size <= 2 * 1024 * 1024) {
+                        const formData = new FormData();
+                        formData.append('image', file);
+
+                        $.ajaxSetup({
+                         headers: {
+                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                          });
+
+                        $.ajax({
+                            url: '/aadhar/upload', // Replace with the URL of your PHP file handling the upload
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                const uploadedImage = document.getElementById('uploadedAadharImage');
+                                const iconElement = document.querySelector('.aadhar-img i');
+                                if (response) {
+                                    uploadedImage.src = response?.url;
+                                    uploadedImage.style.display = 'block';
+                                    iconElement.style.display = 'none';
+                                } else {
+                                    uploadedImage.style.display = 'none';
+                                    iconElement.style.display = 'block';
+                                }
+
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error uploading file:', error);
+                            }
+                        })
+                    } else {
+
+                        alert('File size exceeds the maximum limit of 2MB.');
+
+                        $("#aadharfile").val('');
+                    }
+                }
+            })
+
             let token = sessionStorage.getItem('authToken');
 
             function stepOne(clickType) {
@@ -2840,7 +2920,8 @@
                         $("#errorSourceOfHiringRequest").removeClass("text-danger");
                     }
 
-
+                    var aadharImageElement = document.getElementById('aadharImage');
+                    var aadharImageSrc = aadharImageElement.getAttribute('src');
 
                     let dataObject = {
                         employeeId: Number($('#id').val()),
@@ -2848,6 +2929,7 @@
                         designation: Number($(".designation").val()),
                         employmentStatus: $(".employmentStatus").val(),
                         dateOfJoining: $(".dateOfJoining").val(),
+                        aadharImage: aadharImageSrc,
                         shiftTiming: $(".shiftTiming").val(),
                         serviceStatus: $(".serviceStatus").val(),
                         appraisalCycle: $(".appraisalCycle").val(),
@@ -3073,9 +3155,11 @@
 							<label for="input2" class="form-label">Relationship</label>
 							<select id="input7" name="relationWithRelative" class="form-select relationWithRelative">
 								<option value="" selected></option>
-								<option>A</option>
-								<option>B</option>
-								<option>C</option>
+								<option value="Sibling">Sibling</option>
+								<option value="Spouse">Spouse</option>
+								<option value="Partner">Partner</option>
+								<option value="Parent">Parent</option>
+								<option value="Cousin">Cousin</option>
 							</select>
 						</div>
 					</div>

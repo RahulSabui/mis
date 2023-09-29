@@ -75,6 +75,33 @@ public function fileUpload(Request $request)
     }
 }
 
+public function aadharUpload(Request $request)
+{
+    try {
+        if ($request->hasFile('image')) {
+
+            $uploadedFile = $request->file('image');
+            $imageUrl = $this->GlobalService->aadharImageUrl($uploadedFile);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Image uploaded successfully',
+                'url' => $imageUrl,
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'No file uploaded',
+            ], 400);
+        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'File upload error: ' . $e->getMessage(),
+        ], 500);
+    }
+}
+
 public function checkSkid(Request $request)
 {
     try {

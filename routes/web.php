@@ -24,6 +24,7 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::post('/employee/proccess/assignment', [EmployeeController::class, 'processAssignment'])->name('employeeProcessAssignment');
     Route::post('/employee/ijp', [EmployeeController::class, 'ijp'])->name('employeeIjp');
     Route::post('/fileUpload', [GlobalController::class, 'fileUpload'])->name('fileUpload');
+    Route::post('/aadhar/upload', [GlobalController::class, 'aadharUpload'])->name('aadharUpload');
     Route::post('/check/skid', [GlobalController::class, 'checkSkid'])->name('checkSkid');
 
 
