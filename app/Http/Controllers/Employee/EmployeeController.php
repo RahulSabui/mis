@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Employee;
 use App\Http\Controllers\Controller;
 use App\Services\EmployeeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -149,6 +150,57 @@ class EmployeeController extends Controller
         }
     }
 
+    public function activeEmployee(){
+        try {
+
+            $page = request()->input('page', 1);
+            $limit = request()->input('limit', 10);
+            $spanId = json_decode(request()->input('spanId'));
+            $designationId = json_decode(request()->input('designationId'));
+
+            // return $spanId;
+
+            $activeEmployeeDetails = $this->employeeService->activeEmployeelist($page, $limit, $spanId, $designationId);
+            $data = [
+                'activeEmployeeDetails' => $activeEmployeeDetails[0],
+                'allCount' => $activeEmployeeDetails[1],
+                'designationName' =>  $activeEmployeeDetails[2],
+                'designationEmployeeCount' =>  $activeEmployeeDetails[3],
+                'spanName'=>$activeEmployeeDetails[4],
+                'spanEmployeeCount' => $activeEmployeeDetails[5]
+
+            ];
+            return response()->json([
+                'success' => true,
+                'data' => $data
+            ], 200);
 
 
+        }catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+
+    }
+
+    public function Helper() {
+        try {
+            $designations = DB::table('designation')->get();
+            $spans = DB::table('span')->get();
+            return response()->json([
+                'success' => true,
+                'designations' => $designations,
+                'spans' => $spans
+
+            ], 200);
+
+        }catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }

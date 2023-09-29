@@ -22,6 +22,8 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::post('/employee/address', [EmployeeController::class, 'address'])->name('employeeAddress');
     Route::post('/employee/additional/info', [EmployeeController::class, 'additonalInfo'])->name('employeeAdditionalInfo');
     Route::post('/employee/proccess/assignment', [EmployeeController::class, 'processAssignment'])->name('employeeProcessAssignment');
+    Route::get('/active/employee', [EmployeeController::class, 'activeEmployee'])->name('activeEmployee');
+    Route::get('/helper', [EmployeeController::class, 'Helper'])->name('Helper');
     Route::post('/employee/ijp', [EmployeeController::class, 'ijp'])->name('employeeIjp');
     Route::post('/fileUpload', [GlobalController::class, 'fileUpload'])->name('fileUpload');
     Route::post('/aadhar/upload', [GlobalController::class, 'aadharUpload'])->name('aadharUpload');
