@@ -427,11 +427,11 @@
                                         <select class="form-select lookup designation" name="designation"
                                             id="prepend-text-single-field" data-placeholder="">
                                             <option selected disabled value="">Select</option>
-                                            <option value="1">Reactive</option>
+                                            {{-- <option value="1">Reactive</option>
                          <option value="2">Solution</option>
                          <option value="3">Conglomeration</option>
                          <option value="4">Algoritm</option>
-                         <option value="5">Holistic</option>
+                         <option value="5">Holistic</option> --}}
                                         </select>
                                         <span class="error-message" id="errorDesignation"></span>
                                     </div>
@@ -1475,6 +1475,39 @@
                     });
                 }
             });
+
+            function checkSkid() {
+            var skidValue = $(".SKID").val();
+            $.ajaxSetup({
+                         headers: {
+                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                          });
+           
+            $.ajax({
+                url: "/check/skid", 
+                method: "POST",
+                data: {
+                    skid: skidValue
+                },
+                success: function (response) {
+                    if (response.exists) {
+                        $(".SKID").addClass("error-input");
+                        $("#errorSKID").text("SKID already exists");
+                    } else {
+                        $(".SKID").removeClass("error-input");
+                        $("#errorSKID").text("");
+                    }
+                },
+                error: function () {
+                    console.log("An error occurred while checking SKID.");
+                }
+            });
+        }
+
+        $(".SKID").on("keyup", function () {
+            checkSkid();
+        });
             // $("#myform").validate({
             // 	rules: {
             // 		name: {
@@ -1558,6 +1591,7 @@
 				}
 
 			})
+            
 
 			
         var employmentStatus = $('.employmentStatus').val();
@@ -2272,8 +2306,14 @@
                         const formData = new FormData();
                         formData.append('image', file);
 
+                        $.ajaxSetup({
+                         headers: {
+                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                          });
+
                         $.ajax({
-                            url: 'http://127.0.0.1:8000/fileUpload', // Replace with the URL of your PHP file handling the upload
+                            url: '/fileUpload', // Replace with the URL of your PHP file handling the upload
                             type: 'POST',
                             data: formData,
                             processData: false,

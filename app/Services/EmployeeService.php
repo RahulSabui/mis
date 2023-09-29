@@ -17,7 +17,7 @@ class EmployeeService
         $employeeData = [
             'userId' => isset($data["userId"]) ? $data["userId"] : 1,
             'name' => isset($data["name"]) ? $data["name"] : null,
-            'skid' => isset($data["skid"]) ? $data["skid"] : null,
+            'skid' => isset($data["SKID"]) ? $data["SKID"] : null,
             'phone' => isset($data["phone"]) ? $data["phone"] : null,
             'emergencyContact' => isset($data["emergencyContact"]) ? $data["emergencyContact"] : null,
             'email' => isset($data["email"]) ? $data["email"] : null,
