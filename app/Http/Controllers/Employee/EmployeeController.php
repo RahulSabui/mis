@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
+
 class EmployeeController extends Controller
 {
     protected $employeeService;
@@ -102,7 +103,7 @@ class EmployeeController extends Controller
     {
         try {
             $payloadOfProcessAssignment = json_decode(request()->input('data'), true);
-
+           
             $createOrUpdateEmployeeInfo = $this->employeeService->createOrUpdateEmployeerocessAssignment($payloadOfProcessAssignment);
             if ($createOrUpdateEmployeeInfo) {
                 return response()->json([
@@ -127,6 +128,7 @@ class EmployeeController extends Controller
     {
         try {
             $payloadOfIjp = json_decode(request()->input('data'), true);
+           
 
             $createOrUpdateEmployeeInfo = $this->employeeService->createOrUpdateEmployeeIjp($payloadOfIjp);
             if ($createOrUpdateEmployeeInfo) {

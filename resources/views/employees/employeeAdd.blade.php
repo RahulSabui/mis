@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div class="step" data-target="#test-vl-4">
+                        <div class="step processAssignmentDiv" data-target="#test-vl-4">
                             <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
                                 <div class="bs-stepper-circle"><i class="fadeIn animated bx bx-message-edit fs-4"></i></div>
                                 <div class="">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="step" data-target="#test-vl-5">
+                        <div class="step ijpDiv" data-target="#test-vl-5">
                             <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
                                 <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                 <div class="">
@@ -76,15 +76,25 @@
                             </div>
                         </div>
 
-                        <div class="step" data-target="#test-vl-6">
-                            <div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
-                                <div class="bs-stepper-circle"><i class="fadeIn animated bx bx-history fs-3"></i></div>
-                                <div class="">
-                                    <h5 class="mb-0 steper-title">History</h5>
-                                    <p class="mb-0 steper-sub-title">Previous History</p>
-                                </div>
-                            </div>
-                        </div>
+						<div class="step pipDiv" data-target="#test-vl-6">
+							<div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
+								<div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
+								<div class="">
+									<h5 class="mb-0 steper-title">PIP</h5>
+									<p class="mb-0 steper-sub-title">Personal Improvement Plan</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="step historyDiv" data-target="#test-vl-7">
+							<div class="step-trigger" role="tab" id="stepper3trigger7" aria-controls="test-vl-7">
+
+								<div class="btn btn-primary d-flex align-items-center w-100 py-2">
+									<i class="fadeIn animated bx bx-history fs-3"></i>
+									<h5 class="mb-0 steper-title text-white">History</h5>
+								</div>
+							</div>
+						</div>
                     </div>
 
                     <div class="bs-stepper-content w-100">
@@ -135,7 +145,7 @@
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                                         <label for="input2" class="form-label">Gender</label>
                                         <select id="input7" name="gender" class="form-select gender">
-                                            <option value="" selected></option>
+                                            <option value="" disabled selected>Select</option>
                                             <option value="Woman">Woman</option>
                                             <option value="Man">Man</option>
                                             <option value="Transgender Woman">Transgender Woman</option>
@@ -149,7 +159,7 @@
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                                         <label for="input3" class="form-label">Religion</label>
                                         <select id="input7" name="religion" class="form-select religion">
-                                            <option value="" selected></option>
+                                            <option value="" disabled selected>Select</option>
                                             <option value="Hinduism">Hinduism</option>
                                             <option value="Islam">Islam</option>
                                             <option value="Christianity">Christianity</option>
@@ -165,7 +175,7 @@
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-2">
                                         <label for="input2" class="form-label">Blood Group</label>
                                         <select id="input7" name="bloodGroup" class="form-select bloodGroup">
-                                            <option value="" selected></option>
+                                            <option value="" disabled selected>Select</option>
                                             <option value="A+">A+</option>
                                             <option value="A-">A-</option>
                                             <option value="B+">B+</option>
@@ -177,15 +187,23 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
-                                        <label for="input3" class="form-label">Qualification</label>
-                                        <input type="text" name="qualification" class="form-control qualification"
-                                            id="input3">
-                                    </div>
+										<label for="input3" class="form-label">Qualification</label>
+										<select id="input7" name="qualification" class="form-select qualification">
+											<option selected></option>
+											<option>HS</option>
+											<option>Graduate</option>
+											<option>MCA</option>
+										</select>
+									</div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
-                                        <label for="input3" class="form-label">Academic Stream</label>
-                                        <input type="text" name="academicStream" class="form-control academicStream"
-                                            id="input3">
-                                    </div>
+										<label for="input3" class="form-label">Academic Stream</label>
+										<select id="input7" name="academicStream" class="form-select academicStream">
+											<option selected></option>
+											<option>Academic1</option>
+											<option>Academic2</option>
+											<option>Academic3</option>
+										</select>
+									</div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input3" class="form-label">School</label>
                                         <input type="text" name="school" class="form-control school" id="input3">
@@ -234,10 +252,10 @@
                                                         <label for="input2" class="form-label">Relationship</label>
                                                         <select id="input7" name="relationWithRelative"
                                                             class="form-select relationWithRelative">
-                                                            <option selected></option>
-                                                            <option>A</option>
-                                                            <option>B</option>
-                                                            <option>c</option>
+                                                            <option disabled value="" selected>Select</option>
+                                                            <option value="A">A</option>
+                                                            <option value="B">B</option>
+                                                            <option value="C">C</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -316,7 +334,7 @@
                                         <label for="input2" class="form-label">State<span
                                                 class="requir-field">*</span></label>
                                         <select id="input7" name="state" class="form-select state">
-                                            <option value="" selected></option>
+                                            <option value="" disabled selected>Select</option>
                                             <option value="West Bengal">West Bengal</option>
                                             <option value="Goa">Goa</option>
                                             <option value="Kashmir">Kashmir</option>
@@ -368,7 +386,7 @@
                                                 class="requir-field">*</span></label>
                                         <select id="input7" name="residentialState"
                                             class="form-select residentialState">
-                                            <option value="" selected></option>
+                                            <option value="" disabled selected>Select</option>
                                             <option value="West Bengal">West Bengal</option>
                                             <option value="Goa">Goa</option>
                                             <option value="Kashmir">Kashmir</option>
@@ -384,12 +402,14 @@
                                         <span class="error-message" id="errorResidentialPin"></span>
                                     </div>
                                     <div class="col-12">
-                                        <label for="input3" class="form-label">Drop Location<span
-                                                class="requir-field">*</span></label>
-                                        <input type="text" name="dropLocation" class="form-control dropLocation"
-                                            id="input3">
-                                        <span class="error-message" id="errorDropLocation"></span>
-                                    </div>
+										<label for="input3" class="form-label">Drop Location<span class="requir-field">*</span></label>
+										<select id="input7" name="dropLocation" class="form-select dropLocation">
+											<option selected></option>
+											<option>Location</option>
+											<option>Location</option>
+											<option>Location</option>
+										</select>
+									</div>
                                 </div>
                                 <!---end row-->
 
@@ -406,12 +426,12 @@
                                                 class="requir-field">*</span></label>
                                         <select class="form-select lookup designation" name="designation"
                                             id="prepend-text-single-field" data-placeholder="">
-                                            <option value=""></option>
-                                            <option value="1">Reactive</option>
+                                            <option selected disabled value="">Select</option>
+                                            {{-- <option value="1">Reactive</option>
                          <option value="2">Solution</option>
                          <option value="3">Conglomeration</option>
                          <option value="4">Algoritm</option>
-                         <option value="5">Holistic</option>
+                         <option value="5">Holistic</option> --}}
                                         </select>
                                         <span class="error-message" id="errorDesignation"></span>
                                     </div>
@@ -421,26 +441,27 @@
                                                 class="requir-field">*</span></label>
                                         <select id="input7" name="employmentStatus"
                                             class="form-select employmentStatus">
-                                            <option value="" selected></option>
-                                            <option value="Active">Active</option>
+                                            <option value="" disabled>Select</option>
+                                            <option selected value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
                                         </select>
                                         <span class="error-message" id="errorEmploymentStatus"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input2" class="form-label">WFO / WFH</label>
-                                        <select id="input7" class="form-select">
-                                            <option selected></option>
-                                            <option>Work From Home</option>
-                                            <option>Work From Office</option>
+                                        <select id="input7" name="workFromHome" class="form-select workFromHome">
+                                            <option disabled >Select</option>
+                                            <option selected value="Work From Home">Work From Home</option>
+                                            <option value="Work From Office">Work From Office</option>
                                         </select>
+										<span class="error-message" id="errorWorkFromHome"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input2" class="form-label">Is Traniee<span
                                                 class="requir-field">*</span></label>
                                         <select id="input7" name="isTraniee" class="form-select isTraniee">
-                                            <option value="" selected></option>
-                                            <option value="1">Yes</option>
+                                            <option value="" disabled>Select</option>
+                                            <option selected value="1">Yes</option>
                                             <option value="0">No</option>
                                         </select>
                                         <span class="error-message" id="errorIsTraniee"></span>
@@ -449,10 +470,15 @@
                                         <label for="input6" class="form-label">Shift Timing
                                         </label>
                                         <select id="input7" name="shiftTiming" class="form-select shiftTiming">
-                                            <option value="" selected></option>
-                                            <option value="day">day</option>
-                                            <option value="night">night</option>
+                                            <option selected></option>
+													<option>8:00 pm to 3:00 am EST</option>
+													<option>8:00 pm to 3:00 am CST</option>
+													<option>8:00 pm to 3:00 am MST</option>
+													<option>8:00 pm to 3:00 am PST</option>
+													<option>Day – Regular</option>
+													<option>Day - Late</option>
                                         </select>
+										<span class="error-message" id="errorShiftTiming"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Date of Joining<span
@@ -461,6 +487,21 @@
                                             class="form-control datepicker dateOfJoining" placeholder="mm-dd-yyyy" />
                                         <span class="error-message" id="errorDateOfJoining"></span>
                                     </div>
+									<div class="col-auto cursor-pointer">
+										<!-- <input id="fancy-file-upload" type="file" name="files"
+											accept=".jpg, .png, image/jpeg, image/png" multiple> -->
+										<div class="file-upload">
+											<input type="file" name="files" class="upload-input">
+											<div class="uploaded-img">
+												<!-- <img src="./assets/images/uploadimg-dummy.webp" alt=""> -->
+												<i class="fadeIn animated bx bx-user fs-4"></i>
+											</div>
+											<div class="uploaded-des">
+												<p>Upload Aadhaar Card</p>
+												Maximum size 2MB
+											</div>
+										</div>
+									</div>
                                     <hr class="mt-4 mb-2" />
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Type of Medical Insurance
@@ -479,8 +520,8 @@
                                         <label for="input2" class="form-label">Service Status<span
                                                 class="requir-field">*</span></label>
                                         <select id="input7" name="serviceStatus" class="form-select serviceStatus">
-                                            <option value="" selected></option>
-                                            <option value="probation">probation</option>
+                                            <option value="" disabled>Select</option>
+                                            <option selected value="probation">probation</option>
                                             <option value="permanent">permanent</option>
                                         </select>
                                         <span class="error-message" id="errorServiceStatus"></span>
@@ -493,17 +534,29 @@
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Appraisal Cycle<span
                                                 class="requir-field">*</span></label>
-                                        <select id="input7" name="appraisalCycle" class="form-select appraisalCycle">
-                                            <option value="" selected></option>
-                                            <option value="under notice">under notice</option>
-                                            <option value="not">not</option>
-                                        </select>
+												<select id="input7" name="appraisalCycle" class="form-select appraisalCycle">
+													<option value="" disabled selected>Select</option>
+													<option value="January">January</option>
+													<option value="February">February</option>
+													<option value="March">March</option>
+													<option value="April">April</option>
+													<option value="May">May</option>
+													<option value="June">June</option>
+													<option value="July">July</option>
+													<option value="August">August</option>
+													<option value="September">September</option>
+													<option value="October">October</option>
+													<option value="November">November</option>
+													<option value="December">December</option>
+												</select>
+												
                                         <span class="error-message" id="errorAppraisalCycle"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input2" class="form-label">Reporting</label>
                                         <select name="reporting" class="form-select lookup reporting">
-                                            <option value=""></option>
+                                            <option disabled value="">Select</option>
+											
                                             <!-- <option>Span head</option>
                          <option>Manager</option>
                          <option>Assistant Manager
@@ -521,7 +574,7 @@
                                                 class="requir-field">*</span></label>
                                         <select class="form-select lookup sourceOfHiringRequest"
                                             name="sourceOfHiringRequest">
-                                            <option value=""></option>
+                                            <option selected disabled value="">Select</option>
                                             <option value="0">Reactive</option>
                                             <option value="1">Solution</option>
                                             <option value="2">Conglomeration</option>
@@ -531,44 +584,51 @@
                                         <span class="error-message" id="errorSourceOfHiringRequest"></span>
                                     </div>
 
-                                    <div class="col-sm-6 col-md-4 col-lg-6">
+                                    <div class="col-sm-6 col-md-4 col-lg-6 permanentDateDiv">
                                         <label for="input6" class="form-label">Permanent Date</label>
                                         <input type="text" name="permanentDate"
                                             class="form-control datepicker permanentDate" placeholder="mm-dd-yyyy" />
+											<span class="error-message" id="errorPermanentDate"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 ">
-                                        <label for="input3" class="form-label">Revenue Earning</label>
-                                        <select id="input7" class="form-select">
-                                            <option selected></option>
-                                            <option>Revenue Earning</option>
-                                            <option>Non-Revenue Earning</option>
+                                        <label for="input3" class="form-label ">Revenue Earning<span
+											class="requir-field">*</span></label>
+                                        <select id="input7" name="revenueEarning" class="form-select  revenueEarning">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="Revenue Earning">Revenue Earning</option>
+                                            <option value="Non-Revenue Earning">Non-Revenue Earning</option>
                                         </select>
+										<span class="error-message" id="errorRevenueEarning"></span>
                                     </div>
                                     <hr class="mt-4 mb-2" />
 
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input2" class="form-label">Notice Status</label>
-                                        <select id="input7" class="form-select noticeStatus">
-                                            <option value="" selected></option>
+                                        <select id="input7" name="noticeStatus" class="form-select noticeStatus">
+                                            <option value="" disabled >Select</option>
                                             <option value="under notice">under notice</option>
-                                            <option value="not">not</option>
+                                            <option selected value="not">not</option>
                                         </select>
+										<span class="error-message" id="errorNoticeStatus"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Date of Notice
                                         </label>
                                         <input type="text" name="dateOfNotice"
                                             class="form-control datepicker dateOfNotice" placeholder="mm-dd-yyyy" />
+											<span class="error-message" id="errorDateOfNotice"></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-4 col-lg-6">
+                                    <div class="col-sm-6 dateOfExitDiv col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Date of Exit</label>
                                         <input type="text" name="dateOfExit"
                                             class="form-control datepicker dateOfExit" placeholder="mm-dd-yyyy" />
+											<span class="error-message" id="errorDateOfExit"></span>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12 dateOfExitReasonDiv">
                                         <label for="input11" class="form-label">Exit Reason
                                         </label>
                                         <textarea class="form-control exitReason" name="exitReason" id="input11" rows="4"></textarea>
+										<span class="error-message" id="errorExitReason"></span>
                                     </div>
                                     <!-- <div class="col-12">
                         <div class="d-flex align-items-center gap-3">
@@ -784,7 +844,7 @@
                                                             <label for="input2" class="form-label">Span</label>
                                                             <select class="form-select modelSpan" name="modelSpan"
                                                                 data-placeholder="">
-                                                                <option value="" selected></option>
+                                                                <option value="" disabled selected>Select</option>
                                                                 <option value="1">Reactive</option>
                                                                 <option value="2">Solution</option>
                                                                 <option value="3">Conglomeration</option>
@@ -797,7 +857,7 @@
                                                             <label for="input2" class="form-label">Client</label>
                                                             <select class="form-select modelClient" name="modelClient"
                                                                 data-placeholder="">
-                                                                <option value=""></option>
+                                                                <option selected disabled value="">Select</option>
                                                                 <option value="1">Reactive</option>
                                                                 <option value="2">Solution</option>
                                                                 <option value="3">Conglomeration</option>
@@ -810,7 +870,7 @@
                                                                 class="form-label">Process</label>
                                                             <select class="form-select modelProcess" name="modelProcess"
                                                                 data-placeholder="">
-                                                                <option value=""></option>
+                                                                <option selected disabled value="">Select</option>
                                                                 <option value="1">Proccess1</option>
                                                                 <option value="2">Proccess2</option>
                                                                 <option value="3">Proccess3</option>
@@ -833,12 +893,12 @@
                                                                 Status</label>
                                                             <select id="input7" class="form-select modelBillable"
                                                                 name="modelBillable">
-                                                                <option value="" selected></option>
+                                                                <option selected disabled value="" selected>Select</option>
                                                                 <option value="billable">billable</option>
                                                                 <option value="buffer">buffer</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 contributionDiv">
                                                             <label for="input3" class="form-label">Contribution
                                                                 %
                                                             </label>
@@ -1007,9 +1067,9 @@
                                                         <div class="col-12">
                                                             <label for="input2" class="form-label">Billable
                                                                 Status</label>
-                                                            <select id="input7 modalIjpStatus"
-                                                                class="form-select modalIjpStatus">
-                                                                <option selected></option>
+                                                            <select id="input7"
+                                                                class="form-select modalBillableIjpStatus">
+                                                                <option disabled selected>Select</option>
                                                                 <option>billable</option>
                                                                 <option>buffer</option>
                                                             </select>
@@ -1017,8 +1077,8 @@
                                                         <div class="col-12">
                                                             <label for="input2" class="form-label">
                                                                 Status</label>
-                                                            <select id="input7" class="form-select">
-                                                                <option selected></option>
+                                                            <select id="input7" class="form-select modalIjpStatus">
+                                                                <option disabled selected>Select</option>
                                                                 <option>Completed</option>
                                                                 <option>Processing</option>
                                                                 <option>Pending</option>
@@ -1036,7 +1096,7 @@
                                                             <label for="input3" class="form-label">Span</label>
                                                             <select class="form-select modalIjpSpan" name="modalIjpSpan"
                                                                 data-placeholder="">
-                                                                <option></option>
+                                                                <option selected value="" disabled>Select</option>
                                                                 <option value="1">Reactive</option>
                                                                 <option value="2">Solution</option>
                                                                 <option value="3">Conglomeration</option>
@@ -1049,7 +1109,7 @@
                                                             </label>
                                                             <select class="form-select modalIjpProcess"
                                                                 name="modalIjpProcess" data-placeholder="">
-                                                                <option></option>
+                                                                <option selected value="" disabled>Select</option>
                                                                 <option value="1">Reactive</option>
                                                                 <option value="2">Solution</option>
                                                                 <option value="3">Conglomeration</option>
@@ -1062,7 +1122,7 @@
                                                             </label>
                                                             <select class="form-select modalIjpClient"
                                                                 name="modalIjpClient" data-placeholder="">
-                                                                <option></option>
+                                                                <option selected value="" disabled>Select</option>
                                                                 <option value="1">Reactive</option>
                                                                 <option value="2">Solution</option>
                                                                 <option value="3">Conglomeration</option>
@@ -1109,50 +1169,193 @@
 
                             </div>
 
-                            <!-- History -->
-                            <div id="test-vl-6" role="tabpane3" class="bs-stepper-pane content fade"
-                                aria-labelledby="stepper3trigger6">
-                                <h5 class="mb-4">Previous History</h5>
-                                <div class="list-group notification-list">
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Daisy Anderson<span
-                                                    class="msg-time float-end">05/28/2023</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Maisy Anderson<span
-                                                    class="msg-time float-end">05/28/2023</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
+                           <!-- Card of PIP Status -->
+									<div id="test-vl-6" role="tabpane3" class="bs-stepper-pane content fade"
+									aria-labelledby="stepper3trigger6">
+									<div class="d-flex justify-content-between mb-4">
+										<h5>Personal Improvement Plan</h5>
+										<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PIP">Add
+											PIP</button>
+										<div class="modal fade" id="PIP" tabindex="-1" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title">Add Personal Improvement Plan
+														</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal"
+															aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<div class="row g-3">
+															<div class="col-12">
+																<label for="input3" class="form-label">PIP ID</label>
+																<input type="text" class="form-control" id="input3">
+															</div>
+															<div class="col-12 ">
+																<label for="input6" class="form-label">Raised on
+																</label>
+																<input type="text" class="form-control datepicker" placeholder="mm-dd-yyyy" />
+															</div>
+															<div class="col-12">
+																<label for="input2" class="form-label">Status</label>
+																<select id="input7" class="form-select">
+																	<option selected></option>
+																	<option>Open</option>
+																	<option>Resolved </option>
+																</select>
+															</div>
 
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Paisy Anderson<span
-                                                    class="msg-time float-end">09/13/2023</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Laisy Anderson<span
-                                                    class="msg-time float-end">09/13/2023</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Naisy Anderson<span class="msg-time float-end">5 sec
-                                                    ago</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
-                                    </a>
-                                </div>
+															<div class="col-12">
+																<label for=" input2" class="form-label">Closed on
+																</label>
+																<input type="text" class="form-control datepicker" placeholder="mm-dd-yyyy" />
+															</div>
+															<div class="col-12">
+																<label for=" input2" class="form-label">Reason
+																</label>
+																<textarea class="form-control" id="input11" rows="4"></textarea>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+														<button type="button" class="btn btn-primary">Add</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<table class="table mb-0 table-striped">
+										<thead>
+											<tr>
+												<th scope="col">PIP ID</th>
+												<th scope="col">Raised on</th>
+												<th scope="col">Status</th>
+												<th scope="col">Closed on</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
 
-                            </div>
+												<td>PIP-1234567890</td>
+												<td>03-21-23</td>
+												<td>Open</td>
+												<td>03-21-28</td>
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Resolved</td>
+												<td>03-21-28</td>
+
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Resolved </td>
+												<td>03-21-28</td>
+
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Open</td>
+												<td>03-21-28</td>
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Resolved </td>
+												<td>03-21-28</td>
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>PIP-1234567890 </td>
+												<td>03-21-23</td>
+												<td>Resolved </td>
+												<td>03-21-28</td>
+												<td>
+													<div class="d-flex">
+														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
+														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+								<!-- History -->
+								<div id="test-vl-7" role="tabpane3" class="bs-stepper-pane content fade"
+								aria-labelledby="stepper3trigger7">
+								<h5 class="mb-4">Previous History</h5>
+								<div class="list-group notification-list">
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Daisy Anderson<span class="msg-time float-end">05/28/2023</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+									</a>
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Maisy Anderson<span class="msg-time float-end">05/28/2023</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+
+									</a>
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Paisy Anderson<span class="msg-time float-end">09/13/2023</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+									</a>
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Laisy Anderson<span class="msg-time float-end">09/13/2023</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+									</a>
+									<a class="dropdown-item" href="javascript:;">
+										<div class="flex-grow-1">
+											<h6 class="msg-name">Naisy Anderson<span class="msg-time float-end">5 sec
+													ago</span></h6>
+											<p class="msg-info">The standard chunk of lorem</p>
+										</div>
+									</a>
+								</div>
+
+							</div>
                         </form>
                     </div>
                 </div>
@@ -1199,6 +1402,7 @@
         flatpickr('.datepicker.dateOfJoining', {
             dateFormat: 'm-d-Y',
             maxDate: 'today',
+			defaultDate: "today" 
         });
         flatpickr('.datepicker.dateOfNotice', {
             dateFormat: 'm-d-Y',
@@ -1218,14 +1422,15 @@
 
         //field validation
         $(document).ready(function() {
+			
             let token1 = sessionStorage.getItem('authToken');
 
             $.ajax({
                 type: "get",
-                url: "http://localhost:8080/designations",
-                headers: {
-                    Authorization: token1,
-                },
+                url: "/designations",
+                // headers: {
+                //     Authorization: token1,
+                // },
                 success: function(response) {
                     console.log(response, "responseee");
                     $.each(response?.data, function(index, item) {
@@ -1249,7 +1454,7 @@
 
             $.ajax({
                 type: "get",
-                url: "http://localhost:8080/states",
+                url: "/states",
                 success: function(response) {
                     console.log(response, "states");
                     $.each(response?.data, function(index, item) {
@@ -1270,6 +1475,39 @@
                     });
                 }
             });
+
+            function checkSkid() {
+            var skidValue = $(".SKID").val();
+            $.ajaxSetup({
+                         headers: {
+                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                          });
+           
+            $.ajax({
+                url: "/check/skid", 
+                method: "POST",
+                data: {
+                    skid: skidValue
+                },
+                success: function (response) {
+                    if (response.exists) {
+                        $(".SKID").addClass("error-input");
+                        $("#errorSKID").text("SKID already exists");
+                    } else {
+                        $(".SKID").removeClass("error-input");
+                        $("#errorSKID").text("");
+                    }
+                },
+                error: function () {
+                    console.log("An error occurred while checking SKID.");
+                }
+            });
+        }
+
+        $(".SKID").on("keyup", function () {
+            checkSkid();
+        });
             // $("#myform").validate({
             // 	rules: {
             // 		name: {
@@ -1336,6 +1574,527 @@
                 let activeStep = $('.step.active').data('target');
                 Steps(activeStep, 'submit');
             });
+
+
+			var currentMonth = new Date().getMonth();
+
+            
+            $('.appraisalCycle option:eq(' + (currentMonth + 1) + ')').prop('selected', true);
+
+
+			$('.modelBillable').change(function () {
+				var modelBillable = $(this).val();
+				if(modelBillable == 'buffer'){
+					$('.contributionDiv').show();
+				}else{
+					$('.contributionDiv').hide();
+				}
+
+			})
+            
+
+			
+        var employmentStatus = $('.employmentStatus').val();
+
+        if (employmentStatus === 'Active') {
+			$('.contributionDiv').hide();
+			$('.permanentDateDiv').hide();
+			$('.dateOfExitDiv').hide();
+			$('.dateOfExitReasonDiv').hide();
+			$("#errorDateOfExit").html("");
+            $(".dateOfExit").removeClass("error-input");
+			$("#errorExitReason").html("");
+            $(".exitReason").removeClass("error-input");
+			let error = {}
+			let workFromHome = $(".workFromHome").val()
+			let isTraniee = $(".isTraniee").val()
+			let shiftTiming = $(".shiftTiming").val()
+			let dateOfJoining = $(".dateOfJoining").val()
+			let serviceStatus = $(".serviceStatus").val()
+			let appraisalCycle = $(".appraisalCycle").val()
+			let revenueEarning = $(".revenueEarning").val()
+			let noticeStatus = $(".noticeStatus").val()
+
+			if (!workFromHome) {
+                    error = {
+                        ...error,
+                        workFromHome: "WFO/WFH is required"
+                    }
+                }
+
+				if (!isTraniee) {
+                    error = {
+                        ...error,
+                        isTraniee: "Is traniee is required"
+                    }
+                }
+
+				if (!shiftTiming) {
+                    error = {
+                        ...error,
+                        shiftTiming: "Shift Timing is required"
+                    }
+                }
+
+				if (!dateOfJoining) {
+                    error = {
+                        ...error,
+                        dateOfJoining: "Date of joining is required"
+                    }
+                }
+
+				if (!serviceStatus) {
+                    error = {
+                        ...error,
+                        serviceStatus: "Service status is required"
+                    }
+                }
+
+				if (!appraisalCycle) {
+                    error = {
+                        ...error,
+                        appraisalCycle: "Appraisal cycle is required"
+                    }
+                }
+
+				if (!revenueEarning) {
+                    error = {
+                        ...error,
+                        revenueEarning: "Revenue Earning is required"
+                    }
+                }
+
+				if (!noticeStatus) {
+                    error = {
+                        ...error,
+                        noticeStatus: "Notice Status is required"
+                    }
+                }
+
+				if (error.workFromHome) {
+                    $("#errorWorkFromHome").html(error.workFromHome);
+                    $("#errorWorkFromHome").addClass("text-danger");
+                    $(".workFromHome").addClass("error-input");
+                } else {
+                    $("#errorWorkFromHome").removeClass("text-danger");
+                    $(".WorkFromHome").removeClass("error-input");
+                  
+                }
+
+				if (error.isTraniee) {
+                    $("#errorIsTraniee").html(error.isTraniee);
+                    $("#errorIsTraniee").addClass("text-danger");
+                    $(".isTraniee").addClass("error-input");
+                } else {
+                    $("#errorIsTraniee").removeClass("text-danger");
+                    $(".isTraniee").removeClass("error-input");
+                  
+                }
+
+				if (error.shiftTiming) {
+                    $("#errorShiftTiming").html(error.shiftTiming);
+                    $("#errorShiftTiming").addClass("text-danger");
+                    $(".shiftTiming").addClass("error-input");
+                } else {
+                    $("#errorShiftTiming").removeClass("text-danger");
+                    $(".shiftTiming").removeClass("error-input");
+                  
+                }
+
+				if (error.dateOfJoining) {
+                    $("#errorDateOfJoining").html(error.dateOfJoining);
+                    $("#errorDateOfJoining").addClass("text-danger");
+                    $(".dateOfJoining").addClass("error-input");
+                } else {
+                    $("#errorDateOfJoining").removeClass("text-danger");
+                    $(".dateOfJoining").removeClass("error-input");
+                  
+                }
+
+				if (error.serviceStatus) {
+                    $("#errorServiceStatus").html(error.serviceStatus);
+                    $("#errorServiceStatus").addClass("text-danger");
+                    $(".serviceStatus").addClass("error-input");
+                } else {
+                    $("#errorServiceStatus").removeClass("text-danger");
+                    $(".serviceStatus").removeClass("error-input");
+                  
+                }
+
+				if (error.appraisalCycle) {
+                    $("#errorAppraisalCycle").html(error.appraisalCycle);
+                    $("#errorAppraisalCycle").addClass("text-danger");
+                    $(".appraisalCycle").addClass("error-input");
+                } else {
+                    $("#errorAppraisalCycle").removeClass("text-danger");
+                    $(".appraisalCycle").removeClass("error-input");
+                  
+                }
+
+				if (error.revenueEarning) {
+                    $("#errorRevenueEarning").html(error.revenueEarning);
+                    $("#errorRevenueEarning").addClass("text-danger");
+                    $(".revenueEarning").addClass("error-input");
+                } else {
+                    $("#errorRevenueEarning").removeClass("text-danger");
+                    $(".revenueEarning").removeClass("error-input");
+                  
+                }
+
+				if (error.noticeStatus) {
+                    $("#errorNoticeStatus").html(error.noticeStatus);
+                    $("#errorNoticeStatus").addClass("text-danger");
+                    $(".noticeStatus").addClass("error-input");
+                } else {
+                    $("#errorNoticeStatus").removeClass("text-danger");
+                    $(".noticeStatus").removeClass("error-input");
+                  
+                }
+
+				 if (Object.keys(error).length === 0) {
+
+                    let activeStep = $('.step.active').data('target');
+                    Steps(activeStep, 'next');
+                  
+                }
+            
+        } else if(employmentStatus === 'Inactive') {
+			        $("#errorWorkFromHome").html("");
+                    $(".workFromHome").removeClass("error-input");
+					$("#errorIsTraniee").html("");
+                    $(".isTraniee").removeClass("error-input");
+					$("#errorShiftTiming").html("");
+                    $(".shiftTiming").removeClass("error-input");
+					$("#errorDateOfJoining").html("");
+                    $(".dateOfJoining").removeClass("error-input");
+					$("#errorServiceStatus").html("");
+                    $(".serviceStatus").removeClass("error-input");
+					$("#errorAppraisalCycle").html("");
+                    $(".appraisalCycle").removeClass("error-input");
+					$("#errorNoticeStatus").html("");
+                    $(".noticeStatus").removeClass("error-input");
+					$("#errorRevenueEarning").html("");
+                    $(".revenueEarning").removeClass("error-input");
+
+					let error = {}
+			        let dateOfExit = $(".dateOfExit").val()
+			        let exitReason = $(".exitReason").val()
+
+					if (!dateOfExit) {
+                    error = {
+                        ...error,
+                        dateOfExit: "Date Of Exit is required"
+                    }
+                }
+
+				if (!exitReason) {
+                    error = {
+                        ...error,
+                        exitReason: "Exit Reason is required"
+                    }
+                }
+
+				if (error.dateOfExit) {
+                    $("#errorDateOfExit").html(error.dateOfExit);
+                    $("#errorDateOfExit").addClass("text-danger");
+                    $(".dateOfExit").addClass("error-input");
+                } else {
+                    $("#errorDateOfExit").removeClass("text-danger");
+                    $(".dateOfExit").removeClass("error-input");
+                  
+                }
+
+				if (error.exitReason) {
+                    $("#errorExitReason").html(error.exitReason);
+                    $("#errorExitReason").addClass("text-danger");
+                    $(".exitReason").addClass("error-input");
+                } else {
+                    $("#errorExitReason").removeClass("text-danger");
+                    $(".exitReason").removeClass("error-input");
+                  
+                }
+
+				 if (Object.keys(error).length === 0) {
+
+                    let activeStep = $('.step.active').data('target');
+                    Steps(activeStep, 'next');
+                  
+                }
+				
+        }else {
+
+		}
+	$('.employmentStatus').change(function () {
+		$('.dateOfExitDiv').hide();
+		$('.dateOfExitReasonDiv').hide();
+        var employmentStatus = $(this).val();
+
+        if (employmentStatus === 'Active') {
+			$("#errorDateOfExit").html("");
+            $(".dateOfExit").removeClass("error-input");
+			$("#errorExitReason").html("");
+            $(".exitReason").removeClass("error-input");
+			let error = {}
+			let workFromHome = $(".workFromHome").val()
+			let isTraniee = $(".isTraniee").val()
+			let shiftTiming = $(".shiftTiming").val()
+			let dateOfJoining = $(".dateOfJoining").val()
+			let serviceStatus = $(".serviceStatus").val()
+			let appraisalCycle = $(".appraisalCycle").val()
+			let revenueEarning = $(".revenueEarning").val()
+			let noticeStatus = $(".noticeStatus").val()
+
+			if (!workFromHome) {
+                    error = {
+                        ...error,
+                        workFromHome: "WFO/WFH is required"
+                    }
+                }
+
+				if (!isTraniee) {
+                    error = {
+                        ...error,
+                        isTraniee: "Is traniee is required"
+                    }
+                }
+
+				if (!shiftTiming) {
+                    error = {
+                        ...error,
+                        shiftTiming: "Shift Timing is required"
+                    }
+                }
+
+				if (!dateOfJoining) {
+                    error = {
+                        ...error,
+                        dateOfJoining: "Date of joining is required"
+                    }
+                }
+
+				if (!serviceStatus) {
+                    error = {
+                        ...error,
+                        serviceStatus: "Service status is required"
+                    }
+                }
+
+				if (!appraisalCycle) {
+                    error = {
+                        ...error,
+                        appraisalCycle: "Appraisal cycle is required"
+                    }
+                }
+
+				if (!revenueEarning) {
+                    error = {
+                        ...error,
+                        revenueEarning: "Revenue Earning is required"
+                    }
+                }
+
+				if (!noticeStatus) {
+                    error = {
+                        ...error,
+                        noticeStatus: "Notice Status is required"
+                    }
+                }
+
+				if (error.workFromHome) {
+                    $("#errorWorkFromHome").html(error.workFromHome);
+                    $("#errorWorkFromHome").addClass("text-danger");
+                    $(".workFromHome").addClass("error-input");
+                } else {
+                    $("#errorWorkFromHome").removeClass("text-danger");
+                    $(".WorkFromHome").removeClass("error-input");
+                  
+                }
+
+				if (error.isTraniee) {
+                    $("#errorIsTraniee").html(error.isTraniee);
+                    $("#errorIsTraniee").addClass("text-danger");
+                    $(".isTraniee").addClass("error-input");
+                } else {
+                    $("#errorIsTraniee").removeClass("text-danger");
+                    $(".isTraniee").removeClass("error-input");
+                  
+                }
+
+				if (error.shiftTiming) {
+                    $("#errorShiftTiming").html(error.shiftTiming);
+                    $("#errorShiftTiming").addClass("text-danger");
+                    $(".shiftTiming").addClass("error-input");
+                } else {
+                    $("#errorShiftTiming").removeClass("text-danger");
+                    $(".shiftTiming").removeClass("error-input");
+                  
+                }
+
+				if (error.dateOfJoining) {
+                    $("#errorDateOfJoining").html(error.dateOfJoining);
+                    $("#errorDateOfJoining").addClass("text-danger");
+                    $(".dateOfJoining").addClass("error-input");
+                } else {
+                    $("#errorDateOfJoining").removeClass("text-danger");
+                    $(".dateOfJoining").removeClass("error-input");
+                  
+                }
+
+				if (error.serviceStatus) {
+                    $("#errorServiceStatus").html(error.serviceStatus);
+                    $("#errorServiceStatus").addClass("text-danger");
+                    $(".serviceStatus").addClass("error-input");
+                } else {
+                    $("#errorServiceStatus").removeClass("text-danger");
+                    $(".serviceStatus").removeClass("error-input");
+                  
+                }
+
+				if (error.appraisalCycle) {
+                    $("#errorAppraisalCycle").html(error.appraisalCycle);
+                    $("#errorAppraisalCycle").addClass("text-danger");
+                    $(".appraisalCycle").addClass("error-input");
+                } else {
+                    $("#errorAppraisalCycle").removeClass("text-danger");
+                    $(".appraisalCycle").removeClass("error-input");
+                  
+                }
+
+				if (error.revenueEarning) {
+                    $("#errorRevenueEarning").html(error.revenueEarning);
+                    $("#errorRevenueEarning").addClass("text-danger");
+                    $(".revenueEarning").addClass("error-input");
+                } else {
+                    $("#errorRevenueEarning").removeClass("text-danger");
+                    $(".revenueEarning").removeClass("error-input");
+                  
+                }
+
+				if (error.noticeStatus) {
+                    $("#errorNoticeStatus").html(error.noticeStatus);
+                    $("#errorNoticeStatus").addClass("text-danger");
+                    $(".noticeStatus").addClass("error-input");
+                } else {
+                    $("#errorNoticeStatus").removeClass("text-danger");
+                    $(".noticeStatus").removeClass("error-input");
+                  
+                }
+
+				 if (Object.keys(error).length === 0) {
+
+                    let activeStep = $('.step.active').data('target');
+                    Steps(activeStep, 'next');
+                  
+                }
+            
+        } else if(employmentStatus === 'Inactive') {
+			          $('.dateOfExitDiv').show();
+			         $('.dateOfExitReasonDiv').show();
+			        $("#errorWorkFromHome").html("");
+                    $(".workFromHome").removeClass("error-input");
+					$("#errorIsTraniee").html("");
+                    $(".isTraniee").removeClass("error-input");
+					$("#errorShiftTiming").html("");
+                    $(".shiftTiming").removeClass("error-input");
+					$("#errorDateOfJoining").html("");
+                    $(".dateOfJoining").removeClass("error-input");
+					$("#errorServiceStatus").html("");
+                    $(".serviceStatus").removeClass("error-input");
+					$("#errorAppraisalCycle").html("");
+                    $(".appraisalCycle").removeClass("error-input");
+					$("#errorNoticeStatus").html("");
+                    $(".noticeStatus").removeClass("error-input");
+					$("#errorRevenueEarning").html("");
+                    $(".revenueEarning").removeClass("error-input");
+
+					let error = {}
+			        let dateOfExit = $(".dateOfExit").val()
+			        let exitReason = $(".exitReason").val()
+
+					if (!dateOfExit) {
+                    error = {
+                        ...error,
+                        dateOfExit: "Date Of Exit is required"
+                    }
+                }
+
+				if (!exitReason) {
+                    error = {
+                        ...error,
+                        exitReason: "Exit Reason is required"
+                    }
+                }
+
+				if (error.dateOfExit) {
+                    $("#errorDateOfExit").html(error.dateOfExit);
+                    $("#errorDateOfExit").addClass("text-danger");
+                    $(".dateOfExit").addClass("error-input");
+                } else {
+                    $("#errorDateOfExit").removeClass("text-danger");
+                    $(".dateOfExit").removeClass("error-input");
+                  
+                }
+
+				if (error.exitReason) {
+                    $("#errorExitReason").html(error.exitReason);
+                    $("#errorExitReason").addClass("text-danger");
+                    $(".exitReason").addClass("error-input");
+                } else {
+                    $("#errorExitReason").removeClass("text-danger");
+                    $(".exitReason").removeClass("error-input");
+                  
+                }
+
+				 if (Object.keys(error).length === 0) {
+
+                    let activeStep = $('.step.active').data('target');
+                    Steps(activeStep, 'next');
+                  
+                }
+				
+        }else {
+
+		}
+    });
+
+	$('.serviceStatus').change(function () {
+        var serviceStatus = $(this).val();
+
+        if (serviceStatus === 'permanent') {
+			$('.permanentDateDiv').show();
+			let error = {}
+			let permanentDate = $(".permanentDate").val()
+
+			if (!permanentDate) {
+                    error = {
+                        ...error,
+                        permanentDate: "Permanent Date is required"
+                    }
+                }
+
+			if (error.permanentDate) {
+                    $("#errorPermanentDate").html(error.permanentDate);
+                    $("#errorPermanentDate").addClass("text-danger");
+                    $(".permanentDate").addClass("error-input");
+                } else {
+                    $("#errorPermanentDate").removeClass("text-danger");
+                    $(".permanentDate").removeClass("error-input");
+                  
+                }
+
+				if (Object.keys(error).length === 0) {
+
+                let activeStep = $('.step.active').data('target');
+               Steps(activeStep, 'next');
+
+                     }
+
+		}else{
+			$('.permanentDateDiv').hide();
+			$("#errorPermanentDate").html("");
+             $(".permanentDate").removeClass("error-input");
+		}
+	})
 
 
             $("#next").on("click", function() {
@@ -1438,6 +2197,7 @@
 
                     let activeStep = $('.step.active').data('target');
                     Steps(activeStep, 'next');
+					
                     // alert("Form submitted successfully!");
                 }
             });
@@ -1546,8 +2306,14 @@
                         const formData = new FormData();
                         formData.append('image', file);
 
+                        $.ajaxSetup({
+                         headers: {
+                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                          });
+
                         $.ajax({
-                            url: 'http://localhost:8080/fileUpload', // Replace with the URL of your PHP file handling the upload
+                            url: '/fileUpload', // Replace with the URL of your PHP file handling the upload
                             type: 'POST',
                             data: formData,
                             processData: false,
@@ -1636,13 +2402,14 @@
                     success: function(response) {
                         console.log(response.id);
                         if (clickType == 'submit') {
-                            alert('Form submitted successfully!');
+                            toastr.success('Basic Information submitted successfully!')
                         }
                         if (response.id) {
                             $('#id').val(response.id);
                         }
                         if (clickType == 'submit' || clickType == 'next') {
                             $('#previous').css('display', 'block');
+							toastr.success('Form submitted successfully!')
                             stepper3.next();
                         }
                     },
@@ -1879,6 +2646,7 @@
                                     //alert("Form submitted successfully!");
                                 }
                                 if (clickType == 'submit' || clickType == 'next') {
+									toastr.success('Address submitted successfully!')
                                     stepper3.next();
                                 }
                             }
@@ -1901,6 +2669,15 @@
                     let sourceOfHiringRequest = $('.sourceOfHiringRequest').val()
                     let isTraniee = $('.isTraniee').val()
                     let salary = $('.salary').val()
+					let revenueEarning = $('.revenueEarning').val()
+
+					if (!revenueEarning) {
+                        error = {
+                            ...error,
+                            revenueEarning: "Revenue Earning is required"
+                        }
+                    }
+
 
                     if (!designation) {
                         error = {
@@ -1989,6 +2766,18 @@
                         $("#errorIsTraniee").html("");
                         $(".isTraniee").removeClass("error-input");
                         $("#errorIsTraniee").removeClass("text-danger");
+                    }
+
+					if (error.revenueEarning) {
+
+                        $("#errorRevenueEarning").html(error.revenueEarning);
+                        $(".revenueEarning").addClass("error-input");
+                        $("#errorRevenueEarning").addClass("text-danger");
+
+                    } else {
+                        $("#errorRevenueEarning").html("");
+                        $(".revenueEarning").removeClass("error-input");
+                        $("#errorRevenueEarning").removeClass("text-danger");
                     }
 
                     if (error.employmentStatus) {
@@ -2094,6 +2883,7 @@
                                     //alert("Form submitted successfully!");
                                 }
                                 if (clickType == 'submit' || clickType == 'next') {
+									toastr.success('Employee Information submitted successfully!')
                                     stepper3.next();
                                 }
                             }
@@ -2162,10 +2952,12 @@
                         // 	stepper3.next();
                         // }
                         if (clickType == 'next') {
+							toastr.success('Process Assignment submitted successfully!')
                             stepper3.next();
                         }
                         if (clickType == 'submit') {
-                            window.location.replace("http://127.0.0.1:5501/activeEmployee");
+							toastr.success('Process Assignment submitted successfully!')
+                            window.location.replace("http://127.0.0.1:8000/activeEmployee");
                         }
 
                     }
@@ -2182,6 +2974,7 @@
                         IjpName: row.find(".ijpName").text(),
                         IjpDateOfApplication: row.find(".dateOfApplication").text(),
                         IjpStatus: row.find(".ijpStatus").text(),
+						IjpBillableStatus: row.find(".ijpBillableStatus").text(),
                         IjpClosure: row.find(".dateOfClosure").text(),
                         IjpSpan: row.find(".ijpSpan").text(),
                         IjpProcess: row.find(".ijpProcess").text(),
@@ -2228,14 +3021,22 @@
                 };
 
                 const stepFiveData = JSON.stringify(dataObject);
+				
+				$.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:8080/create/ijp",
+                    url: "/employee/ijp",
                     headers: {
                         Authorization: token,
                     },
-                    data: stepFiveData,
+                    data: {
+                        data: stepFiveData,
+                     },
                     success: function(response) {
                         // if (clickType == 'submit' || clickType == 'next') {
                         // 	//window.location.replace("http://localhost/sunKnowledge/employee");
@@ -2243,10 +3044,12 @@
                         // }
 
                         if (clickType == 'next') {
+							toastr.success('IJP submitted successfully!')
                             stepper3.next();
                         }
                         if (clickType == 'submit') {
-                            window.location.replace("http://127.0.0.1:5501/activeEmployee");
+							toastr.success('IJP submitted successfully!')
+                            window.location.replace("http://127.0.0.1:8000/activeEmployee");
                         }
                     }
                 });
@@ -2441,7 +3244,8 @@
                 let IjpName = $('.modalIjpName').val();
                 let IjpDateOfApplication = $('.MIDOA').val();
                 let IjpProcess = $('.modalIjpProcess').val();
-                let IjpStatus = $('.modalIjpStatus').val();
+				let IjpStatus = $('.modalIjpStatus').val();
+                let IjpBillableStatus = $('.modalBillableIjpStatus').val();
                 let IjpClosure = $('.MIDOC').val();
                 let IjpSpan = $('.modalIjpSpan').val();
                 let IjpClient = $('.modalIjpClient').val();
@@ -2451,6 +3255,7 @@
                     IjpName: IjpName,
                     IjpDateOfApplication: IjpDateOfApplication,
                     IjpProcess: IjpProcess,
+					IjpBillableStatus: IjpBillableStatus,
                     IjpStatus: IjpStatus,
                     IjpClosure: IjpClosure,
                     IjpSpan: IjpSpan,
@@ -2460,7 +3265,7 @@
 
 
                 RowCounter++;
-                if (IjpName != "" || IjpDateOfApplication != "" || IjpProcess != "" || IjpStatus != "" ||
+                if (IjpName != "" || IjpDateOfApplication != "" || IjpProcess != "" || IjpStatus != "" || IjpBillableStatus != "" ||
                     IjpClosure != "" || IjpSpan != "" || IjpClient != "") {
 
                     const newRow = `
@@ -2468,11 +3273,12 @@
 
 													<td class="ijpName">${IjpName}</td>
 													<td class="dateOfApplication">${IjpDateOfApplication}</td>
-													<td class="ijpStatus">${IjpStatus}</td>
+													<td class="ijpBillableStatus">${IjpBillableStatus}</td>
 													<td class="dateOfClosure">${IjpClosure}</td>
 													<td class="ijpSpan">${IjpSpan}</td>
 													<td class="ijpProcess">${IjpProcess}</td>
 													<td class="ijpClient">${IjpClient}</td>
+													<td class="ijpStatus">${IjpStatus}</td>
 													<td>
 														<div class="d-flex justify-content-end">
 															<i class="fadeIn animated bx bx-pencil fs-5 editIjpRow"></i>

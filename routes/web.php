@@ -3,12 +3,16 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\dashboardController;
 use App\Http\Controllers\Employee\EmployeeController;
+use App\Http\Controllers\GlobalController;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/signup', [AuthController::class, 'showLoginForm'])->name('loginForm');
 Route::post('/login', [AuthController::class, 'login'])->name('login1');
+
+Route::get('/states', [GlobalController::class, 'states'])->name('states');
+Route::get('/designations', [GlobalController::class, 'designation'])->name('designation');
 
 Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function () {
 
@@ -20,6 +24,9 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::post('/employee/proccess/assignment', [EmployeeController::class, 'processAssignment'])->name('employeeProcessAssignment');
     Route::get('/active/employee', [EmployeeController::class, 'activeEmployee'])->name('activeEmployee');
     Route::get('/helper', [EmployeeController::class, 'Helper'])->name('Helper');
+    Route::post('/employee/ijp', [EmployeeController::class, 'ijp'])->name('employeeIjp');
+    Route::post('/fileUpload', [GlobalController::class, 'fileUpload'])->name('fileUpload');
+    Route::post('/check/skid', [GlobalController::class, 'checkSkid'])->name('checkSkid');
 
 
 
