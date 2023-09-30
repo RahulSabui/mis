@@ -74,6 +74,8 @@ class EmployeeService
             "dropLocation" => isset($data["dropLocation"]) ? $data["dropLocation"] : null,
         ];
 
+        $dropLocation = isset($data["dropLocation"]) ? $data["dropLocation"] : null;
+
         $permanentaddress = json_encode($permanentAddress);
         $residentialaddress = json_encode($residentialAddress);
 
@@ -85,6 +87,7 @@ class EmployeeService
                 'permanentAddress' => $permanentaddress,
                 'residentialAddress' => $residentialaddress,
                 'isSameAsPermanentAddress' => $isSameAsPermanentAddress,
+                'dropLocationId'=>$dropLocation
             ]);
         } else {
             EmployeeAddress::create([
@@ -92,6 +95,7 @@ class EmployeeService
                 'residentialAddress' => $residentialaddress,
                 'isSameAsPermanentAddress' => $isSameAsPermanentAddress,
                 'employeeId' => $employeeId,
+                'dropLocationId'=>$dropLocation
             ]);
         }
 
@@ -110,6 +114,7 @@ class EmployeeService
             'designationId' => isset($data["designation"]) ? $data["designation"] : null,
             'employmentStatus' => isset($data["employmentStatus"]) ? $data["employmentStatus"] : null,
             'dateOfJoining' => isset($data["dateOfJoining"]) && $data["dateOfJoining"] != "" ? date_create_from_format('m-d-Y', $data["dateOfJoining"])->format('Y-m-d') : null,
+            'aadharImage' => isset($data["aadharImage"]) ? json_encode($data["aadharImage"]) : null,
             'shiftTiming' => isset($data["shiftTiming"]) ? $data["shiftTiming"] : null,
             'serviceStatus' => isset($data["serviceStatus"]) ? $data["serviceStatus"] : null,
             'appraisalCycle' => isset($data["appraisalCycle"]) ? $data["appraisalCycle"] : null,

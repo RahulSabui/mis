@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\dashboardController;
 use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\GlobalController;
+use App\Http\Controllers\Protect\ArtisanController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,7 +15,8 @@ Route::view('/forgotPassword','forgotPassword');
 Route::post('/login', [AuthController::class, 'login'])->name('login1');
 
 Route::get('/states', [GlobalController::class, 'states'])->name('states');
-Route::get('/designations', [GlobalController::class, 'designation'])->name('designation');
+// Route::get('/designations', [GlobalController::class, 'designation'])->name('designation');
+Route::get('/droplocation', [GlobalController::class, 'droplocation'])->name('droplocation');
 
 Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function () {
 
@@ -28,7 +30,9 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::get('/helper', [EmployeeController::class, 'Helper'])->name('Helper');
     Route::post('/employee/ijp', [EmployeeController::class, 'ijp'])->name('employeeIjp');
     Route::post('/fileUpload', [GlobalController::class, 'fileUpload'])->name('fileUpload');
+    Route::post('/aadhar/upload', [GlobalController::class, 'aadharUpload'])->name('aadharUpload');
     Route::post('/check/skid', [GlobalController::class, 'checkSkid'])->name('checkSkid');
+
 
 
 
@@ -50,7 +54,9 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
 });
 
 
-Route::get('/run/command', [GlobalController::class, 'runCommand'])->name('runCommand');
+Route::get('/run/artisan', [ArtisanController::class, 'runArtisan'])->name('runArtisan');
+Route::get('/run/migration', [ArtisanController::class, 'runMigration'])->name('runMigration');
+
 
 
 

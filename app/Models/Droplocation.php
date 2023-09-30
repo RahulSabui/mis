@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class state extends Model
+class Droplocation extends Model
 {
+    protected $table = 'loaction'; 
     use HasFactory;
-    protected $table = 'state'; 
 }

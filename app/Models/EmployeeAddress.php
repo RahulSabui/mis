@@ -15,6 +15,7 @@ class EmployeeAddress extends Model
         'permanentAddress',
         'isSameAsPermanentAddress',
         'residentialAddress',
+        'dropLocationId'
     ];
 
     public function employee()

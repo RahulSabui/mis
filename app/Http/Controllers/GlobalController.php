@@ -6,9 +6,6 @@ use App\Services\GlobalService;
 use Illuminate\Http\Request;
 use App\Models\state;
 use App\Models\Designation;
-use Illuminate\Support\Facades\Artisan;
-use Symfony\Component\Console\Output\StreamOutput;
-
 class GlobalController extends Controller
 {
     protected $GlobalService;
@@ -34,11 +31,11 @@ class GlobalController extends Controller
         }
     }
 
-    public function designation()
+    public function droplocation()
     {
         try {
 
-            $data = $this->GlobalService->designation();
+            $data = $this->GlobalService->dropLocation();
 
             return response()->json(['data' => $data]);
 
@@ -49,7 +46,6 @@ class GlobalController extends Controller
             ], 500);
         }
     }
-
     public function fileUpload(Request $request)
     {
         try {
@@ -57,6 +53,33 @@ class GlobalController extends Controller
 
                 $uploadedFile = $request->file('image');
                 $imageUrl = $this->GlobalService->imageUrl($uploadedFile);
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Image uploaded successfully',
+                    'url' => $imageUrl,
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No file uploaded',
+                ], 400);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'File upload error: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function aadharUpload(Request $request)
+    {
+        try {
+            if ($request->hasFile('image')) {
+
+                $uploadedFile = $request->file('image');
+                $imageUrl = $this->GlobalService->aadharImageUrl($uploadedFile);
 
                 return response()->json([
                     'success' => true,
@@ -91,26 +114,5 @@ class GlobalController extends Controller
             ], 500);
         }
     }
-    public function runCommand(Request $request)
-    {
-        try {
-            $stream = fopen('php://temp', 'w+');
-            $output = new StreamOutput($stream);
-            $seederExitCode = 0;
-            $optimizeExitCode = Artisan::call('optimize', [], $output);
-            rewind($stream);
-            $combinedOutput = stream_get_contents($stream);
-
-            if ($seederExitCode === 0 && $optimizeExitCode === 0) {
-                echo "$combinedOutput";
-            } else {
-                echo "Commands failed. Seeder exit code: $seederExitCode, Optimize exit code: $optimizeExitCode";
-            }
-        } catch (\Throwable $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage(),
-            ], 500);
-        }
-    }
+   
 }

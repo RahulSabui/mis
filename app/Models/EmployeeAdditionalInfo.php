@@ -17,6 +17,7 @@ class EmployeeAdditionalInfo extends Model
         'designationId',
         'employmentStatus',
         'dateOfJoining',
+        'aadharImage',
         'serviceStatus',
         'permanentDate',
         'reportingId',
