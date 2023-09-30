@@ -34,26 +34,26 @@
         <!--end breadcrumb-->
         <hr class="mb-2 chipHr" />
         <!-- <div class="chip" id="selectedChip">John Doe <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Jessica Doe <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Michele Powa <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Clark Natela <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Anantu Painda <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Tiger Xink <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Salena Chain <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div> -->
+                                  onclick="this.parentElement.style.display='none'">×</span>
+                                </div>
+                                <div class="chip">Jessica Doe <span class="closebtn"
+                                  onclick="this.parentElement.style.display='none'">×</span>
+                                </div>
+                                <div class="chip">Michele Powa <span class="closebtn"
+                                  onclick="this.parentElement.style.display='none'">×</span>
+                                </div>
+                                <div class="chip">Clark Natela <span class="closebtn"
+                                  onclick="this.parentElement.style.display='none'">×</span>
+                                </div>
+                                <div class="chip">Anantu Painda <span class="closebtn"
+                                  onclick="this.parentElement.style.display='none'">×</span>
+                                </div>
+                                <div class="chip">Tiger Xink <span class="closebtn"
+                                  onclick="this.parentElement.style.display='none'">×</span>
+                                </div>
+                                <div class="chip">Salena Chain <span class="closebtn"
+                                  onclick="this.parentElement.style.display='none'">×</span>
+                                </div> -->
 
         <div class="card w-100">
             <div class="card-body">
@@ -210,11 +210,11 @@
                                             <i class="bx bx-search"></i>
                                         </span>
                                     </div>
-                                    <a href="javascript:;" class="icon-wrapper" title="Filter"><i
+                                    <a href="javascript:;" class="icon-wrapper filter-button" title="Filter"><i
                                             class="fadeIn bx bx-filter fs-3"></i></a>
 
                                     <!-- <a href="javascript:;" class="icon-wrapper" title="Delete"><i
-                            class='bx bxs-trash fs-5'></i></a> -->
+                                        class='bx bxs-trash fs-5'></i></a> -->
                                     <a href="javascript:;" class="icon-wrapper" title="Download"><i
                                             class="bx bx-cloud-download fs-4"></i></a>
 
@@ -226,9 +226,9 @@
                                 <thead class="table-light">
                                     <tr>
                                         <!-- <th> <td>
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="" checked="">
-                          </td>
-                            </th> -->
+                                       <input class="form-check-input" type="radio" name="flexRadioDefault" id="" checked="">
+                                      </td>
+                                        </th> -->
 
                                         <th>Employee Name (SKID)</th>
                                         <th>Designation</th>
@@ -297,7 +297,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="card-title text-primary">Filter</h5>
-                    <a href="#" id="clearFilter">Clear Filter</a>
+                    <a href="#" id="clearFilter" class="close-switcher">Close Filter</a>
                 </div>
                 <hr class="mt-2 mb-4" />
                 <div class="row g-3">
@@ -357,8 +357,11 @@
     <script>
         var dataForGraph;
         var selectedValue = {};
+
+
         $(document).ready(function() {
-			gethelper();
+            gethelper();
+
             $("#submitButton").click(function(event) {
                 event.preventDefault();
                 let spanSelect = $("#spanSelect").val();
@@ -404,16 +407,20 @@
                 }
 
                 const newChip = $(
-                    `<div class='chip'>${'Span: ' + $("#spanSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
+                    `<div class="chip">
+                        <div class="spanVal" style="display: none;">${$("#spanSelect option:selected").val()}</div>
+                        ${'Span: ' + $("#spanSelect option:selected").text()}
+                        <span class="closebtn">×</span>
+                    </div>`
                 );
                 const newChip2 = $(
-                    `<div class='chip'>${'Client: ' +  $("#clientSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
+                    `<div class = "clientVal" style="display: none;"> ${$("#clientSelect option:selected").val()} </div> <div class='chip'>${'Client: ' +  $("#clientSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
                 );
                 const newChip3 = $(
-                    `<div class='chip'>${'Process: ' +  $("#processSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
+                    `<div class = "processVal" style="display: none;"> ${$("#processSelect option:selected").val()} </div><div class='chip'>${'Process: ' +  $("#processSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
                 );
                 const newChip4 = $(
-                    `<div class='chip'>${'Designation: ' +  $("#designationSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
+                    `<div class = "desginationVal" style="display: none;"> ${$("#designationSelect option:selected").val()} </div><div class='chip'>${'Designation: ' +  $("#designationSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
                 );
 
                 if (spanSelect !== "") {
@@ -427,8 +434,13 @@
                 }
                 if (designationSelect !== "") {
                     newChip4.insertAfter($(".chipHr"));
+
                 }
-				getList(page, limit, selectedValue)
+                // $(".close-switcher").on("click", function() {
+                    $(".switcher-wrapper").removeClass("switcher-toggled");
+                    $(".switcher-btn").removeClass("d-none");
+                // })
+                getList(page, limit, selectedValue)
 
                 $("#spanSelect").val("");
                 $("#clientSelect").val("");
@@ -441,9 +453,41 @@
             });
 
 
+            $(document).on("click", ".closebtn", function() {
+                const chipElement = $(this).closest(".chip");
+
+                // Determine which type of chip it is (span, client, process, or designation)
+                let name;
+                if (chipElement.find(".spanVal").length) {
+                    selectedVal = "spanVal"
+                    name = "spanSelect";
+                } else if (chipElement.find(".clientVal").length) {
+                    selectedVal = "clientVal"
+                    name = "clientSelect";
+                } else if (chipElement.find(".processVal").length) {
+                    selectedVal = "processVal"
+                    name = "processSelect";
+                } else if (chipElement.find(".designationVal").length) {
+                    selectedVal = "designationVal"
+                    name = "designationSelect";
+                }
+                const idToRemove = chipElement.find("." + selectedVal).text();
+                // Assuming selectedValue is an object accessible in this scope
+                if (name in selectedValue && Array.isArray(selectedValue[name])) {
+                    selectedValue[name] = selectedValue[name].filter(item => item !== idToRemove);
+                }
+
+                // Remove the chip element
+                chipElement.remove();
+                console.log(selectedValue);
+                // Call your getList function here
+                getList(page, limit, selectedValue);
+            });
+
+
+
             $("#clearFilter").click(function(event) {
                 event.preventDefault();
-				console.log(event.target, "target");
                 $("#spanSelect").val("");
                 $("#clientSelect").val('');
                 $("#processSelect").val('');
@@ -490,33 +534,37 @@
             });
         });
 
-		function gethelper(){
-			$.ajax({
-				type: "GET",
-				url: "/helper",
-				success: function (response) {
-					console.log(response);
-					$.each(response?.spans, function (indexInArray, valueOfElement) {
-						$('#spanSelect').append(`<option value="${valueOfElement.id}">${valueOfElement.name}</option>`);
-						
-						 
-					});
-					$.each(response?.designations, function (indexInArray, valueOfElement) { 
-						$('#designationSelect').append(`<option value="${valueOfElement.id}">${valueOfElement.name}</option>`);
-					});
-				}
-			});
-		}
-        function getList(page, limit, selectedValue) {
-			let spanSelectArr;
-			if (selectedValue) {
-				spanSelectArr = selectedValue?.spanSelect
-				designationSelectArr = selectedValue?.designationSelect
-				// spanSelectArr = selectedValue?.spanSelect
+        function gethelper() {
+            $.ajax({
+                type: "GET",
+                url: "/helper",
+                success: function(response) {
+                    console.log(response);
+                    $.each(response?.spans, function(indexInArray, valueOfElement) {
+                        $('#spanSelect').append(
+                            `<option value="${valueOfElement.id}">${valueOfElement.name}</option>`);
 
-			}
-			console.log(JSON.stringify(spanSelectArr), "baal");
-		
+
+                    });
+                    $.each(response?.designations, function(indexInArray, valueOfElement) {
+                        $('#designationSelect').append(
+                            `<option value="${valueOfElement.id}">${valueOfElement.name}</option>`);
+                    });
+                }
+            });
+        }
+
+        function getList(page, limit, selectedValue) {
+            if (selectedValue) {
+                spanSelectArr = selectedValue?.spanSelect;
+                designationSelectArr = selectedValue?.designationSelect;
+                // spanSelectArr = selectedValue?.spanSelect
+
+            }
+            console.log(JSON.stringify(designationSelectArr), "baal");
+            console.log(JSON.stringify(designationSelectArr), "baal");
+
+
 
             $.ajax({
                 type: "GET",
@@ -538,11 +586,11 @@
 
         function data(response) {
             $('tbody').empty();
-			if (response?.data?.activeEmployeeDetails?.data.length < 1) {
-				$('tbody').append(`<tr>
+            if (response?.data?.activeEmployeeDetails?.data.length < 1) {
+                $('tbody').append(`<tr>
 					<td class = "text-center" colspan = "7" >No Data Found</td>
 					</tr>`);
-			}
+            }
             response?.data?.activeEmployeeDetails?.data.forEach(element => {
                 $('tbody').append(`<tr>
 												

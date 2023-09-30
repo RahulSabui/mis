@@ -162,7 +162,7 @@ class EmployeeService
     }
     public function createOrUpdateEmployeeIjp($data)
     {
-      
+
         $insertResults = [];
 
         $employeeId = $data['employeeId'];
@@ -196,8 +196,8 @@ class EmployeeService
 
     public function activeEmployeelist($page, $limit, $spanId, $designationId)
     {
-    
-        $employeeList = Employee::select(
+
+        $query = Employee::select(
             'employee_basic_info.id AS employee_id',
             'employee_basic_info.name AS name',
             'employee_basic_info.skid AS skid',
@@ -216,56 +216,14 @@ class EmployeeService
             ->leftJoin('employee_proccess_assignment', 'employee_basic_info.id', '=', 'employee_proccess_assignment.employeeId')
             ->leftJoin('span', 'span.id', '=', 'employee_proccess_assignment.spanId')
             ->where('employee_additional_info.employmentStatus', 'Active')
-            ->paginate($limit, ['*'], 'page', $page);
+            ->when($spanId, function ($query) use ($spanId) {
+                $query->whereIn('employee_proccess_assignment.spanId', $spanId);
+            })
+            ->when($designationId, function ($query) use ($designationId) {
+                $query->whereIn('employee_additional_info.designationId', $designationId);
+            });
 
-
-        if ($spanId) {
-
-            $employeeList = Employee::select(
-                'employee_basic_info.id AS id',
-                'employee_basic_info.name AS name',
-                'employee_basic_info.skid AS skid',
-                'employee_basic_info.email AS email',
-                'employee_basic_info.phone AS phone',
-                'employee_basic_info.employeeImage AS employeeImage',
-                'employee_additional_info.reportingId',
-                'employee_additional_info.designationId',
-                'designation.name AS designationName',
-                'employee_proccess_assignment.spanId',
-                'span.name AS spanName'
-            )
-                ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
-                ->leftJoin('designation', 'employee_additional_info.designationId', '=', 'designation.id')
-                ->leftJoin('designation AS reportingdesignation', 'employee_additional_info.reportingId', '=', 'reportingdesignation.id')
-                ->leftJoin('employee_proccess_assignment', 'employee_basic_info.id', '=', 'employee_proccess_assignment.employeeId')
-                ->leftJoin('span', 'span.id', '=', 'employee_proccess_assignment.spanId')
-                ->whereIn('employee_proccess_assignment.spanId', $spanId) // Adding the condition for spanIds
-                ->where('employee_additional_info.employmentStatus', 'Active')
-                ->paginate($limit, ['*'], 'page', $page);
-        }
-        if ($designationId) {
-            $employeeList = Employee::select(
-                'employee_basic_info.id AS id',
-                'employee_basic_info.name AS name',
-                'employee_basic_info.skid AS skid',
-                'employee_basic_info.email AS email',
-                'employee_basic_info.phone AS phone',
-                'employee_basic_info.employeeImage AS employeeImage',
-                'employee_additional_info.reportingId',
-                'employee_additional_info.designationId',
-                'designation.name AS designationName',
-                'employee_proccess_assignment.spanId',
-                'span.name AS spanName'
-            )
-                ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
-                ->leftJoin('designation', 'employee_additional_info.designationId', '=', 'designation.id')
-                ->leftJoin('designation AS reportingdesignation', 'employee_additional_info.reportingId', '=', 'reportingdesignation.id')
-                ->leftJoin('employee_proccess_assignment', 'employee_basic_info.id', '=', 'employee_proccess_assignment.employeeId')
-                ->leftJoin('span', 'span.id', '=', 'employee_proccess_assignment.spanId')
-                ->whereIn('employee_additional_info.designationId', $designationId) // Adding the condition for spanIds
-                ->where('employee_additional_info.employmentStatus', 'Active')
-                ->paginate($limit, ['*'], 'page', $page);
-        }
+        $employeeList = $query->paginate($limit, ['*'], 'page', $page);
 
         $result = DB::table('employee_basic_info')
             ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
@@ -276,6 +234,13 @@ class EmployeeService
                         COUNT(CASE WHEN employee_additional_info.noticeStatus = "under notice" THEN 1 END) AS under_notice_count,
                         COUNT(CASE WHEN employee_additional_info.employmentStatus = "trainee" THEN 1 END) AS trainee_count,
                         COUNT(CASE WHEN employee_additional_info.serviceStatus = "probation" THEN 1 END) AS probation_count')
+            ->where('employee_additional_info.employmentStatus', 'Active')
+            ->when($spanId, function ($query) use ($spanId) {
+                $query->whereIn('employee_proccess_assignment.spanId', $spanId);
+            })
+            ->when($designationId, function ($query) use ($designationId) {
+                $query->whereIn('employee_additional_info.designationId', $designationId);
+            })
             ->first();
 
         $countArray = [
@@ -286,40 +251,57 @@ class EmployeeService
             'traineeCount' => $result->trainee_count,
             'probationCount' => $result->probation_count,
         ];
-            $resultForDesignation = DB::table('designation AS d')
-                ->leftJoin(DB::raw('
-                (SELECT 
-                    employee_additional_info.designationId AS designation,
-                    COUNT(*) AS employee_count
-                FROM employee_basic_info
-                LEFT JOIN employee_additional_info ON employee_basic_info.id = employee_additional_info.employeeId
-                WHERE employee_additional_info.employmentStatus = "active"
-                GROUP BY employee_additional_info.designationId
-                ) AS e'), 'd.id', '=', 'e.designation')
-                ->select('d.name AS designation_name', DB::raw('COALESCE(e.employee_count, 0) AS employee_count'))
-                ->get();
+        $resultForDesignation = DB::table('designation AS d')
+        ->leftJoin(DB::raw('
+            (SELECT 
+                eai.designationId AS designation,
+                COUNT(*) AS employee_count
+            FROM employee_basic_info AS ebi
+            LEFT JOIN employee_additional_info AS eai ON ebi.id = eai.employeeId
+            WHERE eai.employmentStatus = "active"
+            GROUP BY eai.designationId
+            ) AS e'), 'd.id', '=', 'e.designation')
+        ->select('d.name AS designation_name', DB::raw('COALESCE(e.employee_count, 0) AS employee_count'))
+        // ->when(isset($spanId), function ($query) use ($spanId) {
+        //     $query->whereIn('employee_proccess_assignment.spanId', $spanId);
+        // })
+        // ->when(isset($designationId), function ($query) use ($designationId) {
+        //     $query->whereIn('employee_additional_info.designationId', $designationId);
+        // })
+        ->get();
+    
 
-            foreach ($resultForDesignation as $row) {
-                $designationName[] = $row->designation_name;
-                $employeeCount[] = $row->employee_count;
 
-            }
-            $resultForSpan = DB::table('span')
+        foreach ($resultForDesignation as $row) {
+            $designationName[] = $row->designation_name;
+            $employeeCount[] = $row->employee_count;
+
+        }
+        $resultForSpan = DB::table('span')
             ->leftJoin('employee_proccess_assignment', 'span.id', '=', 'employee_proccess_assignment.spanId')
             ->leftJoin('employee_basic_info', 'employee_proccess_assignment.employeeId', '=', 'employee_basic_info.id')
 
             ->select('span.name AS span_name', DB::raw('COUNT(employee_proccess_assignment.employeeId) AS employee_count'))
             ->groupBy('span.id', 'span.name')
+            // // ->where('employee_additional_info.employmentStatus', 'Active')
+            // ->when($spanId, function ($query) use ($spanId) {
+            //     $query->whereIn('employee_proccess_assignment.spanId', $spanId);
+            // })
+            // ->when($designationId, function ($query) use ($designationId) {
+            //     $query->whereIn('employee_additional_info.designationId', $designationId);
+            // })
             ->get();
 
-            foreach ($resultForSpan as $row) {
-                $spanName[] = $row->span_name;
-                $spanEmployeeCount[] = $row->employee_count;
+        foreach ($resultForSpan as $row) {
+            $spanName[] = $row->span_name;
+            $spanEmployeeCount[] = $row->employee_count;
 
 
-            }
-          
+        }
 
-        return [$employeeList, $countArray, $designationName, $employeeCount, $spanName, $spanEmployeeCount];
+
+        return [$employeeList, $countArray, $designationName, $employeeCount, 
+        $spanName, $spanEmployeeCount
+    ];
     }
 }

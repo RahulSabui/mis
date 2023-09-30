@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/signup', [AuthController::class, 'showLoginForm'])->name('loginForm');
+Route::view('/forgotPassword','forgotPassword');
+
 Route::post('/login', [AuthController::class, 'login'])->name('login1');
 
 Route::get('/states', [GlobalController::class, 'states'])->name('states');
@@ -48,6 +50,7 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
 });
 
 
+Route::get('/run/command', [GlobalController::class, 'runCommand'])->name('runCommand');
 
 
 

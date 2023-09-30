@@ -91,12 +91,15 @@ $(function () {
     }),
     $(".switcher-btn").on("click", function () {
       $(".switcher-wrapper").toggleClass("switcher-toggled");
+      $(".switcher-btn").addClass("d-none");
     }),
     $(".filter-button").on("click", function () {
       $(".switcher-wrapper").toggleClass("switcher-toggled");
+      $(".switcher-btn").addClass("d-none");
     }),
     $(".close-switcher").on("click", function () {
       $(".switcher-wrapper").removeClass("switcher-toggled");
+      $(".switcher-btn").removeClass("d-none");
     }),
     $("#lightmode").on("click", function () {
       $("html").attr("class", "light-theme");
