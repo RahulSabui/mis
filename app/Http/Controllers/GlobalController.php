@@ -131,4 +131,32 @@ public function checkSkid(Request $request)
         ], 500);
     }
 }
+
+public function checkEmail(Request $request){
+    try {
+        $email = $request->input('email');
+        $exists = $this->GlobalService->emailChecking($email);
+
+        return response()->json(['exists' => $exists]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+}
+
+public function checkAadhaar(Request $request){
+    try {
+        $email = $request->input('aadhaar');
+        $exists = $this->GlobalService->aadhaarChecking($email);
+
+        return response()->json(['exists' => $exists]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+}
 }

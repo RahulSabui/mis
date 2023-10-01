@@ -5,6 +5,7 @@ use App\Models\state;
 use App\Models\Designation;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Employee;
+use App\Models\EmployeeAdditionalInfo;
 use App\Models\Droplocation;
 class GlobalService
 {
@@ -47,6 +48,20 @@ class GlobalService
     public function skidChecking($skid)
     {
         $exists = Employee::where('skid', '=', $skid)->exists();
+
+        return $exists;
+    }
+
+    public function emailChecking($email)
+    {
+        $exists = Employee::where('email', '=', $email)->exists();
+
+        return $exists;
+    }
+
+    public function aadhaarChecking($aadhaar)
+    {
+        $exists = EmployeeAdditionalInfo::where('aadhaarNumber', '=', $aadhaar)->exists();
 
         return $exists;
     }
