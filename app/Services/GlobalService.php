@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\state;
 use App\Models\Designation;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Employee;
 use App\Models\Droplocation;
@@ -15,6 +16,12 @@ class GlobalService
     public function designation(){
         return $data =  Designation::all();
     }
+
+    public function span(){
+        return $data =  DB::table('span')->get();
+    }
+
+    
 
     public function dropLocation(){
         return $data = Droplocation::all();

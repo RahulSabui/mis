@@ -865,11 +865,7 @@
                                                             <select class="form-select modelSpan" name="modelSpan"
                                                                 data-placeholder="">
                                                                 <option value="" disabled selected>Select</option>
-                                                                <option value="1">Reactive</option>
-                                                                <option value="2">Solution</option>
-                                                                <option value="3">Conglomeration</option>
-                                                                <option value="4">Algoritm</option>
-                                                                <option value="5">Holistic</option>
+                                                               
                                                             </select>
                                                         </div>
                                                         <hr class="mt-4 mb-2">
@@ -1467,6 +1463,21 @@
                             .text(item.name);
 
                         $(".reporting").append(option);
+
+                    });
+                }
+            });
+
+            $.ajax({
+                type: "get",
+                url: "/spans",
+                success: function (response) {
+                    $.each(response?.data, function(index, item) {
+                        var option = $("<option>")
+                            .attr("value", item.id)
+                            .text(item.name);
+
+                        $(".modelSpan").append(option);
 
                     });
                 }
@@ -2540,6 +2551,8 @@ $.each(response.data, function(index, item) {
 
                 var imageElement = document.getElementById('uploadedImage');
                 var imageSrc = imageElement.getAttribute('src');
+
+                console.log(imageSrc, "imageSrc");
 
               
 

@@ -6,6 +6,8 @@ use App\Services\GlobalService;
 use Illuminate\Http\Request;
 use App\Models\state;
 use App\Models\Designation;
+use Illuminate\Support\Facades\DB;
+
 class GlobalController extends Controller
 {
     protected $GlobalService;
@@ -20,6 +22,21 @@ class GlobalController extends Controller
         try {
 
             $data = $this->GlobalService->state();
+
+            return response()->json(['data' => $data]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    public function designations()
+    {
+        try {
+
+            $data = $this->GlobalService->designation();
 
             return response()->json(['data' => $data]);
 
@@ -114,5 +131,38 @@ class GlobalController extends Controller
             ], 500);
         }
     }
-   
+
+    public function spans()
+    {
+        try {
+
+            $data = $this->GlobalService->span();
+
+            return response()->json(['data' => $data]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    function repotingManager($id)
+    {
+        return DB::table('employee_basic_info')->select(
+            'employee_basic_info.id AS employee_id',
+            'employee_basic_info.name AS name',
+            'employee_additional_info.designationId',
+            'designation.name AS designationName'
+        )
+            ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
+            ->leftJoin('designation', 'employee_additional_info.designationId', '=', 'designation.id')
+            ->leftJoin('designation AS reportingdesignation', 'employee_additional_info.reportingId', '=', 'reportingdesignation.id')
+            ->where('employee_additional_info.id', $id)
+            ->first(); // Add this to execute the query and retrieve the results
+    }
+
+
+
 }

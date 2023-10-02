@@ -15,9 +15,11 @@ return new class extends Migration {
         Schema::create('employee_address', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employeeId');
-            $table->string('permanentAddress')->nullable();
+            $table->json('permanentAddress')->nullable();
             $table->boolean('isSameAsPermanentAddress')->nullable();
-            $table->string('residentialAddress')->nullable();
+            $table->json('residentialAddress')->nullable();
+            $table->integer('dropLocationId')->nullable();
+            
             $table->timestamps();
 
             // Defining the foreign key constraint with ON DELETE CASCADE
