@@ -32,6 +32,7 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::post('/check/email', [GlobalController::class, 'checkEmail'])->name('checkEmail');
     Route::post('/check/aadhaar', [GlobalController::class, 'checkAadhaar'])->name('checkAadhaar');
 
+    Route::get('/employee/{id}', [EmployeeController::class, 'editEmployee'])->name('editEmployee');
 
 
 

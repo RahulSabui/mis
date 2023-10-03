@@ -329,4 +329,18 @@ class EmployeeService
 
         return [$employeeList, $countArray, $designationName, $employeeCount, $spanName, $spanEmployeeCount];
     }
+
+    public function employeesData($id){
+        $employee = Employee::with(['address', 'additionalInfo', 'ijp'])
+    ->where('id', $id)
+    ->first();
+
+    $employees = $employee->toArray(); 
+    $addressInfo = $employee->address ? $employee->address->toArray() : null;
+    $additionalInfo = $employee->additionalInfo ? $employee->additionalInfo->toArray() : null;
+    $ijpInfo = $employee->ijp ? $employee->ijp->toArray() : null;
+    //return [$basicInfo , $addressInfo, $additionalInfo, $ijpInfo];
+    return $employees;
+
+    }
 }

@@ -19,7 +19,14 @@
         </div>
         <!--end breadcrumb-->
 
-
+@php echo '<pre>';
+  // print_r($employee); 
+//    foreach ($employees as $value) {
+//       //echo $value['phone'];
+//    }
+//echo $employee['name'];
+    echo '</pre>'; 
+    @endphp
         <!--start stepper-->
         <div class="card">
             <div class="card-body">
@@ -66,7 +73,7 @@
                             </div>
                         </div>
 
-                        <div class="step ijpDiv" style="display: none" data-target="#test-vl-5">
+                        <div class="step ijpDiv" @if(!empty($employee)) style="display: block" @else style="display: none" @endif data-target="#test-vl-5">
                             <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
                                 <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                 <div class="">
@@ -76,7 +83,7 @@
                             </div>
                         </div>
 
-                        <div class="step pipDiv" style="display: none" data-target="#test-vl-6">
+                        <div class="step pipDiv" @if(!empty($employee)) style="display: block" @else style="display: none" @endif data-target="#test-vl-6">
                             <div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
                                 <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                 <div class="">
@@ -86,7 +93,7 @@
                             </div>
                         </div>
 
-                        <div class="step historyDiv" style="display: none" data-target="#test-vl-7">
+                        <div class="step historyDiv" @if(!empty($employee)) style="display: block" @else style="display: none" @endif data-target="#test-vl-7">
                             <div class="step-trigger" role="tab" id="stepper3trigger7" aria-controls="test-vl-7">
 
                                 <div class="btn btn-primary d-flex align-items-center w-100 py-2">
@@ -98,9 +105,11 @@
                     </div>
 
                     <div class="bs-stepper-content w-100">
+                    
                         <form id="myform" onSubmit="return false">
-                            <input type="hidden" value="" id="id" name="id">
+                            <input type="hidden" value="{{ isset($employee['id']) ? $employee['id'] : '' }}" id="id" name="id">
                             <!-- Card of Basic Information -->
+                                
                             <div id="test-vl-1" role="tabpane3" class="bs-stepper-pane content fade"
                                 aria-labelledby="stepper3trigger1">
                                 <h5 class="mb-4">Basic Information</h5>
@@ -110,36 +119,36 @@
                                         <label for="input1" class="form-label">Name<span
                                                 class="requir-field">*</span></label>
                                         <input type="text" class="form-control name error-name" id="input1"
-                                            name="name" id="name">
+                                            name="name" id="name" value="{{ isset($employee['name']) ? $employee['name'] : '' }}">
                                         <span class="error-message" id="errorName"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-3 col-lg-6 col-xl-3">
                                         <label for="input2" class="form-label">SKID<span
                                                 class="requir-field">*</span></label>
-                                        <input type="text" class="form-control SKID" name="SKID" id="input2">
+                                        <input type="text" class="form-control SKID" name="SKID" value="{{ isset($employee['skid']) ? $employee['skid'] : '' }}" id="input2">
                                         <span class="error-message" id="errorSKID"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-3 col-lg-6 col-xl-3">
                                         <label for="input6" class="form-label">Phone<span class="requir-field">*</span>
                                         </label>
-                                        <input type="text" name="phone" class="form-control phone" id="input6">
+                                        <input type="text" name="phone" class="form-control phone" value="{{ isset($employee['phone']) ? $employee['phone'] : '' }}" id="input6">
                                         <span class="error-message" id="errorPhone"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3">
                                         <label for="input6" class="form-label">Emergency Contact
                                         </label>
                                         <input type="text" name="emergencyContact"
-                                            class="form-control emergencyContact" id="input6">
+                                            class="form-control emergencyContact" value="{{ isset($employee['emergencyContact']) ? $employee['emergencyContact'] : '' }}" id="input6">
                                         <span class="error-message" id="errorEmergencyContect"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
                                         <label for="input3" class="form-label">Email</label>
-                                        <input type="text" name="email" class="form-control email" id="input3">
+                                        <input type="text" name="email" class="form-control email" value="{{ isset($employee['email']) ? $employee['email'] : '' }}" id="input3">
                                         <span class="error-message" id="errorEmail"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-2">
                                         <label for="input1" class="form-label">Age</label>
-                                        <input type="text" name="age" class="form-control age" id="input1">
+                                        <input type="text" name="age" class="form-control age" value="{{ isset($employee['age']) ? $employee['age'] : '' }}" id="input1">
                                         <span class="error-message" id="errorAge"></span>
 
                                     </div>
@@ -147,107 +156,92 @@
                                         <label for="input2" class="form-label">Gender</label>
                                         <select id="input7" name="gender" class="form-select gender">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="Woman">Woman</option>
-                                            <option value="Man">Man</option>
-                                            <option value="Transgender Woman">Transgender Woman</option>
-                                            <option value="Transgender Man">Transgender Man</option>
-                                            <option value="Non-Binary">Non-Binary</option>
-                                            <option value="Agender">Agender</option>
-                                            <option value="Gender not listed">Gender not listed</option>
-                                            <option value="Prefer not to state">Prefer not to state</option>
+                <option value="Woman" @if(isset($employee['gender']) && $employee['gender'] === 'Woman') selected @endif>Woman</option>
+                <option value="Man" @if(isset($employee['gender']) && $employee['gender'] === 'Man') selected @endif>Man</option>
+                <option value="Transgender Woman" @if(isset($employee['gender']) && $employee['gender'] === 'Transgender Woman') selected @endif>Transgender Woman</option>
+                <option value="Transgender Man" @if(isset($employee['gender']) && $employee['gender'] === 'Transgender Man') selected @endif>Transgender Man</option>
+                <option value="Non-Binary" @if(isset($employee['gender']) && $employee['gender'] === 'Non-Binary') selected @endif>Non-Binary</option>
+                <option value="Agender" @if(isset($employee['gender']) && $employee['gender'] === 'Agender') selected @endif>Agender</option>
+                <option value="Gender not listed" @if(isset($employee['gender']) && $employee['gender'] === 'Gender not listed') selected @endif>Gender not listed</option>
+                <option value="Prefer not to state" @if(isset($employee['gender']) && $employee['gender'] === 'Prefer not to state') selected @endif>Prefer not to state</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                                         <label for="input3" class="form-label">Religion</label>
                                         <select id="input7" name="religion" class="form-select religion">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="Hinduism">Hinduism</option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Christianity">Christianity</option>
-                                            <option value="Sikhism">Sikhism</option>
-                                            <option value="Zoroastrianism">Zoroastrianism</option>
-                                            <option value="Buddhism">Buddhism</option>
-                                            <option value="Jainism">Jainism</option>
-                                            <option value="Judaism">Judaism</option>
-                                            <option value="Bahaism">Bahaism</option>
-                                            <option value="None">None</option>
+                                            <option value="Hinduism" @if(isset($employee['religion']) && $employee['religion'] === 'Hinduism') selected @endif>Hinduism</option>
+                                            <option value="Islam" @if(isset($employee['religion']) && $employee['religion'] === 'Islam') selected @endif>Islam</option>
+                                            <option value="Christianity" @if(isset($employee['religion']) && $employee['religion'] === 'Christianity') selected @endif>Christianity</option>
+                                            <option value="Sikhism" @if(isset($employee['religion']) && $employee['religion'] === 'Sikhism') selected @endif>Sikhism</option>
+                                            <option value="Zoroastrianism" @if(isset($employee['religion']) && $employee['religion'] === 'Zoroastrianism') selected @endif>Zoroastrianism</option>
+                                            <option value="Buddhism" @if(isset($employee['religion']) && $employee['religion'] === 'Buddhism') selected @endif>Buddhism</option>
+                                            <option value="Jainism" @if(isset($employee['religion']) && $employee['religion'] === 'Jainism') selected @endif>Jainism</option>
+                                            <option value="Judaism" @if(isset($employee['religion']) && $employee['religion'] === 'Judaism') selected @endif>Judaism</option>
+                                            <option value="Bahaism" @if(isset($employee['religion']) && $employee['religion'] === 'Bahaism') selected @endif>Bahaism</option>
+                                            <option value="None" @if(isset($employee['religion']) && $employee['religion'] === 'None') selected @endif>None</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-2">
                                         <label for="input2" class="form-label">Blood Group</label>
                                         <select id="input7" name="bloodGroup" class="form-select bloodGroup">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="A+">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                            <option value="AB+">AB+</option>
-                                            <option value="AB-">AB-</option>
+                                            <option value="A+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'A+') selected @endif>A+</option>
+                                            <option value="A-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'A-') selected @endif>A-</option>
+                                            <option value="B+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'B+') selected @endif>B+</option>
+                                            <option value="B-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'B-') selected @endif>B-</option>
+                                            <option value="O+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'O+') selected @endif>O+</option>
+                                            <option value="O-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'O-') selected @endif>O-</option>
+                                            <option value="AB+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'AB+') selected @endif>AB+</option>
+                                            <option value="AB-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'AB-') selected @endif>AB-</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
                                         <label for="input3" class="form-label">Qualification</label>
                                         <select id="input7" name="qualification" class="form-select qualification">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="Higher Secondary – grade 10">Higher Secondary – grade 10
-                                            </option>
-                                            <option value="Higher Secondary – grade 12 ">Higher Secondary – grade 12
-                                            </option>
-                                            <option value="Bachelor’s degree - Arts">Bachelor’s degree - Arts</option>
-                                            <option value="Bachelor’s degree - Architecture">Bachelor’s degree -
-                                                Architecture</option>
-                                            <option value="Bachelor’s degree - Agricultural">Bachelor’s degree -
-                                                Agricultural</option>
-                                            <option value="Bachelor’s degree - Veterinary">Bachelor’s degree - Veterinary
-                                            </option>
-                                            <option value="Bachelor’s degree - Civil Aviation and Merchant Navy">Bachelor’s
-                                                degree - Civil Aviation and Merchant Navy</option>
-                                            <option value="Bachelor’s degree - Commerce">Bachelor’s degree - Commerce
-                                            </option>
-                                            <option value="Bachelor’s degree - Engineering">Bachelor’s degree - Engineering
-                                            </option>
-                                            <option value="Bachelor’s degree - Fashion and Interior Designing">Bachelor’s
-                                                degree - Fashion and Interior Designing</option>
-                                            <option value="Bachelor’s degree - Information Technology">Bachelor’s degree -
-                                                Information Technology</option>
-                                            <option value="Bachelor’s degree - Law">Bachelor’s degree - Law</option>
-                                            <option value="Bachelor’s degree - Management">Bachelor’s degree - Management
-                                            </option>
-                                            <option value="Bachelor’s degree - Mass Communications">Bachelor’s degree -
-                                                Mass Communications</option>
-                                            <option value="Bachelor’s degree - Medical">Bachelor’s degree - Medical
-                                            </option>
-                                            <option value="Bachelor’s degree - Multimedia">Bachelor’s degree - Multimedia
-                                            </option>
-                                            <option value="Bachelor’s degree - Science">Bachelor’s degree - Science
-                                            </option>
-                                            <option value="Master’s degree">Master’s degree</option>
-                                            <option value="Diploma">Diploma</option>
+                                            <option value="Higher Secondary – grade 10" @if(isset($employee['qualification']) && $employee['qualification'] === 'Higher Secondary – grade 10') selected @endif>Higher Secondary – grade 10</option>
+                                            <option value="Higher Secondary – grade 12 " @if(isset($employee['qualification']) && $employee['qualification'] === 'Higher Secondary - grade 12') selected @endif>Higher Secondary – grade 12</option>
+                                            <option value="Bachelor’s degree - Arts" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Arts') selected @endif>Bachelor’s degree - Arts</option>
+                                            <option value="Bachelor’s degree - Architecture" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Architecture') selected @endif>Bachelor’s degree - Architecture</option>
+                                            <option value="Bachelor’s degree - Agricultural" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Agricultural') selected @endif>Bachelor’s degree - Agricultural</option>
+                                            <option value="Bachelor’s degree - Veterinary" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Veterinary') selected @endif>Bachelor’s degree - Veterinary</option>
+                                            <option value="Bachelor’s degree - Civil Aviation and Merchant Navy" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Civil Aviation and Merchant Navy') selected @endif>Bachelor’s degree - Civil Aviation and Merchant Navy</option>
+                                            <option value="Bachelor’s degree - Commerce" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Commerce') selected @endif>Bachelor’s degree - Commerce</option>
+                                            <option value="Bachelor’s degree - Engineering" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Engineering') selected @endif>Bachelor’s degree - Engineering</option>
+                                            <option value="Bachelor’s degree - Fashion and Interior Designing" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Fashion and Interior Designing') selected @endif>Bachelor’s degree - Fashion and Interior Designing</option>
+                                            <option value="Bachelor’s degree - Information Technology" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Information Technology') selected @endif>Bachelor’s degree - Information Technology</option>
+                                            <option value="Bachelor’s degree - Law" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Law') selected @endif>Bachelor’s degree - Law</option>
+                                            <option value="Bachelor’s degree - Management" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Management') selected @endif>Bachelor’s degree - Management</option>
+                                            <option value="Bachelor’s degree - Mass Communications" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Mass Communications') selected @endif>Bachelor’s degree - Mass Communications</option>
+                                            <option value="Bachelor’s degree - Medical" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Medical') selected @endif>Bachelor’s degree - Medical</option>
+                                            <option value="Bachelor’s degree - Multimedia" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Multimedia') selected @endif>Bachelor’s degree - Multimedia</option>
+                                            <option value="Bachelor’s degree - Science" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Science') selected @endif>Bachelor’s degree - Science</option>
+                                            <option value="Master’s degree" @if(isset($employee['qualification']) && $employee['qualification'] === 'Master’s degree') selected @endif>Master’s degree</option>
+                                            <option value="Diploma" @if(isset($employee['qualification']) && $employee['qualification'] === 'Diploma') selected @endif>Diploma</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
                                         <label for="input3" class="form-label">Academic Stream</label>
                                         <select id="input7" name="academicStream" class="form-select academicStream">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="Academic1">Academic1</option>
-                                            <option value="Academic2">Academic2</option>
-                                            <option value="Academic3">Academic3</option>
+                                            <option value="Academic1" @if(isset($employee['academicStream']) && $employee['academicStream'] === 'Academic1') selected @endif>Academic1</option>
+                                            <option value="Academic2" @if(isset($employee['academicStream']) && $employee['academicStream'] === 'Academic2') selected @endif>Academic2</option>
+                                            <option value="Academic3" @if(isset($employee['academicStream']) && $employee['academicStream'] === 'Academic3') selected @endif>Academic3</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input3" class="form-label">School</label>
-                                        <input type="text" name="school" class="form-control school" id="input3">
+                                        <input type="text" name="school" class="form-control school" value="{{ isset($employee['school']) ? $employee['school'] : '' }}" id="input3">
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input3" class="form-label">College</label>
-                                        <input type="text" name="college" class="form-control college"
+                                        <input type="text" name="college" class="form-control college" value="{{ isset($employee['college']) ? $employee['college'] : '' }}"
                                             id="input3">
                                     </div>
                                     <div class="col-12">
                                         <label for="input6" class="form-label">Food Preference</label>
-                                        <input type="text" name="foodPreference" class="form-control foodPreference"
+                                        <input type="text" name="foodPreference" class="form-control foodPreference" value="{{ isset($employee['foodPreference']) ? $employee['foodPreference'] : '' }}"
                                             id="input6">
                                     </div>
                                     <div class="col-auto cursor-pointer">
@@ -259,9 +253,13 @@
                                             <div class="uploaded-img">
                                                 <!-- <img src="./assets/images/uploadimg-dummy.webp" alt=""> -->
                                                 <!-- <i class="fadeIn animated bx bx-user fs-4"></i> -->
-                                                <img id="uploadedImage" src="" alt=""
-                                                    style="display: none;">
+                                                <img id="uploadedImage" src="{{ isset($employee['employeeImage']) ? json_decode($employee['employeeImage']) : '' }}" alt=""
+                                                    @if (isset($employee['employeeImage'])) style= "display: block" @else style="display: none" @endif>
+                                                    @if (isset($employee['employeeImage']))
+                                                   
+                                                    @else
                                                 <i class="fadeIn animated bx bx-user fs-4"></i>
+                                                @endif
                                             </div>
                                             <div class="uploaded-des">
                                                 <p>Upload Photo</p>
@@ -273,26 +271,49 @@
                                     <div class="col-12 addMoreContainer">
                                         <div class="row g-3 relative-section">
                                             <div class="col">
+                                                @if(!empty($employee))
+                                                    
+                                               
+            
+                                                @php $relationData = json_decode($employee['relation'], true); @endphp
+                                                @foreach ($relationData as $relativeName => $relation)
                                                 <div class="row g-3">
                                                     <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                                                        <label for="input6" class="form-label">Relative’s
-                                                            Name</label>
-                                                        <input type="text" name="relativeName"
-                                                            class="form-control relativeName" id="input6">
+                                                        <label for="input6" class="form-label">Relative’s Name</label>
+                                                        <input type="text" name="relativeName[]" class="form-control relativeName" id="input6" value="{{ $relativeName }}">
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                                                         <label for="input2" class="form-label">Relationship</label>
-                                                        <select id="input7" name="relationWithRelative"
-                                                            class="form-select relationWithRelative">
+                                                        <select id="input7" name="relationWithRelative[]" class="form-select relationWithRelative">
                                                             <option disabled value="" selected>Select</option>
-                                                            <option value="Sibling">Sibling</option>
-                                                            <option value="Spouse">Spouse</option>
-                                                            <option value="Partner">Partner</option>
-                                                            <option value="Parent">Parent</option>
-                                                            <option value="Cousin">Cousin</option>
+                                                            <option value="Sibling" {{ $relation === 'Sibling' ? 'selected' : '' }}>Sibling</option>
+                                                            <option value="Spouse" {{ $relation === 'Spouse' ? 'selected' : '' }}>Spouse</option>
+                                                            <option value="Partner" {{ $relation === 'Partner' ? 'selected' : '' }}>Partner</option>
+                                                            <option value="Parent" {{ $relation === 'Parent' ? 'selected' : '' }}>Parent</option>
+                                                            <option value="Cousin" {{ $relation === 'Cousin' ? 'selected' : '' }}>Cousin</option>
                                                         </select>
                                                     </div>
                                                 </div>
+                                            @endforeach
+                                            @else
+                                            <div class="row g-3">
+                                                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                                    <label for="input6" class="form-label">Relative’s Name</label>
+                                                    <input type="text" name="relativeName[]" class="form-control relativeName" id="input6" value="">
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                                    <label for="input2" class="form-label">Relationship</label>
+                                                    <select id="input7" name="relationWithRelative[]" class="form-select relationWithRelative">
+                                                        <option disabled value="" selected>Select</option>
+                                                        <option value="Sibling" >Sibling</option>
+                                                        <option value="Spouse">Spouse</option>
+                                                        <option value="Partner" >Partner</option>
+                                                        <option value="Parent">Parent</option>
+                                                        <option value="Cousin">Cousin</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            @endif
                                             </div>
                                             <div class="col-auto col-lg-3 col-xxl-2 d-flex align-items-end flex-column">
                                                 <label for="input6" class="form-label">&nbsp;</label>
@@ -338,7 +359,7 @@
                                 </div>
                                 <!---end row-->
                             </div>
-
+                          
 
                             <!-- Card of Address -->
                             <div id="test-vl-2" role="tabpane3" class="bs-stepper-pane content fade"
@@ -762,8 +783,8 @@
                                                                 name="modelBillable">
                                                                 <option selected disabled value="" selected>Select
                                                                 </option>
-                                                                <option value="billable">billable</option>
-                                                                <option value="buffer">buffer</option>
+                                                                <option value="Billable">Billable</option>
+                                                                <option value="Buffer">Buffer</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-12 contributionDiv">
@@ -1401,7 +1422,7 @@
 
             $('.modelBillable').change(function() {
                 var modelBillable = $(this).val();
-                if (modelBillable == 'buffer') {
+                if (modelBillable == 'Billable') {
                     $('.contributionDiv').show();
                 } else {
                     $('.contributionDiv').hide();

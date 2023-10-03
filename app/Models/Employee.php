@@ -34,4 +34,22 @@ class Employee extends Model
         return $this->belongsTo(User::class, 'userId');
     }
 
+        
+        public function address()
+        {
+            return $this->hasOne(EmployeeAddress::class, 'employeeId', 'id');
+        }
+    
+      
+        public function additionalInfo()
+        {
+            return $this->hasOne(EmployeeAdditionalInfo::class, 'employeeId', 'id');
+        }
+    
+        
+        public function ijp()
+        {
+            return $this->hasMany(EmployeeIJP::class, 'employeeId', 'id');
+        }
+
 }
