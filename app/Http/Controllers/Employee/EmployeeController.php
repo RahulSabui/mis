@@ -103,7 +103,7 @@ class EmployeeController extends Controller
     {
         try {
             $payloadOfProcessAssignment = json_decode(request()->input('data'), true);
-           
+
             $createOrUpdateEmployeeInfo = $this->employeeService->createOrUpdateEmployeerocessAssignment($payloadOfProcessAssignment);
             if ($createOrUpdateEmployeeInfo) {
                 return response()->json([
@@ -123,12 +123,12 @@ class EmployeeController extends Controller
             ], 500);
         }
     }
-    
+
     public function ijp(Request $request)
     {
         try {
             $payloadOfIjp = json_decode(request()->input('data'), true);
-           
+
 
             $createOrUpdateEmployeeInfo = $this->employeeService->createOrUpdateEmployeeIjp($payloadOfIjp);
             if ($createOrUpdateEmployeeInfo) {
@@ -171,21 +171,48 @@ class EmployeeController extends Controller
 
     public function activeEmployee(){
         try {
-
+            $empArr = [];
             $page = request()->input('page', 1);
             $limit = request()->input('limit', 10);
-            $spanId = json_decode(request()->input('spanId'));
-            $designationId = json_decode(request()->input('designationId'));
-
-            // return $spanId;
+            $spanId = (request()->input('spanId') != 'undefined') ? json_decode(request()->input('spanId')) : [];
+            $designationId = (request()->input('designationId') != 'undefined') ? json_decode(request()->input('designationId')) : [];
 
             $activeEmployeeDetails = $this->employeeService->activeEmployeelist($page, $limit, $spanId, $designationId);
+
+            foreach ($activeEmployeeDetails[0] as $key => $value) {
+                // return $value;
+                $dd = DB::table('employee_basic_info')->select(
+                    'employee_basic_info.id AS employee_id',
+                    'employee_basic_info.name AS name',
+                    'employee_additional_info.designationId',
+                    'designation.name AS designationName'
+                )
+                    ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
+                    ->leftJoin('designation', 'employee_additional_info.designationId', '=', 'designation.id')
+                    ->leftJoin('designation AS reportingdesignation', 'employee_additional_info.reportingId', '=', 'reportingdesignation.id')
+                    ->where('employee_additional_info.id', $value['reportingId'])
+                    ->first();
+
+                $empArr[] = [
+                    "name" => $value['name'],
+                    "skid" => $value['skid'],
+                    "designationName" => $value['designationName'],
+                    "spanName" => $value['spanName'],
+                    "reportingId" => $dd,
+                    "email" => $value['email'],
+                    "phone" => $value['phone'],
+                ];
+
+
+            }
+
             $data = [
                 'activeEmployeeDetails' => $activeEmployeeDetails[0],
+                'list' => $empArr,
                 'allCount' => $activeEmployeeDetails[1],
-                'designationName' =>  $activeEmployeeDetails[2],
-                'designationEmployeeCount' =>  $activeEmployeeDetails[3],
-                'spanName'=>$activeEmployeeDetails[4],
+                'designationName' => $activeEmployeeDetails[2],
+                'designationEmployeeCount' => $activeEmployeeDetails[3],
+                'spanName' => $activeEmployeeDetails[4],
                 'spanEmployeeCount' => $activeEmployeeDetails[5]
 
             ];
@@ -195,7 +222,7 @@ class EmployeeController extends Controller
             ], 200);
 
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage(),
@@ -204,7 +231,61 @@ class EmployeeController extends Controller
 
     }
 
-    public function Helper() {
+
+    public function searchActiveEmployee() {
+        try {
+            $empArr = [];
+            $page = request()->input('page', 1);
+            $limit = request()->input('limit', 10);
+            $search = request()->input('search');
+            $activeSearchEmployeeDetails = $this->employeeService->activeSearchEmployeelist($page, $limit, $search);
+            foreach ($activeSearchEmployeeDetails as $key => $value) {
+                // return $value;
+                $dd = DB::table('employee_basic_info')->select(
+                    'employee_basic_info.id AS employee_id',
+                    'employee_basic_info.name AS name',
+                    'employee_additional_info.designationId',
+                    'designation.name AS designationName'
+                )
+                    ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
+                    ->leftJoin('designation', 'employee_additional_info.designationId', '=', 'designation.id')
+                    ->leftJoin('designation AS reportingdesignation', 'employee_additional_info.reportingId', '=', 'reportingdesignation.id')
+                    ->where('employee_additional_info.id', $value['reportingId'])
+                    ->first();
+
+                $empArr[] = [
+                    "name" => $value['name'],
+                    "skid" => $value['skid'],
+                    "designationName" => $value['designationName'],
+                    "spanName" => $value['spanName'],
+                    "reportingId" => $dd,
+                    "email" => $value['email'],
+                    "phone" => $value['phone'],
+                ];
+
+
+            }
+            $data = [
+                'list'=> $empArr,
+                'activeEmployeeDetails' => $activeSearchEmployeeDetails
+            ];
+            return response()->json([
+                'success' => true,
+                'data' => $data
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+        
+    }
+
+
+    public function Helper()
+    {
         try {
             $designations = DB::table('designation')->get();
             $spans = DB::table('span')->get();
@@ -215,7 +296,7 @@ class EmployeeController extends Controller
 
             ], 200);
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage(),

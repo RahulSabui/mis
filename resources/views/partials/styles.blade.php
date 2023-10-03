@@ -35,3 +35,5 @@
 <link rel="stylesheet" href="{{ asset('assets/css/header-colors.css') }}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+
+

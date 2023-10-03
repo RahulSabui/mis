@@ -34,26 +34,26 @@
         <!--end breadcrumb-->
         <hr class="mb-2 chipHr" />
         <!-- <div class="chip" id="selectedChip">John Doe <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Jessica Doe <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Michele Powa <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Clark Natela <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Anantu Painda <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Tiger Xink <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div>
-                    <div class="chip">Salena Chain <span class="closebtn"
-                      onclick="this.parentElement.style.display='none'">×</span>
-                    </div> -->
+                                                              onclick="this.parentElement.style.display='none'">×</span>
+                                                            </div>
+                                                            <div class="chip">Jessica Doe <span class="closebtn"
+                                                              onclick="this.parentElement.style.display='none'">×</span>
+                                                            </div>
+                                                            <div class="chip">Michele Powa <span class="closebtn"
+                                                              onclick="this.parentElement.style.display='none'">×</span>
+                                                            </div>
+                                                            <div class="chip">Clark Natela <span class="closebtn"
+                                                              onclick="this.parentElement.style.display='none'">×</span>
+                                                            </div>
+                                                            <div class="chip">Anantu Painda <span class="closebtn"
+                                                              onclick="this.parentElement.style.display='none'">×</span>
+                                                            </div>
+                                                            <div class="chip">Tiger Xink <span class="closebtn"
+                                                              onclick="this.parentElement.style.display='none'">×</span>
+                                                            </div>
+                                                            <div class="chip">Salena Chain <span class="closebtn"
+                                                              onclick="this.parentElement.style.display='none'">×</span>
+                                                            </div> -->
 
         <div class="card w-100">
             <div class="card-body">
@@ -148,7 +148,7 @@
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0 text-secondary">Revenue Earning</p>
-                                        <h4 class="my-1">78</h4>
+                                        <h4 class="my-1">0</h4>
                                     </div>
                                     <div class="text-danger ms-auto font-35">⠗⠑
                                     </div>
@@ -162,7 +162,7 @@
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0 text-secondary">Non-Revenue Earning</p>
-                                        <h4 class="my-1">78</h4>
+                                        <h4 class="my-1">0</h4>
                                     </div>
                                     <div class="text-seagreen ms-auto font-35">⠝⠗
                                     </div>
@@ -199,12 +199,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="sticky-table-head">
                             <div class="d-flex justify-content-between">
-                                <h5 class="card-title">Active Employee List</h5>
+                                <h5 class="card-title">Active Employees</h5>
                                 <div class="ms-auto d-flex align-items-center">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control ps-5 radius-30"
+                                        <input type="text" class="form-control ps-5 radius-30 search"
                                             placeholder="Search Employee">
                                         <span class="position-absolute top-50 product-show translate-middle-y">
                                             <i class="bx bx-search"></i>
@@ -214,36 +214,36 @@
                                             class="fadeIn bx bx-filter fs-3"></i></a>
 
                                     <!-- <a href="javascript:;" class="icon-wrapper" title="Delete"><i
-                            class='bx bxs-trash fs-5'></i></a> -->
+                                                        class='bx bxs-trash fs-5'></i></a> -->
                                     <a href="javascript:;" class="icon-wrapper" title="Download"><i
                                             class="bx bx-cloud-download fs-4"></i></a>
-
                                 </div>
                             </div>
+                            <hr class="mt-2" />
+                        </div>
+                        <div class="table-responsive">
 
-                            <hr class="mt-2 mb-4" />
+
                             <table class="table  table-striped  align-middle mb-0">
                                 <thead class="table-light">
                                     <tr>
                                         <!-- <th> <td>
-                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="" checked="">
-                          </td>
-                            </th> -->
-
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="" checked="">
+                                                </td>
+                                                        </th> -->
                                         <th>Employee Name (SKID)</th>
                                         <th>Designation</th>
                                         <th>Span</th>
                                         <th>Manager</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>
+                                        <th class="sticky-action">
                                             <div class="d-flex justify-content-center">Action</div>
                                         </th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                             </table>
                         </div>
@@ -357,8 +357,11 @@
     <script>
         var dataForGraph;
         var selectedValue = {};
+
+
         $(document).ready(function() {
-			gethelper();
+            gethelper();
+
             $("#submitButton").click(function(event) {
                 event.preventDefault();
                 let spanSelect = $("#spanSelect").val();
@@ -404,16 +407,33 @@
                 }
 
                 const newChip = $(
-                    `<div class='chip'>${'Span: ' + $("#spanSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
+                    `<div class="chip">
+                        <div class="spanVal" style="display: none;">${$("#spanSelect option:selected").val()}</div>
+                        <span class="fw-medium">Span:</span>${$("#spanSelect option:selected").text()}
+                        <span class="closebtn">×</span>
+                    </div>`
                 );
                 const newChip2 = $(
-                    `<div class='chip'>${'Client: ' +  $("#clientSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
+                    `   <div class = "clientVal" style="display: none;"> 
+                            ${$("#clientSelect option:selected").val()} 
+                        </div> 
+                        <div class='chip'>
+                            ${'Client: ' +  $("#clientSelect option:selected").text()}
+                            <span class='closebtn' onclick='$(this).parent().remove()'>
+                            ×</span>
+                        </div>`
                 );
                 const newChip3 = $(
-                    `<div class='chip'>${'Process: ' +  $("#processSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
+                    `<div class = "processVal" style="display: none;"> ${$("#processSelect option:selected").val()} </div><div class='chip'>${'Process: ' +  $("#processSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
                 );
                 const newChip4 = $(
-                    `<div class='chip'>${'Designation: ' +  $("#designationSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
+                    `<div class="chip">
+                        <div class="desginationVal" style="display: none;">
+                            ${$("#designationSelect option:selected").val()}
+                        </div>
+                        ${'Designation: ' + $("#designationSelect option:selected").text()}
+                        <span class="closebtn">×</span>
+                    </div>`
                 );
 
                 if (spanSelect !== "") {
@@ -427,8 +447,13 @@
                 }
                 if (designationSelect !== "") {
                     newChip4.insertAfter($(".chipHr"));
+
                 }
-				getList(page, limit, selectedValue)
+                // // $(".close-switcher").on("click", function() {
+                // $(".switcher-wrapper").removeClass("switcher-toggled");
+                // $(".switcher-btn").removeClass("d-none");
+                // })
+                getList(page, limit, selectedValue)
 
                 $("#spanSelect").val("");
                 $("#clientSelect").val("");
@@ -441,9 +466,41 @@
             });
 
 
+            $(document).on("click", ".closebtn", function() {
+                const chipElement = $(this).closest(".chip");
+
+                // Determine which type of chip it is (span, client, process, or designation)
+                let name;
+                if (chipElement.find(".spanVal").length) {
+                    selectedVal = "spanVal"
+                    name = "spanSelect";
+                } else if (chipElement.find(".clientVal").length) {
+                    selectedVal = "clientVal"
+                    name = "clientSelect";
+                } else if (chipElement.find(".processVal").length) {
+                    selectedVal = "processVal"
+                    name = "processSelect";
+                } else if (chipElement.find(".desginationVal").length) {
+                    selectedVal = "desginationVal"
+                    name = "designationSelect";
+                }
+                const idToRemove = chipElement.find("." + selectedVal).text();
+                // Assuming selectedValue is an object accessible in this scope
+                if (name in selectedValue && Array.isArray(selectedValue[name])) {
+                    selectedValue[name] = selectedValue[name].filter(item => item.trim() !== idToRemove
+                        .trim());
+                }
+
+                // Remove the chip element
+                chipElement.remove();
+                // Call your getList function here
+                getList(page, limit, selectedValue);
+            });
+
+
+
             $("#clearFilter").click(function(event) {
                 event.preventDefault();
-				console.log(event.target, "target");
                 $("#spanSelect").val("");
                 $("#clientSelect").val('');
                 $("#processSelect").val('');
@@ -452,10 +509,11 @@
                 $("#select2-clientSelect-container").text("");
                 $("#select2-processSelect-container").text("");
                 $("#select2-designationSelect-container").text("");
-
+                $(".chip").remove();
+                selectedValue = {};
+                getList(page, limit, selectedValue)
 
             });
-
             let page = 1;
             let limit = 10;
             let dateFormat = $('.date-format').val();
@@ -470,13 +528,11 @@
             $(document).on('click', '.filter-button', function(e) {
                 e.preventDefault();
                 let changeDateFormat = $('.date-format').val();
-                console.log(changeDateFormat);
                 getList(page, limit, selectedValue)
 
             })
 
             $(document).on('click', '.page-item', function() {
-                console.log($(this).hasClass('disabled'));
                 if (!$(this).hasClass('disabled')) {
                     if ($(this).text().trim() === 'Previous') {
                         page = Number($('.page-item.active .page-link').text()) - 1;
@@ -488,35 +544,48 @@
                     getList(page, limit, selectedValue)
                 }
             });
+
+
+            $(".search").keyup(function(e) {
+                let search = e.target.value;
+                $.ajax({
+                    type: "GET",
+                    url: `/search/active/employee?page=${page}&limit=${limit}&search=${search}`,
+                    success: function(response) {
+                        data(response);
+                        pagination(page, response);
+                    }
+                });
+            });
+
         });
 
-		function gethelper(){
-			$.ajax({
-				type: "GET",
-				url: "/helper",
-				success: function (response) {
-					console.log(response);
-					$.each(response?.spans, function (indexInArray, valueOfElement) {
-						$('#spanSelect').append(`<option value="${valueOfElement.id}">${valueOfElement.name}</option>`);
-						
-						 
-					});
-					$.each(response?.designations, function (indexInArray, valueOfElement) { 
-						$('#designationSelect').append(`<option value="${valueOfElement.id}">${valueOfElement.name}</option>`);
-					});
-				}
-			});
-		}
-        function getList(page, limit, selectedValue) {
-			let spanSelectArr;
-			if (selectedValue) {
-				spanSelectArr = selectedValue?.spanSelect
-				designationSelectArr = selectedValue?.designationSelect
-				// spanSelectArr = selectedValue?.spanSelect
+        function gethelper() {
+            $.ajax({
+                type: "GET",
+                url: "/helper",
+                success: function(response) {
+                    $.each(response?.spans, function(indexInArray, valueOfElement) {
+                        $('#spanSelect').append(
+                            `<option value="${valueOfElement.id}">${valueOfElement.name}</option>`);
 
-			}
-			console.log(JSON.stringify(spanSelectArr), "baal");
-		
+
+                    });
+                    $.each(response?.designations, function(indexInArray, valueOfElement) {
+                        $('#designationSelect').append(
+                            `<option value="${valueOfElement.id}">${valueOfElement.name}</option>`);
+                    });
+                }
+            });
+        }
+
+        function getList(page, limit, selectedValue) {
+            if (selectedValue) {
+                spanSelectArr = selectedValue?.spanSelect;
+                designationSelectArr = selectedValue?.designationSelect;
+            }
+
+
 
             $.ajax({
                 type: "GET",
@@ -538,55 +607,74 @@
 
         function data(response) {
             $('tbody').empty();
-			if (response?.data?.activeEmployeeDetails?.data.length < 1) {
-				$('tbody').append(`<tr>
+            if (response?.data?.list?.length < 1) {
+                $('tbody').append(`<tr>
 					<td class = "text-center" colspan = "7" >No Data Found</td>
 					</tr>`);
-			}
-            response?.data?.activeEmployeeDetails?.data.forEach(element => {
-                $('tbody').append(`<tr>
-												
-												<td>
-													<div class="d-flex align-items-center">
-														<div class="">
-															<img src="assets/images/avatars/avatar-1.png"
-																class="rounded-circle" width="46" height="46" alt="" />
-														</div>
-														<div class="ms-2">
-															<h6 class="mb-1 font-14" style = "text-transform: capitalize">${element?.name == null ? "" : element?.name}</h6>
-															<p class="mb-0 font-13 text-secondary" style = "text-transform: capitalize"> ${element?.skid == null ? "" : element?.skid}</p>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="d-flex align-items-center">
-														<h6 class="mb-1 font-14" style = "text-transform: capitalize">${element?.designationName == null ? "" : element?.designationName}</h6>
-													</div>
-												</td>
-												<td style = "text-transform: capitalize">${element?.spanName == null ? "" : element?.spanName}</td>
-												<td style = "text-transform: capitalize">${element?.reporting_name == null ? "" : element?.reporting_name}</td>
-												<td >${element?.email == null ? "" : element?.email}</td>
-												<td style = "text-transform: capitalize">
-													${element?.phone == null ? "" : element?.phone}
-												</td>
-												<td>
-													<div class="table-action">
-														<a href="">
-															<i class="fadeIn animated bx bx-pencil fs-5" title="Edit"></i>
-														</a>
-														<a href="./employeeAdd.html#test-vl-6" target="_blank">
-															<i class="fadeIn animated bx bx-history fs-4 ms-2" title="History"></i>
-														</a>
-													</div>
-												</td>
+            }
+            for (let index = 0; index < response?.data?.list?.length; index++) {
+                const element = response?.data?.list?.[index];
 
-											</tr>`);
-            });
+                const employeeImage = element.employeeImage ? decodeURIComponent(element.employeeImage) :
+                    "assets/images/avatars/avatar-1.png";
+                const name = element.name ? element.name : "";
+                const skid = element.skid ? element.skid : "";
+                const designationName = element.designationName ? element.designationName : "";
+                const spanName = element.spanName ? element.spanName : "";
+                const reportingName = element.reportingId ? element.reportingId : "";
+                let reporting;
+                if (reportingName) {
+
+                    reporting = `${reportingName.name} (${reportingName.designationName})`;
+                } else {
+                    reporting = '';
+                }
+
+
+                const email = element.email ? element.email : "";
+                const phone = element.phone ? element.phone : "";
+
+
+
+                $('tbody').append(`
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="">
+                                    <img src="${employeeImage}" class="rounded-circle" width="46" height="46" alt="" />
+                                </div>
+                                <div class="ms-2">
+                                    <h6 class="mb-1 font-14" style="text-transform: capitalize">${name}</h6>
+                                    <p class="mb-0 font-13 text-secondary" style="text-transform: capitalize">${skid}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <h6 class="mb-1 font-14" style="text-transform: capitalize">${designationName}</h6>
+                            </div>
+                        </td>
+                        <td style="text-transform: capitalize">${spanName}</td>
+                        <td style="text-transform: capitalize">${reporting}</td>
+                        <td>${email}</td>
+                        <td style="text-transform: capitalize">${phone}</td>
+                        <td>
+                            <div class="table-action">
+                                <a href="">
+                                    <i class="fadeIn animated bx bx-pencil fs-5" title="Edit"></i>
+                                </a>
+                                <a href="./employeeAdd.html#test-vl-6" target="_blank">
+                                    <i class="fadeIn animated bx bx-history fs-4 ms-2" title="History"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                `);
+            }
         }
 
         function pagination(page, response) {
             let res = response?.data?.activeEmployeeDetails;
-            console.log(res, "res");
             let paginationHtml = ''
 
             if (res?.last_page != 1) {
@@ -652,7 +740,6 @@
         }
 
         function graphForDesignation(response) {
-            console.log(response?.data?.designationName);
             createChart(
                 'EmployeeByDesignation',
                 'bar',
@@ -665,7 +752,6 @@
         }
 
         function graphForSpan(response) {
-            console.log(response?.data?.designationName);
             createChart(
                 'EmployeeBySpan',
                 'bar',
@@ -687,6 +773,22 @@
             var searchList = document.querySelector('.search-employee-list');
             searchList.classList.remove('open');
         });
+
+
+        function getReportingManagerDetails(params) {
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    type: "GET",
+                    url: `/reporting/manager/${params}`,
+                    success: function(response) {
+                        resolve(response); // Resolve the Promise with the response data
+                    },
+                    error: function(error) {
+                        reject(error); // Reject the Promise with the error
+                    }
+                });
+            });
+        }
     </script>
 
 

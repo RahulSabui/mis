@@ -1726,7 +1726,11 @@ form select.error:focus {
   }
 
 
-.chip{display:inline-block;height:24px;padding:0 7px;margin-right:0.25rem;margin-bottom:0.5rem;font-size:12px;font-weight:400;line-height:23px;color:rgba(0,0,0,.7);cursor:pointer;background-color:#f1f1f1;border:1px solid rgba(0,0,0,.15);border-radius:16px;-webkit-transition:all .3s linear;transition:all .3s linear;box-shadow:none}   
+.chip{display:inline-block;height:24px;padding:0 7px;margin-right:0.25rem;margin-bottom:0.5rem;font-size:12px;font-weight:400;line-height:23px;color:#fff;cursor:pointer;background-color:#0d6efd;;border:1px solid #0d6efd;border-radius:16px;-webkit-transition:all .3s linear;transition:all .3s linear;box-shadow:none}  
+.sticky-action{position: sticky; right: 0;} 
+.table-striped>tbody>tr:nth-of-type(odd)>*{background-color: #f2f2f2;}
+.table-striped>tbody>tr:nth-of-type(even)>*{background-color: #fff;}
+.sticky-table-head{position:sticky;top:0;background-color:#fff;z-index:1;}
 
 
 
@@ -4442,9 +4446,10 @@ color: #4c5258;
 }
 
 
-
+.table-responsive{height:400px;overflow-y:auto;position:relative}
 .table-responsive .table-striped.manage-user-table tr td:not(:first-child){text-align: center; width: 80px;}
 .table-responsive .table-striped.manage-user-table tr th:not(:first-child){text-align: center;width: 80px;}
+.table-responsive table thead tr th{position: sticky; top: 0;z-index: 1; background-color: #fff;}
 .notification-alert{position: absolute; font-size: 22px;top: 0; right: 0;}
 .dropdown-item.unread-notification{background-color: rgb(0 140 255 / 10%);}
 .list-group-item{border: 0;}

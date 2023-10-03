@@ -17,28 +17,28 @@ return new class extends Migration {
             $table->unsignedBigInteger('employeeId')->nullable();
             $table->integer('designationId')->nullable();
             $table->string('employmentStatus')->nullable();
-            $table->string('dateOfJoining')->nullable(); // Storing date as a date
+            $table->string('dateOfJoining')->nullable(); 
             $table->string('aadharImage')->nullable();
             $table->string('aadhaarNumber')->nullable();
             $table->string('serviceStatus')->nullable();
-            $table->string('permanentDate')->nullable(); // Storing date as a date
+            $table->string('permanentDate')->nullable(); 
             $table->integer('reportingId')->nullable();
             $table->string('sourceOfHiringRequest')->nullable();
             $table->string('shiftTiming')->nullable();
             $table->string('salary')->nullable();
             $table->string('appraisalCycle')->nullable();
+            $table->string('aadharImage')->nullable();
             $table->string('typeOfMedicalInsurance')->nullable();
             $table->string('chronicMedicalCondition')->nullable();
             $table->string('noticeStatus')->nullable();
-            $table->string('dateOfNotice')->nullable(); // Storing date as a date
-            $table->string('dateOfExit')->nullable(); // Storing date as a date
+            $table->string('dateOfNotice')->nullable(); 
+            $table->string('dateOfExit')->nullable(); 
             $table->string('exitReason')->nullable();
             $table->boolean('istrainee')->nullable();
-            $table->string('isWfoOrWfh')->nullable(); // Making this column nullable
+            $table->string('isWfoOrWfh')->nullable(); 
             $table->timestamps();
 
 
-            // Defining the foreign key constraints with ON DELETE CASCADE
             $table->foreign('employeeId')->references('id')->on('employee_basic_info')->onDelete('cascade');
             // $table->foreign('reportingId')->references('id')->on('employee_basic_info')->onDelete('cascade');
 

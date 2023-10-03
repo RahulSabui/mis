@@ -4,15 +4,22 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\dashboardController;
 use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\GlobalController;
+use App\Http\Controllers\Protect\ArtisanController;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/signup', [AuthController::class, 'showLoginForm'])->name('loginForm');
+Route::view('/forgotPassword','forgotPassword');
+
 Route::post('/login', [AuthController::class, 'login'])->name('login1');
 
 Route::get('/states', [GlobalController::class, 'states'])->name('states');
-Route::get('/designations', [GlobalController::class, 'designation'])->name('designation');
+Route::get('/designations', [GlobalController::class, 'designations'])->name('designation');
+Route::get('/spans', [GlobalController::class, 'spans'])->name('spans');
+Route::get('/reporting/manager/{id}', [GlobalController::class, 'repotingManager'])->name('repotingManager');
+
+
 Route::get('/droplocation', [GlobalController::class, 'droplocation'])->name('droplocation');
 
 Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function () {
@@ -26,6 +33,9 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::get('/active/employee', [EmployeeController::class, 'activeEmployee'])->name('activeEmployee');
     Route::get('/helper', [EmployeeController::class, 'Helper'])->name('Helper');
     Route::post('/employee/ijp', [EmployeeController::class, 'ijp'])->name('employeeIjp');
+
+    Route::get('/search/active/employee', [EmployeeController::class, 'searchActiveEmployee'])->name('searchActiveEmployee');
+
     Route::post('/fileUpload', [GlobalController::class, 'fileUpload'])->name('fileUpload');
     Route::post('/aadhar/upload', [GlobalController::class, 'aadharUpload'])->name('aadharUpload');
     Route::post('/check/skid', [GlobalController::class, 'checkSkid'])->name('checkSkid');
@@ -33,6 +43,7 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::post('/check/aadhaar', [GlobalController::class, 'checkAadhaar'])->name('checkAadhaar');
 
     Route::get('/employee/{id}', [EmployeeController::class, 'editEmployee'])->name('editEmployee');
+
 
 
 
@@ -53,6 +64,9 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::view('/workFrom', 'employees.workFrom');
 });
 
+
+Route::get('/run/artisan', [ArtisanController::class, 'runArtisan'])->name('runArtisan');
+Route::get('/run/migration', [ArtisanController::class, 'runMigration'])->name('runMigration');
 
 
 
