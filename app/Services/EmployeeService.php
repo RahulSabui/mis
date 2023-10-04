@@ -148,10 +148,8 @@ class EmployeeService
         $employeeId = $data['employeeId'];
         $dataArr = $data['arr'];
 
-        // First, delete existing records for the employee
         EmployeeProcessAssignment::where('employeeId', $employeeId)->delete();
 
-        // Loop through the data and insert new records
         foreach ($dataArr as $value) {
             EmployeeProcessAssignment::create([
                 'employeeId' => $employeeId,
@@ -173,7 +171,6 @@ class EmployeeService
         $employeeId = $data['employeeId'];
         $dataArr = $data['arr2'];
 
-        // First, delete existing records for the employee
         EmployeeIjp::where('employeeId', $employeeId)->delete();
 
         foreach ($dataArr as $value) {
@@ -201,13 +198,20 @@ class EmployeeService
 
     public function activeEmployeelist($page, $limit, $spanId, $designationId)
     {
-         $filteredArray = array_filter($spanId, function ($value) {
-            return $value !== "";
-        });
+        $filteredArray=[];
+        $filteredArray1=[];
+        if ($spanId) {
+           
+            $filteredArray = array_filter($spanId, function ($value) {
+               return $value !== "";
+           });
+        }
+        if ($designationId) {
+            $filteredArray1 = array_filter($designationId, function ($value) {
+                return $value !== "";
+            });
+        }
 
-        $filteredArray1 = array_filter($designationId, function ($value) {
-            return $value !== "";
-        });
         $query = Employee::select(
             'employee_basic_info.id AS employee_id',
             'employee_basic_info.name AS name',
@@ -241,7 +245,11 @@ class EmployeeService
                     }
                 });
             }
-        $employeeList = $query->paginate($limit, ['*'], 'page', $page);
+            if ($limit && $page) {
+                $employeeList = $query->paginate($limit, ['*'], 'page', $page);
+            }else{
+                $employeeList = $query->get();
+            }
 
         $resultQuery = DB::table('employee_basic_info')
             ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
@@ -361,14 +369,24 @@ class EmployeeService
             ->leftJoin('designation AS reportingdesignation', 'employee_additional_info.reportingId', '=', 'reportingdesignation.id')
             ->leftJoin('employee_proccess_assignment', 'employee_basic_info.id', '=', 'employee_proccess_assignment.employeeId')
             ->leftJoin('span', 'span.id', '=', 'employee_proccess_assignment.spanId')
-            
             ->where('employee_additional_info.employmentStatus', 'Active')
             ->where('employee_basic_info.name', 'like', '%' . $search . '%')
-            
+            ->orwhere('employee_basic_info.skid', 'like', '%' . $search . '%')
+            ->orwhere('employee_basic_info.email', 'like', '%' . $search . '%')
+            ->orwhere('employee_basic_info.phone', 'like', '%' . $search . '%')            
             ->paginate($limit, ['*'], 'page', $page);
 
 
             return $query;
 
+    }
+
+    public function dataLogOfActiveEmployee($date) {
+
+        $dataLog = DB::table('active_employee_log')
+        ->where('date', $date)
+        ->first();
+
+        return $dataLog;
     }
 }

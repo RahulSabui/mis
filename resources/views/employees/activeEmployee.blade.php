@@ -22,10 +22,10 @@
             </div>
             <div class="ms-auto d-flex align-items-center">
                 <div class="me-2 position-relative">
-                    <input type="text" class="form-control date-format" placeholder="On a Given Date" />
+                    <input id="date" type="text" class="form-control date-format" />
                     <span class="calender-icon"><i class="bx bx-calendar fs-5"></i></span>
                 </div>
-                <a href="" class="btn btn-inverse-primary me-2 filter-button" id="apply">Apply</a>
+                <button class="btn btn-inverse-primary me-2" id="apply">Apply</button>
                 <a href="{{ url('/employeeAdd') }}" type="button" class="btn btn-primary px-md-4 ">Add
                     Employee</a>
             </div>
@@ -361,6 +361,11 @@
 
         $(document).ready(function() {
             gethelper();
+            let page = 1;
+            let limit = 10;
+            let dateFormat = $('.date-format').val();
+            getList(page, limit, selectedValue)
+
 
             $("#submitButton").click(function(event) {
                 event.preventDefault();
@@ -465,7 +470,6 @@
                 $("#select2-designationSelect-container").text("");
             });
 
-
             $(document).on("click", ".closebtn", function() {
                 const chipElement = $(this).closest(".chip");
 
@@ -497,8 +501,6 @@
                 getList(page, limit, selectedValue);
             });
 
-
-
             $("#clearFilter").click(function(event) {
                 event.preventDefault();
                 $("#spanSelect").val("");
@@ -514,11 +516,7 @@
                 getList(page, limit, selectedValue)
 
             });
-            let page = 1;
-            let limit = 10;
-            let dateFormat = $('.date-format').val();
-            getList(page, limit, selectedValue)
-
+          
             $('#recordPerPage').on('change', function() {
                 var limit = $(this).val();
                 let page = 1;
@@ -545,7 +543,6 @@
                 }
             });
 
-
             $(".search").keyup(function(e) {
                 let search = e.target.value;
                 $.ajax({
@@ -557,6 +554,27 @@
                     }
                 });
             });
+
+
+            $(document).on('click', '#apply', function(){
+                $.ajax({
+                    type: "GET",
+                    url: `/date/filter/active/employee?date=${$("#date").val()}`,
+                    success: function (response) {
+                        let parseResponse =  JSON.parse(response.data.dateLog)
+                        console.log(parseResponse);
+                        // dataForLog(JSON.parse(response.data.dateLog))
+                        $("#active_count").html(parseResponse?.allCount?.activeCount);
+                        $("#billable_count").html(parseResponse?.allCount?.billableCount);
+                        $("#buffer_count").html(parseResponse?.allCount?.bufferCount);
+                        $("#under_notice_count").html(parseResponse?.allCount?.probationCount);
+                        $("#trainee_count").html(parseResponse?.allCount?.traineeCount);
+                        $("#probation_count").html(parseResponse?.allCount?.underNoticeCount);
+                        graphForDesignation({data:parseResponse});
+                        graphForSpan({data:parseResponse});
+                    }
+                });
+            })
 
         });
 
@@ -603,6 +621,10 @@
                     pagination(page, response);
                 }
             });
+        }
+
+        function dataForLog(response) { 
+            console.log(response, "response");
         }
 
         function data(response) {
@@ -740,6 +762,7 @@
         }
 
         function graphForDesignation(response) {
+            console.log(response, "sjsjjsjs");
             createChart(
                 'EmployeeByDesignation',
                 'bar',
@@ -774,21 +797,6 @@
             searchList.classList.remove('open');
         });
 
-
-        function getReportingManagerDetails(params) {
-            return new Promise(function(resolve, reject) {
-                $.ajax({
-                    type: "GET",
-                    url: `/reporting/manager/${params}`,
-                    success: function(response) {
-                        resolve(response); // Resolve the Promise with the response data
-                    },
-                    error: function(error) {
-                        reject(error); // Reject the Promise with the error
-                    }
-                });
-            });
-        }
     </script>
 
 
