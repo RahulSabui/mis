@@ -35,6 +35,8 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::post('/employee/ijp', [EmployeeController::class, 'ijp'])->name('employeeIjp');
 
     Route::get('/search/active/employee', [EmployeeController::class, 'searchActiveEmployee'])->name('searchActiveEmployee');
+    Route::get('/date/filter/active/employee', [EmployeeController::class, 'dateFilterActiveEmployee'])->name('dateFilterActiveEmployee');
+    
 
     Route::post('/fileUpload', [GlobalController::class, 'fileUpload'])->name('fileUpload');
     Route::post('/aadhar/upload', [GlobalController::class, 'aadharUpload'])->name('aadharUpload');
