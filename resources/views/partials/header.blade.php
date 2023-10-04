@@ -15,10 +15,10 @@
                 <div class="search-employee-list dropdown-menu">
                     <div class="search-list">
                         <div class="list-group">
-                            <a href="javascript:;" class=" align-items-center d-flex gap-2 py-1 dropdown-item">
+                            <a href="javascript:;')}}" class=" align-items-center d-flex gap-2 py-1 dropdown-item">
                                 <div class="d-flex align-items-center">
                                     <div class="profile-img">
-                                        <img src="assets/images/avatars/avatar-1.png" class="rounded-circle"
+                                        <img src="{{ asset('assets/images/avatars/avatar-1.png')}}" class="rounded-circle"
                                             width="46" height="46" alt="" />
                                     </div>
                                     <div class="ms-2">
@@ -31,7 +31,7 @@
                                 class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1 dropdown-item">
                                 <div class="d-flex align-items-center">
                                     <div class="profile-img">
-                                        <img src="assets/images/avatars/avatar-4.png" class="rounded-circle"
+                                        <img src="{{ asset('assets/images/avatars/avatar-4.png')}}" class="rounded-circle"
                                             width="46" height="46" alt="" />
                                     </div>
                                     <div class="ms-2">
@@ -44,7 +44,7 @@
                                 class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1 dropdown-item">
                                 <div class="d-flex align-items-center">
                                     <div class="profile-img">
-                                        <img src="assets/images/avatars/avatar-2.png" class="rounded-circle"
+                                        <img src="{{ asset('assets/images/avatars/avatar-2.png')}}" class="rounded-circle"
                                             width="46" height="46" alt="" />
                                     </div>
                                     <div class="ms-2">
@@ -57,7 +57,7 @@
                                 class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1 dropdown-item">
                                 <div class="d-flex align-items-center">
                                     <div class="profile-img">
-                                        <img src="assets/images/avatars/avatar-3.png" class="rounded-circle"
+                                        <img src="{{ asset('assets/images/avatars/avatar-3.png')}}" class="rounded-circle"
                                             width="46" height="46" alt="" />
                                     </div>
                                     <div class="ms-2">
@@ -70,7 +70,7 @@
                                 class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1 dropdown-item">
                                 <div class="d-flex align-items-center">
                                     <div class="profile-img">
-                                        <img src="assets/images/avatars/avatar-5.png" class="rounded-circle"
+                                        <img src="{{ asset('assets/images/avatars/avatar-5.png')}}" class="rounded-circle"
                                             width="46" height="46" alt="" />
                                     </div>
                                     <div class="ms-2">
@@ -110,7 +110,7 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-1.png" class="msg-avatar"
+                                            <img src="{{ asset('assets/images/avatars/avatar-1.png')}}" class="msg-avatar"
                                                 alt="user avatar">
                                         </div>
                                         <div class="flex-grow-1">
@@ -136,7 +136,7 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-2.png" class="msg-avatar"
+                                            <img src="{{ asset('assets/images/avatars/avatar-2.png')}}" class="msg-avatar"
                                                 alt="user avatar">
                                         </div>
                                         <div class="flex-grow-1">
@@ -150,7 +150,7 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="notify bg-light-success text-success">
-                                            <img src="assets/images/app/outlook.png" width="25"
+                                            <img src="{{ asset('assets/images/app/outlook.png') }}" width="25"
                                                 alt="user avatar">
                                         </div>
                                         <div class="flex-grow-1">
@@ -175,7 +175,7 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-4.png" class="msg-avatar"
+                                            <img src="{{ asset('assets/images/avatars/avatar-4.png')}}" class="msg-avatar"
                                                 alt="user avatar">
                                         </div>
                                         <div class="flex-grow-1">
@@ -202,7 +202,7 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="notify bg-light-primary">
-                                            <img src="assets/images/app/github.png" width="25"
+                                            <img src="{{ asset('assets/images/app/github.png') }} width="25"
                                                 alt="user avatar">
                                         </div>
                                         <div class="flex-grow-1">
@@ -216,7 +216,7 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-8.png" class="msg-avatar"
+                                            <img src="{{ asset('assets/images/avatars/avatar-8.png')}}" class="msg-avatar"
                                                 alt="user avatar">
                                         </div>
                                         <div class="flex-grow-1">
@@ -239,7 +239,7 @@
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="position-relative">
                                             <div class="cart-product rounded-circle bg-light">
-                                                <img src="assets/images/products/02.png" class=""
+                                                <img src="{{ asset('assets/images/products/02.png')}}" class=""
                                                     alt="product image">
                                             </div>
                                         </div>
@@ -262,7 +262,7 @@
             <div class="user-box dropdown ps-2 ps-md-3">
                 <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret"
                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+                    <img src="{{ asset('assets/images/avatars/avatar-2.png')}}" class="user-img" alt="user avatar">
                     <div class="user-info">
                         <p class="user-name mb-0">Pauline Seitz</p>
                         <p class="designattion mb-0">Web Designer</p>

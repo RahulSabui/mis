@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->integer('designationId')->nullable();
             $table->string('employmentStatus')->nullable();
             $table->string('dateOfJoining')->nullable(); 
+            $table->string('aadharImage')->nullable();
+            $table->string('aadhaarNumber')->nullable();
             $table->string('serviceStatus')->nullable();
             $table->string('permanentDate')->nullable(); 
             $table->integer('reportingId')->nullable();

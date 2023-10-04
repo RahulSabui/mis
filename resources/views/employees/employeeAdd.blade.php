@@ -19,7 +19,19 @@
         </div>
         <!--end breadcrumb-->
 
+@php echo '<pre>';
 
+if(isset($employee)){
+   print_r($employee); 
+   $permanentAddress = json_decode($employee['address']['permanentAddress'], true);
+$residentialAddress = json_decode($employee['address']['residentialAddress'], true);
+}
+$permanentAddress = isset($permanentAddress) ? $permanentAddress : []; 
+//       //echo $value['phone'];
+//    }
+//echo $employee['name'];
+    echo '</pre>'; 
+    @endphp
         <!--start stepper-->
         <div class="card">
             <div class="card-body">
@@ -58,7 +70,7 @@
 
                         <div class="step processAssignmentDiv" data-target="#test-vl-4">
                             <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
-                                <div class="bs-stepper-circle"><i class="fadeIn animated bx bx-message-edit fs-4"></i></div>
+                                <div class="bs-stepper-circle"><i class="lni lni-write fs-5"></i></div>
                                 <div class="">
                                     <h5 class="mb-0 steper-title">Process Assignment</h5>
                                     <p class="mb-0 steper-sub-title">Work Details</p>
@@ -66,7 +78,7 @@
                             </div>
                         </div>
 
-                        <div class="step ijpDiv" style="display: none" data-target="#test-vl-5">
+                        <div class="step ijpDiv" @if(!empty($employee)) style="display: block" @else style="display: none" @endif data-target="#test-vl-5">
                             <div class="step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-vl-5">
                                 <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
                                 <div class="">
@@ -76,31 +88,33 @@
                             </div>
                         </div>
 
-						<div class="step pipDiv" style="display: none" data-target="#test-vl-6">
-							<div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
-								<div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
-								<div class="">
-									<h5 class="mb-0 steper-title">PIP</h5>
-									<p class="mb-0 steper-sub-title">Personal Improvement Plan</p>
-								</div>
-							</div>
-						</div>
+                        <div class="step pipDiv" @if(!empty($employee)) style="display: block" @else style="display: none" @endif data-target="#test-vl-6">
+                            <div class="step-trigger" role="tab" id="stepper3trigger6" aria-controls="test-vl-6">
+                                <div class="bs-stepper-circle"><i class='bx bx-briefcase fs-4'></i></div>
+                                <div class="">
+                                    <h5 class="mb-0 steper-title">PIP</h5>
+                                    <p class="mb-0 steper-sub-title">Personal Improvement Plan</p>
+                                </div>
+                            </div>
+                        </div>
 
-						<div class="step historyDiv" style="display: none" data-target="#test-vl-7">
-							<div class="step-trigger" role="tab" id="stepper3trigger7" aria-controls="test-vl-7">
+                        <div class="step historyDiv" @if(!empty($employee)) style="display: block" @else style="display: none" @endif data-target="#test-vl-7">
+                            <div class="step-trigger" role="tab" id="stepper3trigger7" aria-controls="test-vl-7">
 
-								<div class="btn btn-primary d-flex align-items-center w-100 py-2">
-									<i class="fadeIn animated bx bx-history fs-3"></i>
-									<h5 class="mb-0 steper-title text-white">History</h5>
-								</div>
-							</div>
-						</div>
+                                <div class="btn btn-primary d-flex align-items-center w-100 py-2">
+                                    <i class="fadeIn animated bx bx-history fs-3"></i>
+                                    <h5 class="mb-0 steper-title text-white">History</h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="bs-stepper-content w-100">
+                    
                         <form id="myform" onSubmit="return false">
-                            <input type="hidden" value="" id="id" name="id">
+                            <input type="hidden" value="{{ isset($employee['id']) ? $employee['id'] : '' }}" id="id" name="id">
                             <!-- Card of Basic Information -->
+                                
                             <div id="test-vl-1" role="tabpane3" class="bs-stepper-pane content fade"
                                 aria-labelledby="stepper3trigger1">
                                 <h5 class="mb-4">Basic Information</h5>
@@ -110,142 +124,150 @@
                                         <label for="input1" class="form-label">Name<span
                                                 class="requir-field">*</span></label>
                                         <input type="text" class="form-control name error-name" id="input1"
-                                            name="name" id="name">
+                                            name="name" id="name" value="{{ isset($employee['name']) ? $employee['name'] : '' }}">
                                         <span class="error-message" id="errorName"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-3 col-lg-6 col-xl-3">
                                         <label for="input2" class="form-label">SKID<span
                                                 class="requir-field">*</span></label>
-                                        <input type="text" class="form-control SKID" name="SKID" id="input2">
+                                        <input type="text" class="form-control SKID" name="SKID" value="{{ isset($employee['skid']) ? $employee['skid'] : '' }}" id="input2">
                                         <span class="error-message" id="errorSKID"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-3 col-lg-6 col-xl-3">
                                         <label for="input6" class="form-label">Phone<span class="requir-field">*</span>
                                         </label>
-                                        <input type="text" name="phone" class="form-control phone" id="input6">
+                                        <input type="text" name="phone" class="form-control phone" value="{{ isset($employee['phone']) ? $employee['phone'] : '' }}" id="input6">
                                         <span class="error-message" id="errorPhone"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3">
                                         <label for="input6" class="form-label">Emergency Contact
                                         </label>
                                         <input type="text" name="emergencyContact"
-                                            class="form-control emergencyContact" id="input6">
+                                            class="form-control emergencyContact" value="{{ isset($employee['emergencyContact']) ? $employee['emergencyContact'] : '' }}" id="input6">
                                         <span class="error-message" id="errorEmergencyContect"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
                                         <label for="input3" class="form-label">Email</label>
-                                        <input type="text" name="email" class="form-control email" id="input3">
+                                        <input type="text" name="email" class="form-control email" value="{{ isset($employee['email']) ? $employee['email'] : '' }}" id="input3">
+                                        <span class="error-message" id="errorEmail"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-2">
                                         <label for="input1" class="form-label">Age</label>
-                                        <input type="text" name="age" class="form-control age" id="input1">
+                                        <input type="text" name="age" class="form-control age" value="{{ isset($employee['age']) ? $employee['age'] : '' }}" id="input1">
                                         <span class="error-message" id="errorAge"></span>
 
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                                         <label for="input2" class="form-label">Gender</label>
-                                        <select id="input7" name="gender" class="form-select gender">
+                                        <select name="gender" class="form-select lookup gender">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="Woman">Woman</option>
-                                            <option value="Man">Man</option>
-                                            <option value="Transgender Woman">Transgender Woman</option>
-                                            <option value="Transgender Man">Transgender Man</option>
-                                            <option value="Non-Binary">Non-Binary</option>
-                                            <option value="Agender">Agender</option>
-                                            <option value="Gender not listed">Gender not listed</option>
-                                            <option value="Prefer not to state">Prefer not to state</option>
+                                            <option value="Agender" @if(isset($employee['gender']) && $employee['gender'] === 'Agender') selected @endif>Agender</option>
+                                            <option value="Gender not listed" @if(isset($employee['gender']) && $employee['gender'] === 'Gender not listed') selected @endif>Gender not listed</option>
+                                            <option value="Man" @if(isset($employee['gender']) && $employee['gender'] === 'Man') selected @endif>Man</option>
+                                            <option value="Non-Binary" @if(isset($employee['gender']) && $employee['gender'] === 'Non-Binary') selected @endif>Non-Binary</option>
+                                            <option value="Prefer not to state" @if(isset($employee['gender']) && $employee['gender'] === 'Prefer not to state') selected @endif>Prefer not to state</option>
+                                            <option value="Transgender Man" @if(isset($employee['gender']) && $employee['gender'] === 'Transgender Man') selected @endif>Transgender Man</option>
+                                            <option value="Transgender Woman" @if(isset($employee['gender']) && $employee['gender'] === 'Transgender Woman') selected @endif>Transgender Woman</option>
+                                            <option value="Woman" @if(isset($employee['gender']) && $employee['gender'] === 'Woman') selected @endif>Woman</option>
+                                            
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                                         <label for="input3" class="form-label">Religion</label>
-                                        <select id="input7" name="religion" class="form-select religion">
+                                        <select name="religion" class="form-select lookup religion">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="Hinduism">Hinduism</option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Christianity">Christianity</option>
-                                            <option value="Sikhism">Sikhism</option>
-                                            <option value="Zoroastrianism">Zoroastrianism</option>
-                                            <option value="Buddhism">Buddhism</option>
-                                            <option value="Jainism">Jainism</option>
-                                            <option value="Judaism">Judaism</option>
-                                            <option value="Bahaism">Bahaism</option>
-                                            <option value="None">None</option>
+                                            <option value="Bahaism" @if(isset($employee['religion']) && $employee['religion'] === 'Bahaism') selected @endif>Bahaism</option>
+                                            <option value="Buddhism" @if(isset($employee['religion']) && $employee['religion'] === 'Buddhism') selected @endif>Buddhism</option>
+                                            <option value="Christianity" @if(isset($employee['religion']) && $employee['religion'] === 'Christianity') selected @endif>Christianity</option>
+                                            <option value="Hinduism" @if(isset($employee['religion']) && $employee['religion'] === 'Hinduism') selected @endif>Hinduism</option>
+                                            <option value="Islam" @if(isset($employee['religion']) && $employee['religion'] === 'Islam') selected @endif>Islam</option>
+                                            <option value="Jainism" @if(isset($employee['religion']) && $employee['religion'] === 'Jainism') selected @endif>Jainism</option>
+                                            <option value="Judaism" @if(isset($employee['religion']) && $employee['religion'] === 'Judaism') selected @endif>Judaism</option>
+                                            <option value="None" @if(isset($employee['religion']) && $employee['religion'] === 'None') selected @endif>None</option>
+                                            <option value="Sikhism" @if(isset($employee['religion']) && $employee['religion'] === 'Sikhism') selected @endif>Sikhism</option>
+                                            <option value="Zoroastrianism" @if(isset($employee['religion']) && $employee['religion'] === 'Zoroastrianism') selected @endif>Zoroastrianism</option>
+                                            
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-2">
                                         <label for="input2" class="form-label">Blood Group</label>
-                                        <select id="input7" name="bloodGroup" class="form-select bloodGroup">
+                                        <select name="bloodGroup" class="form-select lookup bloodGroup">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="A+">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                            <option value="AB+">AB+</option>
-                                            <option value="AB-">AB-</option>
+                                            <option value="A-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'A-') selected @endif>A-</option>
+<option value="A+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'A+') selected @endif>A+</option>
+<option value="AB-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'AB-') selected @endif>AB-</option>
+<option value="AB+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'AB+') selected @endif>AB+</option>
+<option value="B-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'B-') selected @endif>B-</option>
+<option value="B+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'B+') selected @endif>B+</option>
+<option value="O-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'O-') selected @endif>O-</option>
+<option value="O+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'O+') selected @endif>O+</option>
+
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
-										<label for="input3" class="form-label">Qualification</label>
-										<select id="input7" name="qualification" class="form-select qualification">
-											<option value="" disabled selected>Select</option>
-											<option value="Higher Secondary – grade 10">Higher Secondary – grade 10</option>
-											<option value="Higher Secondary – grade 12 ">Higher Secondary – grade 12 </option>
-                                            <option value="Bachelor’s degree - Arts">Bachelor’s degree - Arts</option>
-											<option value="Bachelor’s degree - Architecture">Bachelor’s degree - Architecture</option>
-											<option value="Bachelor’s degree - Agricultural">Bachelor’s degree - Agricultural</option>
-                                            <option value="Bachelor’s degree - Veterinary">Bachelor’s degree - Veterinary</option>
-											<option value="Bachelor’s degree - Civil Aviation and Merchant Navy">Bachelor’s degree - Civil Aviation and Merchant Navy</option>
-											<option value="Bachelor’s degree - Commerce">Bachelor’s degree - Commerce</option>
-                                            <option value="Bachelor’s degree - Engineering">Bachelor’s degree - Engineering</option>
-											<option value="Bachelor’s degree - Fashion and Interior Designing">Bachelor’s degree - Fashion and Interior Designing</option>
-											<option value="Bachelor’s degree - Information Technology">Bachelor’s degree - Information Technology</option>
-                                            <option value="Bachelor’s degree - Law">Bachelor’s degree - Law</option>
-											<option value="Bachelor’s degree - Management">Bachelor’s degree - Management</option>
-											<option value="Bachelor’s degree - Mass Communications">Bachelor’s degree - Mass Communications</option>
-                                            <option value="Bachelor’s degree - Medical">Bachelor’s degree - Medical</option>
-											<option value="Bachelor’s degree - Multimedia">Bachelor’s degree - Multimedia</option>
-											<option value="Bachelor’s degree - Science">Bachelor’s degree - Science</option>
-                                            <option value="Master’s degree">Master’s degree</option>
-											<option value="Diploma">Diploma</option>
-										</select>
-									</div>
+                                        <label for="input3" class="form-label">Qualification</label>
+                                        <select name="qualification" class="form-select lookup qualification">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="Secondary – grade 10" @if(isset($employee['qualification']) && $employee['qualification'] === 'Secondary – grade 10') selected @endif>Secondary – grade 10</option>
+                                            <option value="Higher Secondary – grade 12 " @if(isset($employee['qualification']) && $employee['qualification'] === 'Higher Secondary - grade 12') selected @endif>Higher Secondary – grade 12</option>
+                                            <option value="Bachelor’s degree - Arts" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Arts') selected @endif>Bachelor’s degree - Arts</option>
+                                            <option value="Bachelor’s degree - Architecture" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Architecture') selected @endif>Bachelor’s degree - Architecture</option>
+                                            <option value="Bachelor’s degree - Agricultural" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Agricultural') selected @endif>Bachelor’s degree - Agricultural</option>
+                                            <option value="Bachelor’s degree - Veterinary" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Veterinary') selected @endif>Bachelor’s degree - Veterinary</option>
+                                            <option value="Bachelor’s degree - Civil Aviation and Merchant Navy" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Civil Aviation and Merchant Navy') selected @endif>Bachelor’s degree - Civil Aviation and Merchant Navy</option>
+                                            <option value="Bachelor’s degree - Commerce" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Commerce') selected @endif>Bachelor’s degree - Commerce</option>
+                                            <option value="Bachelor’s degree - Engineering" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Engineering') selected @endif>Bachelor’s degree - Engineering</option>
+                                            <option value="Bachelor’s degree - Fashion and Interior Designing" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Fashion and Interior Designing') selected @endif>Bachelor’s degree - Fashion and Interior Designing</option>
+                                            <option value="Bachelor’s degree - Information Technology" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Information Technology') selected @endif>Bachelor’s degree - Information Technology</option>
+                                            <option value="Bachelor’s degree - Law" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Law') selected @endif>Bachelor’s degree - Law</option>
+                                            <option value="Bachelor’s degree - Management" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Management') selected @endif>Bachelor’s degree - Management</option>
+                                            <option value="Bachelor’s degree - Mass Communications" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Mass Communications') selected @endif>Bachelor’s degree - Mass Communications</option>
+                                            <option value="Bachelor’s degree - Medical" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Medical') selected @endif>Bachelor’s degree - Medical</option>
+                                            <option value="Bachelor’s degree - Multimedia" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Multimedia') selected @endif>Bachelor’s degree - Multimedia</option>
+                                            <option value="Bachelor’s degree - Science" @if(isset($employee['qualification']) && $employee['qualification'] === 'Bachelor’s degree - Science') selected @endif>Bachelor’s degree - Science</option>
+                                            <option value="Master’s degree" @if(isset($employee['qualification']) && $employee['qualification'] === 'Master’s degree') selected @endif>Master’s degree</option>
+                                            <option value="Diploma" @if(isset($employee['qualification']) && $employee['qualification'] === 'Diploma') selected @endif>Diploma</option>
+                                        </select>
+                                    </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-6">
-										<label for="input3" class="form-label">Academic Stream</label>
-										<select id="input7" name="academicStream" class="form-select academicStream">
-											<option value="" disabled selected>Select</option>
-											<option value="Academic1">Academic1</option>
-											<option value="Academic2">Academic2</option>
-											<option value="Academic3">Academic3</option>
-										</select>
-									</div>
+                                        <label for="input3" class="form-label">Academic Stream</label>
+                                        <select  name="academicStream" class="form-select lookup academicStream">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="Academic1" @if(isset($employee['academicStream']) && $employee['academicStream'] === 'Academic1') selected @endif>Academic1</option>
+                                            <option value="Academic2" @if(isset($employee['academicStream']) && $employee['academicStream'] === 'Academic2') selected @endif>Academic2</option>
+                                            <option value="Academic3" @if(isset($employee['academicStream']) && $employee['academicStream'] === 'Academic3') selected @endif>Academic3</option>
+                                        </select>
+                                    </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input3" class="form-label">School</label>
-                                        <input type="text" name="school" class="form-control school" id="input3">
+                                        <input type="text" name="school" class="form-control school" value="{{ isset($employee['school']) ? $employee['school'] : '' }}" id="input3">
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input3" class="form-label">College</label>
-                                        <input type="text" name="college" class="form-control college"
+                                        <input type="text" name="college" class="form-control college" value="{{ isset($employee['college']) ? $employee['college'] : '' }}"
                                             id="input3">
                                     </div>
                                     <div class="col-12">
                                         <label for="input6" class="form-label">Food Preference</label>
-                                        <input type="text" name="foodPreference" class="form-control foodPreference"
+                                        <input type="text" name="foodPreference" class="form-control foodPreference" value="{{ isset($employee['foodPreference']) ? $employee['foodPreference'] : '' }}"
                                             id="input6">
                                     </div>
                                     <div class="col-auto cursor-pointer">
 
                                         <!-- <input id="fancy-file-upload" type="file" name="files"
-                         accept=".jpg, .png, image/jpeg, image/png" multiple> -->
+                                         accept=".jpg, .png, image/jpeg, image/png" multiple> -->
                                         <div class="file-upload">
                                             <input id="file" type="file" name="files" class="upload-input">
                                             <div class="uploaded-img">
                                                 <!-- <img src="./assets/images/uploadimg-dummy.webp" alt=""> -->
                                                 <!-- <i class="fadeIn animated bx bx-user fs-4"></i> -->
-                                                <img id="uploadedImage" src="" alt=""
-                                                    style="display: none;">
+                                                <img id="uploadedImage" src="{{ isset($employee['employeeImage']) ? $employee['employeeImage'] : '' }}" alt=""
+                                                    @if (isset($employee['employeeImage'])) style= "display: block" @else style="display: none" @endif>
+                                                    @if (isset($employee['employeeImage']))
+                                                   
+                                                    @else
                                                 <i class="fadeIn animated bx bx-user fs-4"></i>
+                                                @endif
                                             </div>
                                             <div class="uploaded-des">
                                                 <p>Upload Photo</p>
@@ -259,70 +281,115 @@
                                             <div class="col">
                                                 <div class="row g-3">
                                                     <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                                                        <label for="input6" class="form-label">Relative’s
-                                                            Name</label>
-                                                        <input type="text" name="relativeName"
-                                                            class="form-control relativeName" id="input6">
+                                                        <label for="input6" class="form-label">Relative’s Name</label>
+                                                        <input type="text" name="relativeName[]" class="form-control relativeName" id="input6" value="">
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                                                         <label for="input2" class="form-label">Relationship</label>
-                                                        <select id="input7" name="relationWithRelative"
-                                                            class="form-select relationWithRelative">
+                                                        <select id="input7" name="relationWithRelative[]" class="form-select lookup relationWithRelative">
                                                             <option disabled value="" selected>Select</option>
+                                                            <option value="Cousin">Cousin</option>
+                                                            <option value="Parent">Parent</option>
+                                                            <option value="Partner">Partner</option>
                                                             <option value="Sibling">Sibling</option>
-							                            	<option value="Spouse">Spouse</option>
-								                            <option value="Partner">Partner</option>
-								                            <option value="Parent">Parent</option>
-								                            <option value="Cousin">Cousin</option>
+                                                            <option value="Spouse">Spouse</option>
                                                         </select>
                                                     </div>
                                                 </div>
+                                               
                                             </div>
                                             <div class="col-auto col-lg-3 col-xxl-2 d-flex align-items-end flex-column">
                                                 <label for="input6" class="form-label">&nbsp;</label>
                                                 <div>
                                                     <button class="btn btn-primary addMore" id="addMore">Add
                                                         More</button>
+                                                       
+                                                </div>
+                                               
+                                           
+                                               
+                                            </div>
+                                            <hr class="mt-4 mb-2" />
+                                           
+                                        </div>
+                                    </div>
+                                    @if(!empty($employee))
+                                                    
+                                               
+            
+                                    @php $relationData = json_decode($employee['relation'], true); @endphp
+                                    @foreach ($relationData as $relativeName => $relation)
+                                    <div class="col-12 addMoreContainer">
+                                        <div class="row g-3 relative-section">
+                                            <div class="col">
+                                   
+                                    <div class="row g-3">
+                                        <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                            <label for="input6" class="form-label">Relative’s Name</label>
+                                            <input type="text" name="relativeName[]" class="form-control relativeName" id="input6" value="{{ $relativeName }}">
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                            <label for="input2" class="form-label">Relationship</label>
+                                            <select id="input7" name="relationWithRelative[]" class="form-select  relationWithRelative">
+                                                <option disabled value="" selected>Select</option>
+                                                <option value="Sibling" {{ $relation === 'Sibling' ? 'selected' : '' }}>Sibling</option>
+                                                <option value="Spouse" {{ $relation === 'Spouse' ? 'selected' : '' }}>Spouse</option>
+                                                <option value="Partner" {{ $relation === 'Partner' ? 'selected' : '' }}>Partner</option>
+                                                <option value="Parent" {{ $relation === 'Parent' ? 'selected' : '' }}>Parent</option>
+                                                <option value="Cousin" {{ $relation === 'Cousin' ? 'selected' : '' }}>Cousin</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                              
+                                            </div>
+                                            <div class="col-lg-3 col-xxl-2 d-flex align-items-end flex-column">
+                                                <label for="input6" class="form-label">&nbsp;</label>
+                                                <div>
+                                                    <button class="btn btn-danger remove-section">Remove</button>
                                                 </div>
                                             </div>
                                             <hr class="mt-4 mb-2" />
                                         </div>
                                     </div>
+                                    @endforeach
+                               
+                               
+                                    @endif
                                     <!-- <div class="col-12">
-                        <div class="row g-3">
-                         <div class="col">
-                          <div class="row g-3">
-                           <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                            <label for="input6" class="form-label">Relative’s
-                             Name</label>
-                            <input type="text" class="form-control" id="input6">
-                           </div>
-                           <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                            <label for="input2"
-                             class="form-label">Relationship</label>
-                            <select id="input7" class="form-select">
-                             <option selected></option>
-                             <option>A</option>
-                             <option>B</option>
-                             <option>c</option>
-                            </select>
-                           </div>
-                          </div>
-                         </div>
-                         <div
-                          class="col-auto col-lg-3 col-xxl-2 d-flex align-items-end flex-column">
-                          <label for="input6" class="form-label">&nbsp;</label>
-                          <div><button class="btn btn-danger" id="remove">Remove</button>
-                          </div>
-                         </div>
-                         <hr class="mt-4 mb-2" />
-                        </div>
-                       </div> -->
+                                        <div class="row g-3">
+                                         <div class="col">
+                                          <div class="row g-3">
+                                           <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                            <label for="input6" class="form-label">Relative’s
+                                             Name</label>
+                                            <input type="text" class="form-control" id="input6">
+                                           </div>
+                                           <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                            <label for="input2"
+                                             class="form-label">Relationship</label>
+                                            <select id="input7" class="form-select">
+                                             <option selected></option>
+                                             <option>A</option>
+                                             <option>B</option>
+                                             <option>c</option>
+                                            </select>
+                                           </div>
+                                          </div>
+                                         </div>
+                                         <div
+                                          class="col-auto col-lg-3 col-xxl-2 d-flex align-items-end flex-column">
+                                          <label for="input6" class="form-label">&nbsp;</label>
+                                          <div><button class="btn btn-danger" id="remove">Remove</button>
+                                          </div>
+                                         </div>
+                                         <hr class="mt-4 mb-2" />
+                                        </div>
+                                       </div> -->
 
                                 </div>
                                 <!---end row-->
                             </div>
-
+                          
 
                             <!-- Card of Address -->
                             <div id="test-vl-2" role="tabpane3" class="bs-stepper-pane content fade"
@@ -333,36 +400,34 @@
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input1" class="form-label">Street Address 1<span
                                                 class="requir-field">*</span></label>
-                                        <input type="text" name="streetAddress1" class="form-control streetAddress1"
+                                        <input type="text" name="streetAddress1" value="{{ isset($permanentAddress['streetAddress1']) ? $permanentAddress['streetAddress1'] : '' }}" class="form-control streetAddress1"
                                             id="input1">
                                         <span class="error-message" id="errorStreetAddress1"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input1" class="form-label">Street Address 2</label>
-                                        <input type="text" name="streetAddress2" class="form-control streetAddress2"
+                                        <input type="text" name="streetAddress2" value="{{ isset($permanentAddress['streetAddress2']) ? $permanentAddress['streetAddress2'] : '' }}" class="form-control streetAddress2"
                                             id="input1">
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input3" class="form-label">Area<span
                                                 class="requir-field">*</span></label>
-                                        <input type="text" name="area" class="form-control area" id="input3">
+                                        <input type="text" name="area" class="form-control area" value="{{ isset($permanentAddress['area']) ? $permanentAddress['area'] : '' }}" id="input3">
                                         <span class="error-message" id="errorArea"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                         <label for="input2" class="form-label">State<span
                                                 class="requir-field">*</span></label>
-                                        <select id="input7" name="state" class="form-select state">
+                                        <select  name="state" class="form-select lookup  state">
                                             <option value="" disabled selected>Select</option>
-                                            <option value="West Bengal">West Bengal</option>
-                                            <option value="Goa">Goa</option>
-                                            <option value="Kashmir">Kashmir</option>
+                                           
                                         </select>
                                         <span class="error-message" id="errorState"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-2">
                                         <label for="input3" class="form-label">PIN<span
                                                 class="requir-field">*</span></label>
-                                        <input type="text" name="pin" class="form-control pin" id="input3">
+                                        <input type="text" name="pin" value="{{ isset($permanentAddress['pin']) ? $permanentAddress['pin'] : '' }}" class="form-control pin" id="input3">
                                         <span class="error-message" id="errorPin"></span>
                                     </div>
 
@@ -372,7 +437,7 @@
                                     <h5>Residential Address</h5>
                                     <div class="form-check">
                                         <input class="form-check-input sameAddress" type="checkbox" name="sameAddress"
-                                            value="" id="flexCheckDefault">
+                                            value="" @if(isset($employee['address']['isSameAsPermanentAddress'])) checked @endif id="flexCheckDefault">
                                         <label class="form-check-label same-as" for="flexCheckDefault">
                                             Same as Permanent Address
                                         </label>
@@ -384,26 +449,26 @@
                                         <label for="input1" class="form-label">Street Address 1<span
                                                 class="requir-field">*</span></label>
                                         <input type="text" name="residentialStreetAddress"
-                                            class="form-control residentialStreetAddress" id="input1">
+                                            class="form-control residentialStreetAddress" value="{{ isset($residentialAddress['residentialStreetAddress']) ? $residentialAddress['residentialStreetAddress'] : '' }}" id="input1">
                                         <span class="error-message" id="errorResidentialStreetAddress"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input1" class="form-label">Street Address 2</label>
-                                        <input type="text" name="residentialStreetAddress2"
+                                        <input type="text" name="residentialStreetAddress2" value="{{ isset($residentialAddress['residentialStreetAddress2']) ? $residentialAddress['residentialStreetAddress2'] : '' }}"
                                             class="form-control residentialStreetAddress2" id="input1">
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input3" class="form-label">Area<span
                                                 class="requir-field">*</span></label>
-                                        <input type="text" name="residentialArea" class="form-control residentialArea"
+                                        <input type="text" name="residentialArea" value="{{ isset($residentialAddress['residentialArea']) ? $residentialAddress['residentialArea'] : '' }}" class="form-control residentialArea"
                                             id="input3">
                                         <span class="error-message" id="errorResidentialArea"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                         <label for="input2" class="form-label">State<span
                                                 class="requir-field">*</span></label>
-                                        <select id="input7" name="residentialState"
-                                            class="form-select residentialState">
+                                        <select  name="residentialState" 
+                                            class="form-select lookup residentialState">
                                             <option value="" disabled selected>Select</option>
                                             <option value="West Bengal">West Bengal</option>
                                             <option value="Goa">Goa</option>
@@ -415,19 +480,19 @@
                                     <div class="col-sm-6 col-md-4 col-lg-2">
                                         <label for="input3" class="form-label">PIN<span
                                                 class="requir-field">*</span></label>
-                                        <input type="text" name="residentialPin" class="form-control residentialPin"
+                                        <input type="text" name="residentialPin" value="{{ isset($residentialAddress['residentialPin']) ? $residentialAddress['residentialPin'] : '' }}" class="form-control residentialPin"
                                             id="input3">
                                         <span class="error-message" id="errorResidentialPin"></span>
                                     </div>
                                     <div class="col-12">
-										<label for="input3" class="form-label">Drop Location<span class="requir-field">*</span></label>
-										<select id="input7" name="dropLocation" class="form-select dropLocation">
-											<option value="" disabled selected>Select</option>
-											{{-- <option>Location</option>
-											<option>Location</option>
-											<option>Location</option> --}}
-										</select>
-									</div>
+                                        <label for="input3" class="form-label">Drop Location<span
+                                                class="requir-field">*</span></label>
+                                        <select  name="dropLocation" class="form-select dropLocation lookup">
+
+                                            <option value="" disabled selected>Select</option>
+                                          
+                                        </select>
+                                    </div>
                                 </div>
                                 <!---end row-->
 
@@ -443,7 +508,7 @@
                                         <label for="input3" class="form-label">Designation<span
                                                 class="requir-field">*</span></label>
                                         <select class="form-select lookup designation" name="designation"
-                                            id="prepend-text-single-field" >
+                                        id="prepend-text-single-field" >
                                             <option selected disabled value="">Select</option>
                                             {{-- <option value="1">Reactive</option>
                          <option value="2">Solution</option>
@@ -466,18 +531,19 @@
                                         <span class="error-message" id="errorEmploymentStatus"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
-                                        <label for="input2" class="form-label">WFO / WFH</label>
-                                        <select id="input7" name="workFromHome" class="form-select workFromHome">
-                                            <option disabled >Select</option>
+                                        <label for="input2" class="form-label">WFO / WFH<span
+                                            class="requir-field wfoStar">*</span></label>
+                                        <select  name="workFromHome" class="form-select workFromHome">
+                                            <option disabled>Select</option>
                                             <option selected value="Work From Home">Work From Home</option>
                                             <option value="Work From Office">Work From Office</option>
                                         </select>
-										<span class="error-message" id="errorWorkFromHome"></span>
+                                        <span class="error-message" id="errorWorkFromHome"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
-                                        <label for="input2" class="form-label">Is Traniee<span
+                                        <label for="input2" class="form-label isTranieeStar">Is Traniee<span
                                                 class="requir-field">*</span></label>
-                                        <select id="input7" name="isTraniee" class="form-select isTraniee">
+                                        <select id="input7" name="isTraniee" class="form-select  isTraniee">
                                             <option value="" disabled>Select</option>
                                             <option selected value="1">Yes</option>
                                             <option value="0">No</option>
@@ -485,43 +551,52 @@
                                         <span class="error-message" id="errorIsTraniee"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
-                                        <label for="input6" class="form-label">Shift Timing
+                                        <label for="input6" class="form-label">Shift Timing<span
+                                            class="requir-field shiftTimingStar">*</span>
                                         </label>
                                         <select id="input7" name="shiftTiming" class="form-select shiftTiming">
                                             <option value="" disabled selected>Select</option>
-													<option value="8:00 pm to 3:00 am EST">8:00 pm to 3:00 am EST</option>
-													<option value="8:00 pm to 3:00 am CST">8:00 pm to 3:00 am CST</option>
-													<option value="8:00 pm to 3:00 am MST">8:00 pm to 3:00 am MST</option>
-													<option value="8:00 pm to 3:00 am PST">8:00 pm to 3:00 am PST</option>
-													<option value="Day - Regular">Day – Regular</option>
-													<option value="Day - Late">Day - Late</option>
+                                            <option value="8:00 pm to 3:00 am EST">8:00 pm to 3:00 am EST</option>
+                                            <option value="8:00 pm to 3:00 am CST">8:00 pm to 3:00 am CST</option>
+                                            <option value="8:00 pm to 3:00 am MST">8:00 pm to 3:00 am MST</option>
+                                            <option value="8:00 pm to 3:00 am PST">8:00 pm to 3:00 am PST</option>
+                                            <option value="Day - Regular">Day – Regular</option>
+                                            <option value="Day - Late">Day - Late</option>
                                         </select>
-										<span class="error-message" id="errorShiftTiming"></span>
+                                        <span class="error-message" id="errorShiftTiming"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Date of Joining<span
-                                                class="requir-field">*</span></label>
+                                                class="requir-field dateOfJoiningStar">*</span></label>
                                         <input type="text" name="dateOfJoining"
                                             class="form-control datepicker dateOfJoining" placeholder="mm-dd-yyyy" />
                                         <span class="error-message" id="errorDateOfJoining"></span>
                                     </div>
-									<div class="col-auto cursor-pointer">
-										<!-- <input id="fancy-file-upload" type="file" name="files"
-											accept=".jpg, .png, image/jpeg, image/png" multiple> -->
-										<div class="file-upload">
-											<input id="aadharfile" type="file" name="files" class="upload-input">
-											<div class="uploaded-img aadhar-img">
-												<!-- <img src="./assets/images/uploadimg-dummy.webp" alt=""> -->
+                                    <div class="col-sm-6 col-md-4 col-lg-6">
+                                        <label for="input6" class="form-label">Aadhaar Card No.<span
+                                                class="requir-field">*</span></label>
+                                        <input type="text" name="aadhaar" class="form-control aadhaar" id="input6">
+                                        <span class="error-message" id="errorAadhaar"></span>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-6">
+                                    <div class="col-auto mt-4 cursor-pointer">
+                                       
+                                        <div class="file-upload">
+                                            <input id="aadharfile" type="file" name="files" class="upload-input">
+                                            <div class="uploaded-img aadhar-img">
+                                                <!-- <img src="./assets/images/uploadimg-dummy.webp" alt=""> -->
                                                 <img id="uploadedAadharImage" src="" alt=""
-                                                style="display: none;">
-												<i class="fadeIn animated bx bx-user fs-4"></i>
-											</div>
-											<div class="uploaded-des">
-												<p>Upload Aadhaar Card</p>
-												Maximum size 2MB
-											</div>
-										</div>
-									</div>
+                                                    style="display: none;">
+                                                <i class="fadeIn animated bx bx-user fs-4"></i>
+                                            </div>
+                                            <div class="uploaded-des">
+                                                <p>Upload Aadhaar Card</p>
+                                                Maximum size 2MB
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                   
                                     <hr class="mt-4 mb-2" />
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Type of Medical Insurance
@@ -538,7 +613,7 @@
                                     <hr class="mt-4 mb-2" />
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3">
                                         <label for="input2" class="form-label">Service Status<span
-                                                class="requir-field">*</span></label>
+                                                class="requir-field serviceStatusStar">*</span></label>
                                         <select id="input7" name="serviceStatus" class="form-select serviceStatus">
                                             <option value="" disabled>Select</option>
                                             <option selected value="Probation">Probation</option>
@@ -553,39 +628,39 @@
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input6" class="form-label">Appraisal Cycle<span
-                                                class="requir-field">*</span></label>
-												<select id="input7" name="appraisalCycle" class="form-select appraisalCycle">
-													<option value="" disabled selected>Select</option>
-													<option value="January">January</option>
-													<option value="February">February</option>
-													<option value="March">March</option>
-													<option value="April">April</option>
-													<option value="May">May</option>
-													<option value="June">June</option>
-													<option value="July">July</option>
-													<option value="August">August</option>
-													<option value="September">September</option>
-													<option value="October">October</option>
-													<option value="November">November</option>
-													<option value="December">December</option>
-												</select>
-												
+                                                class="requir-field appraisalCycleStar">*</span></label>
+                                        <select id="input7" name="appraisalCycle" class="form-select appraisalCycle">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="January">January</option>
+                                            <option value="February">February</option>
+                                            <option value="March">March</option>
+                                            <option value="April">April</option>
+                                            <option value="May">May</option>
+                                            <option value="June">June</option>
+                                            <option value="July">July</option>
+                                            <option value="August">August</option>
+                                            <option value="September">September</option>
+                                            <option value="October">October</option>
+                                            <option value="November">November</option>
+                                            <option value="December">December</option>
+                                        </select>
+
                                         <span class="error-message" id="errorAppraisalCycle"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input2" class="form-label">Reporting</label>
                                         <select name="reporting" class="form-select lookup reporting">
                                             <option disabled selected value="">Select</option>
-											
+
                                             <!-- <option>Span head</option>
-                         <option>Manager</option>
-                         <option>Assistant Manager
-                         </option>
-                         <option>Team leader</option>
-                         <option>Senior Manager</option>
-                         <option> Deputy manager</option>
-                         <option>TL</option>
-                         <option> SME </option> -->
+                                         <option>Manager</option>
+                                         <option>Assistant Manager
+                                         </option>
+                                         <option>Team leader</option>
+                                         <option>Senior Manager</option>
+                                         <option> Deputy manager</option>
+                                         <option>TL</option>
+                                         <option> SME </option> -->
                                         </select>
                                     </div>
 
@@ -595,252 +670,79 @@
                                         <select class="form-select lookup sourceOfHiringRequest"
                                             name="sourceOfHiringRequest">
                                             <option selected disabled value="">Select</option>
+                                            <option value="3">Algoritm</option>
+                                            <option value="2">Conglomeration</option>
+                                            <option value="4">Holistic</option>
                                             <option value="0">Reactive</option>
                                             <option value="1">Solution</option>
-                                            <option value="2">Conglomeration</option>
-                                            <option value="3">Algoritm</option>
-                                            <option value="4">Holistic</option>
                                         </select>
                                         <span class="error-message" id="errorSourceOfHiringRequest"></span>
                                     </div>
 
                                     <div class="col-sm-6 col-md-4 col-lg-6 permanentDateDiv">
-                                        <label for="input6" class="form-label">Permanent Date</label>
+                                        <label for="input6" class="form-label">Permanent Date<span
+                                            class="requir-field">*</span></label>
                                         <input type="text" name="permanentDate"
                                             class="form-control datepicker permanentDate" placeholder="mm-dd-yyyy" />
-											<span class="error-message" id="errorPermanentDate"></span>
+                                        <span class="error-message" id="errorPermanentDate"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 ">
                                         <label for="input3" class="form-label ">Revenue Earning<span
-											class="requir-field">*</span></label>
+                                                class="requir-field revenueEarningStar">*</span></label>
                                         <select id="input7" name="revenueEarning" class="form-select  revenueEarning">
                                             <option value="" disabled selected>Select</option>
                                             <option value="Revenue Earning">Revenue Earning</option>
                                             <option value="Non-Revenue Earning">Non-Revenue Earning</option>
                                         </select>
-										<span class="error-message" id="errorRevenueEarning"></span>
+                                        <span class="error-message" id="errorRevenueEarning"></span>
                                     </div>
                                     <hr class="mt-4 mb-2" />
 
                                     <div class="col-sm-6 col-md-4 col-lg-6">
-                                        <label for="input2" class="form-label">Notice Status</label>
+                                        <label for="input2" class="form-label">Notice Status<span
+                                            class="requir-field noticeStatusStar">*</span></label>
                                         <select id="input7" name="noticeStatus" class="form-select noticeStatus">
-                                            <option value="" disabled >Select</option>
+                                            <option value="" disabled>Select</option>
                                             <option value="Under Notice">Under Notice</option>
                                             <option selected value="Not">Not</option>
                                         </select>
-										<span class="error-message" id="errorNoticeStatus"></span>
+                                        <span class="error-message" id="errorNoticeStatus"></span>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 dateOfNoticeDiv">
-                                        <label for="input6" class="form-label">Date of Notice
+                                        <label for="input6" class="form-label">Date of Notice<span
+                                            class="requir-field">*</span>
                                         </label>
                                         <input type="text" name="dateOfNotice"
                                             class="form-control datepicker dateOfNotice" placeholder="mm-dd-yyyy" />
-											<span class="error-message" id="errorDateOfNotice"></span>
+                                        <span class="error-message" id="errorDateOfNotice"></span>
                                     </div>
                                     <div class="col-sm-6 dateOfExitDiv col-md-4 col-lg-6">
-                                        <label for="input6" class="form-label">Date of Exit</label>
+                                        <label for="input6" class="form-label">Date of Exit<span
+                                            class="requir-field">*</span></label>
                                         <input type="text" name="dateOfExit"
                                             class="form-control datepicker dateOfExit" placeholder="mm-dd-yyyy" />
-											<span class="error-message" id="errorDateOfExit"></span>
+                                        <span class="error-message" id="errorDateOfExit"></span>
                                     </div>
                                     <div class="col-12 dateOfExitReasonDiv">
                                         <label for="input11" class="form-label">Exit Reason
-                                        </label>
+                                            <span class="requir-field">*</span></label>
                                         <textarea class="form-control exitReason" name="exitReason" id="input11" rows="4"></textarea>
-										<span class="error-message" id="errorExitReason"></span>
+                                        <span class="error-message" id="errorExitReason"></span>
                                     </div>
                                     <!-- <div class="col-12">
-                        <div class="d-flex align-items-center gap-3">
-                         <button class="btn btn-outline-secondary px-md-4"
-                          onclick="stepper3.previous()"><i
-                           class='bx bx-left-arrow-alt me-2'></i>Previous</button>
-                         <button class="btn btn-primary px-md-4"
-                          onclick="stepper3.next()">Next<i
-                           class='bx bx-right-arrow-alt ms-2'></i></button>
-                        </div>
-                       </div> -->
+                                        <div class="d-flex align-items-center gap-3">
+                                         <button class="btn btn-outline-secondary px-md-4"
+                                          onclick="stepper3.previous()"><i
+                                           class='bx bx-left-arrow-alt me-2'></i>Previous</button>
+                                         <button class="btn btn-primary px-md-4"
+                                          onclick="stepper3.next()">Next<i
+                                           class='bx bx-right-arrow-alt ms-2'></i></button>
+                                        </div>
+                                       </div> -->
                                 </div><!---end row-->
 
                             </div>
 
-
-                            <!-- Card of Process Assignment -->
-                            <!-- <div id="test-vl-4" role="tabpane3" class="bs-stepper-pane content fade"
-                      aria-labelledby="stepper3trigger4">
-                      <div class="d-flex justify-content-between mb-4">
-                       <h5>Process Assignment</h5>
-                       <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#exampleVerticallycenteredModal">Add a Process</button>
-                       <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                         <div class="modal-content">
-                          <div class="modal-header">
-                           <h5 class="modal-title">Add a Process</h5>
-                           <button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                           <div class="row g-3">
-                            <div class="col-12">
-                             <label for="input2" class="form-label">Span</label>
-                             <select class="form-select lookup"
-                              data-placeholder="">
-                              <option></option>
-                              <option>Reactive</option>
-                              <option>Solution</option>
-                              <option>Conglomeration</option>
-                              <option>Algoritm</option>
-                              <option>Holistic</option>
-                             </select>
-                            </div>
-                            <hr class="mt-4 mb-2">
-                            <div class="col-12">
-                             <label for="input2"
-                              class="form-label">Client</label>
-                             <select class="form-select lookup"
-                              data-placeholder="">
-                              <option></option>
-                              <option>Reactive</option>
-                              <option>Solution</option>
-                              <option>Conglomeration</option>
-                              <option>Algoritm</option>
-                              <option>Holistic</option>
-                             </select>
-                            </div>
-                            <div class="col-12">
-                             <label for="multiple-select-field"
-                              class="form-label">Process</label>
-                             <select class="form-select lookup"
-                              data-placeholder="">
-                              <option></option>
-                              <option>Proccess1</option>
-                              <option>Proccess2</option>
-                              <option>Proccess3</option>
-                              <option>Proccess4</option>
-                              <option>Proccess5</option>
-                             </select>
-                            
-                            </div>
-                            <div class="col-12">
-                             <label for="input2" class="form-label">Billable
-                              Status</label>
-                             <select id="input7" class="form-select">
-                              <option selected></option>
-                              <option>billable</option>
-                              <option>buffer</option>
-                             </select>
-                            </div>
-                            <div class="col-12">
-                             <label for="input3" class="form-label">Contribution
-                              %
-                             </label>
-                             <input type="text" class="form-control" id="input3">
-                            </div>
-                           </div>
-                          </div>
-                          <div class="modal-footer">
-                           <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Cancel</button>
-                           <button type="button" class="btn btn-primary">Add</button>
-                          </div>
-                         </div>
-                        </div>
-                       </div>
-                      </div>
-                      <table class="table mb-0 table-striped">
-                       <thead>
-                        <tr>
-
-                         <th scope="col">Span</th>
-                         <th scope="col">Client</th>
-                         <th scope="col">Proccess</th>
-                         <th scope="col">Billable Status</th>
-                         <th scope="col">Contribution %</th>
-                         <th></th>
-                        </tr>
-                       </thead>
-                       <tbody>
-                        <tr>
-
-                         <td>Mark</td>
-                         <td>Otto</td>
-                         <td>Proccess1</td>
-                         <td>buffer</td>
-                         <td>23 %</td>
-                         <td>
-                          <div class="d-flex justify-content-end">
-                           <i class="fadeIn animated bx bx-pencil fs-5"></i>
-                           <i
-                            class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"></i>
-                          </div>
-                         </td>
-                        </tr>
-                        <tr>
-
-                         <td>Jacob</td>
-                         <td>Thornton</td>
-                         <td>Proccess2</td>
-                         <td>buffer</td>
-                         <td>23 %</td>
-                         <td>
-                          <div class="d-flex justify-content-end">
-                           <i class="fadeIn animated bx bx-pencil fs-5"></i>
-                           <i
-                            class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"></i>
-                          </div>
-                         </td>
-                        </tr>
-                        <tr>
-
-                         <td>Henry</td>
-                         <td>Jeckob</td>
-                         <td>Proccess3</td>
-                         <td>billable</td>
-                         <td>23 %</td>
-                         <td>
-                          <div class="d-flex justify-content-end">
-                           <i class="fadeIn animated bx bx-pencil fs-5"></i>
-                           <i
-                            class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"></i>
-                          </div>
-                         </td>
-                        </tr>
-                        <tr>
-
-                         <td>Jacob</td>
-                         <td>Thornton</td>
-                         <td>Proccess2</td>
-                         <td>buffer</td>
-                         <td>23 %</td>
-                         <td>
-                          <div class="d-flex justify-content-end">
-                           <i class="fadeIn animated bx bx-pencil fs-5"></i>
-                           <i
-                            class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"></i>
-                          </div>
-                         </td>
-                        </tr>
-                        <tr>
-
-                         <td>Henry</td>
-                         <td>Jeckob</td>
-                         <td>Proccess3</td>
-                         <td>buffer</td>
-                         <td>23 %</td>
-                         <td>
-                          <div class="d-flex justify-content-end">
-                           <i class="fadeIn animated bx bx-pencil fs-5"></i>
-                           <i
-                            class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"></i>
-                          </div>
-                         </td>
-                        </tr>
-                       </tbody>
-                      </table>
-                      
-                     </div> -->
 
                             <div id="test-vl-4" role="tabpane3" class="bs-stepper-pane content fade"
                                 aria-labelledby="stepper3trigger4">
@@ -874,11 +776,11 @@
                                                             <select class="form-select modelClient" name="modelClient"
                                                                 data-placeholder="">
                                                                 <option selected disabled value="">Select</option>
+                                                                <option value="4">Algoritm</option>
+                                                                <option value="3">Conglomeration</option>
+                                                                <option value="5">Holistic</option>
                                                                 <option value="1">Reactive</option>
                                                                 <option value="2">Solution</option>
-                                                                <option value="3">Conglomeration</option>
-                                                                <option value="4">Algoritm</option>
-                                                                <option value="5">Holistic</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-12">
@@ -894,24 +796,25 @@
                                                                 <option value="5">Proccess5</option>
                                                             </select>
                                                             <!-- <select class="form-select"
-                                  id="prepend-button-single-field"
-                                  data-placeholder="">
-                                  <option></option>
-                                  <option>Reactive</option>
-                                  <option>Solution</option>
-                                  <option>Conglomeration</option>
-                                  <option>Algoritm</option>
-                                  <option>Holistic</option>
-                                 </select> -->
+                                                  id="prepend-button-single-field"
+                                                  data-placeholder="">
+                                                  <option></option>
+                                                  <option>Reactive</option>
+                                                  <option>Solution</option>
+                                                  <option>Conglomeration</option>
+                                                  <option>Algoritm</option>
+                                                  <option>Holistic</option>
+                                                 </select> -->
                                                         </div>
                                                         <div class="col-12">
                                                             <label for="input2" class="form-label">Billable
                                                                 Status</label>
                                                             <select id="input7" class="form-select modelBillable"
                                                                 name="modelBillable">
-                                                                <option selected disabled value="" selected>Select</option>
-                                                                <option value="billable">billable</option>
-                                                                <option value="buffer">buffer</option>
+                                                                <option selected disabled value="" selected>Select
+                                                                </option>
+                                                                <option value="Billable">Billable</option>
+                                                                <option value="Buffer">Buffer</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-12 contributionDiv">
@@ -958,97 +861,6 @@
                             <!-- Card of Internal Job Promotion Status -->
                             <div id="test-vl-5" role="tabpane3" class="bs-stepper-pane content fade"
                                 aria-labelledby="stepper3trigger5">
-                                <!-- <div class="d-flex justify-content-between mb-4">
-                       <h5>Internal Job Promotion Status</h5>
-                       <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#internalJob">Add Status</button>
-                       <div class="modal fade" id="internalJob" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                         <div class="modal-content">
-                          <div class="modal-header">
-                           <h5 class="modal-title">Add Internal Job Promotion Status
-                           </h5>
-                           <button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                           <div class="row g-3">
-                            <div class="col-12">
-                             <label for="input3" class="form-label">IJP
-                              Name</label>
-                             <input type="text" class="form-control" id="input3">
-                            </div>
-                            <div class="col-12 ">
-                             <label for="input6" class="form-label">Date of
-                              Application
-                             </label>
-                             <input type="text" class="form-control datepicker"
-                              placeholder="mm-dd-yyyy" />
-                            </div>
-                            <div class="col-12">
-                             <label for="input2"
-                              class="form-label">Status</label>
-                             <select id="input7" class="form-select">
-                              <option selected></option>
-                              <option>billable</option>
-                              <option>buffer</option>
-                             </select>
-                            </div>
-                            <div class="col-12>
-																		<label for=" input6" class="form-label">Date of Closure
-                             </label>
-                             <input type="text" class="form-control datepicker"
-                              placeholder="mm-dd-yyyy" />
-                            </div>
-                            <div class="col-12">
-                             <label for="input3" class="form-label">Span</label>
-                             <select class="form-select lookup"
-                              data-placeholder="">
-                              <option></option>
-                              <option>Reactive</option>
-                              <option>Solution</option>
-                              <option>Conglomeration</option>
-                              <option>Algoritm</option>
-                              <option>Holistic</option>
-                             </select>
-                            </div>
-                            <div class="col-12">
-                             <label for="input3" class="form-label">Process
-                             </label>
-                             <select class="form-select lookup"
-                              data-placeholder="">
-                              <option></option>
-                              <option>Reactive</option>
-                              <option>Solution</option>
-                              <option>Conglomeration</option>
-                              <option>Algoritm</option>
-                              <option>Holistic</option>
-                             </select>
-                            </div>
-                            <div class="col-12">
-                             <label for="input3" class="form-label">Client
-                             </label>
-                             <select class="form-select lookup"
-                              data-placeholder="">
-                              <option></option>
-                              <option>Reactive</option>
-                              <option>Solution</option>
-                              <option>Conglomeration</option>
-                              <option>Algoritm</option>
-                              <option>Holistic</option>
-                             </select>
-                            </div>
-                           </div>
-                          </div>
-                          <div class="modal-footer">
-                           <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Cancel</button>
-                           <button type="button" class="btn btn-primary">Add</button>
-                          </div>
-                         </div>
-                        </div>
-                       </div>
-                      </div> -->
 
                                 <div class="d-flex justify-content-between mb-4">
                                     <h5>Internal Job Promotion Status</h5>
@@ -1185,193 +997,213 @@
 
                             </div>
 
-                           <!-- Card of PIP Status -->
-									<div id="test-vl-6" role="tabpane3" class="bs-stepper-pane content fade"
-									aria-labelledby="stepper3trigger6">
-									<div class="d-flex justify-content-between mb-4">
-										<h5>Personal Improvement Plan</h5>
-										<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PIP">Add
-											PIP</button>
-										<div class="modal fade" id="PIP" tabindex="-1" aria-hidden="true">
-											<div class="modal-dialog modal-dialog-centered">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title">Add Personal Improvement Plan
-														</h5>
-														<button type="button" class="btn-close" data-bs-dismiss="modal"
-															aria-label="Close"></button>
-													</div>
-													<div class="modal-body">
-														<div class="row g-3">
-															<div class="col-12">
-																<label for="input3" class="form-label">PIP ID</label>
-																<input type="text" class="form-control" id="input3">
-															</div>
-															<div class="col-12 ">
-																<label for="input6" class="form-label">Raised on
-																</label>
-																<input type="text" class="form-control datepicker" placeholder="mm-dd-yyyy" />
-															</div>
-															<div class="col-12">
-																<label for="input2" class="form-label">Status</label>
-																<select id="input7" class="form-select">
-																	<option selected></option>
-																	<option>Open</option>
-																	<option>Resolved </option>
-																</select>
-															</div>
+                            <!-- Card of PIP Status -->
+                            <div id="test-vl-6" role="tabpane3" class="bs-stepper-pane content fade"
+                                aria-labelledby="stepper3trigger6">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <h5>Personal Improvement Plan</h5>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#PIP">Add
+                                        PIP</button>
+                                    <div class="modal fade" id="PIP" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Add Personal Improvement Plan
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row g-3">
+                                                        <div class="col-12">
+                                                            <label for="input3" class="form-label">PIP ID</label>
+                                                            <input type="text" class="form-control" id="input3">
+                                                        </div>
+                                                        <div class="col-12 ">
+                                                            <label for="input6" class="form-label">Raised on
+                                                            </label>
+                                                            <input type="text" class="form-control datepicker"
+                                                                placeholder="mm-dd-yyyy" />
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <label for="input2" class="form-label">Status</label>
+                                                            <select id="input7" class="form-select">
+                                                                <option selected></option>
+                                                                <option>Open</option>
+                                                                <option>Resolved </option>
+                                                            </select>
+                                                        </div>
 
-															<div class="col-12">
-																<label for=" input2" class="form-label">Closed on
-																</label>
-																<input type="text" class="form-control datepicker" placeholder="mm-dd-yyyy" />
-															</div>
-															<div class="col-12">
-																<label for=" input2" class="form-label">Reason
-																</label>
-																<textarea class="form-control" id="input11" rows="4"></textarea>
-															</div>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-														<button type="button" class="btn btn-primary">Add</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<table class="table mb-0 table-striped">
-										<thead>
-											<tr>
-												<th scope="col">PIP ID</th>
-												<th scope="col">Raised on</th>
-												<th scope="col">Status</th>
-												<th scope="col">Closed on</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
+                                                        <div class="col-12">
+                                                            <label for=" input2" class="form-label">Closed on
+                                                            </label>
+                                                            <input type="text" class="form-control datepicker"
+                                                                placeholder="mm-dd-yyyy" />
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <label for=" input2" class="form-label">Reason
+                                                            </label>
+                                                            <textarea class="form-control" id="input11" rows="4"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="button" class="btn btn-primary">Add</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table mb-0 table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">PIP ID</th>
+                                            <th scope="col">Raised on</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Closed on</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
 
-												<td>PIP-1234567890</td>
-												<td>03-21-23</td>
-												<td>Open</td>
-												<td>03-21-28</td>
-												<td>
-													<div class="d-flex">
-														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
-														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
-													</div>
-												</td>
-											</tr>
-											<tr>
+                                            <td>PIP-1234567890</td>
+                                            <td>03-21-23</td>
+                                            <td>Open</td>
+                                            <td>03-21-28</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <i class="fadeIn animated bx bx-pencil fs-5 text-primary"
+                                                        title="Edit"></i>
+                                                    <i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"
+                                                        title="Delete"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
 
-												<td>PIP-1234567890 </td>
-												<td>03-21-23</td>
-												<td>Resolved</td>
-												<td>03-21-28</td>
+                                            <td>PIP-1234567890 </td>
+                                            <td>03-21-23</td>
+                                            <td>Resolved</td>
+                                            <td>03-21-28</td>
 
-												<td>
-													<div class="d-flex">
-														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
-														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>PIP-1234567890 </td>
-												<td>03-21-23</td>
-												<td>Resolved </td>
-												<td>03-21-28</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <i class="fadeIn animated bx bx-pencil fs-5 text-primary"
+                                                        title="Edit"></i>
+                                                    <i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"
+                                                        title="Delete"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PIP-1234567890 </td>
+                                            <td>03-21-23</td>
+                                            <td>Resolved </td>
+                                            <td>03-21-28</td>
 
-												<td>
-													<div class="d-flex">
-														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
-														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>PIP-1234567890 </td>
-												<td>03-21-23</td>
-												<td>Open</td>
-												<td>03-21-28</td>
-												<td>
-													<div class="d-flex">
-														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
-														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>PIP-1234567890 </td>
-												<td>03-21-23</td>
-												<td>Resolved </td>
-												<td>03-21-28</td>
-												<td>
-													<div class="d-flex">
-														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
-														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>PIP-1234567890 </td>
-												<td>03-21-23</td>
-												<td>Resolved </td>
-												<td>03-21-28</td>
-												<td>
-													<div class="d-flex">
-														<i class="fadeIn animated bx bx-pencil fs-5 text-primary" title="Edit"></i>
-														<i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5" title="Delete"></i>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <i class="fadeIn animated bx bx-pencil fs-5 text-primary"
+                                                        title="Edit"></i>
+                                                    <i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"
+                                                        title="Delete"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PIP-1234567890 </td>
+                                            <td>03-21-23</td>
+                                            <td>Open</td>
+                                            <td>03-21-28</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <i class="fadeIn animated bx bx-pencil fs-5 text-primary"
+                                                        title="Edit"></i>
+                                                    <i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"
+                                                        title="Delete"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PIP-1234567890 </td>
+                                            <td>03-21-23</td>
+                                            <td>Resolved </td>
+                                            <td>03-21-28</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <i class="fadeIn animated bx bx-pencil fs-5 text-primary"
+                                                        title="Edit"></i>
+                                                    <i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"
+                                                        title="Delete"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PIP-1234567890 </td>
+                                            <td>03-21-23</td>
+                                            <td>Resolved </td>
+                                            <td>03-21-28</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <i class="fadeIn animated bx bx-pencil fs-5 text-primary"
+                                                        title="Edit"></i>
+                                                    <i class="fadeIn animated bx bx-trash-alt delete-proccess ms-2 fs-5"
+                                                        title="Delete"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-								<!-- History -->
-								<div id="test-vl-7" role="tabpane3" class="bs-stepper-pane content fade"
-								aria-labelledby="stepper3trigger7">
-								<h5 class="mb-4">Previous History</h5>
-								<div class="list-group notification-list">
-									<a class="dropdown-item" href="javascript:;">
-										<div class="flex-grow-1">
-											<h6 class="msg-name">Daisy Anderson<span class="msg-time float-end">05/28/2023</span></h6>
-											<p class="msg-info">The standard chunk of lorem</p>
-										</div>
-									</a>
-									<a class="dropdown-item" href="javascript:;">
-										<div class="flex-grow-1">
-											<h6 class="msg-name">Maisy Anderson<span class="msg-time float-end">05/28/2023</span></h6>
-											<p class="msg-info">The standard chunk of lorem</p>
-										</div>
+                            <!-- History -->
+                            <div id="test-vl-7" role="tabpane3" class="bs-stepper-pane content fade"
+                                aria-labelledby="stepper3trigger7">
+                                <h5 class="mb-4">Previous History</h5>
+                                <div class="list-group notification-list">
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Daisy Anderson<span
+                                                    class="msg-time float-end">05/28/2023</span></h6>
+                                            <p class="msg-info">The standard chunk of lorem</p>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Maisy Anderson<span
+                                                    class="msg-time float-end">05/28/2023</span></h6>
+                                            <p class="msg-info">The standard chunk of lorem</p>
+                                        </div>
 
-									</a>
-									<a class="dropdown-item" href="javascript:;">
-										<div class="flex-grow-1">
-											<h6 class="msg-name">Paisy Anderson<span class="msg-time float-end">09/13/2023</span></h6>
-											<p class="msg-info">The standard chunk of lorem</p>
-										</div>
-									</a>
-									<a class="dropdown-item" href="javascript:;">
-										<div class="flex-grow-1">
-											<h6 class="msg-name">Laisy Anderson<span class="msg-time float-end">09/13/2023</span></h6>
-											<p class="msg-info">The standard chunk of lorem</p>
-										</div>
-									</a>
-									<a class="dropdown-item" href="javascript:;">
-										<div class="flex-grow-1">
-											<h6 class="msg-name">Naisy Anderson<span class="msg-time float-end">5 sec
-													ago</span></h6>
-											<p class="msg-info">The standard chunk of lorem</p>
-										</div>
-									</a>
-								</div>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Paisy Anderson<span
+                                                    class="msg-time float-end">09/13/2023</span></h6>
+                                            <p class="msg-info">The standard chunk of lorem</p>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Laisy Anderson<span
+                                                    class="msg-time float-end">09/13/2023</span></h6>
+                                            <p class="msg-info">The standard chunk of lorem</p>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Naisy Anderson<span class="msg-time float-end">5 sec
+                                                    ago</span></h6>
+                                            <p class="msg-info">The standard chunk of lorem</p>
+                                        </div>
+                                    </a>
+                                </div>
 
-							</div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -1418,27 +1250,19 @@
         flatpickr('.datepicker.dateOfJoining', {
             dateFormat: 'm-d-Y',
             maxDate: 'today',
-			defaultDate: "today" 
+            defaultDate: "today"
         });
         flatpickr('.datepicker.dateOfNotice', {
             dateFormat: 'm-d-Y',
             maxDate: 'today',
         });
 
-        //Open Search-List
-        function toggleSearchList() {
-            var searchList = document.querySelector('.search-employee-list');
-            searchList.classList.toggle('open');
-        }
-        let wrapper = document.querySelector(".page-wrapper")
-        wrapper.addEventListener("click", () => {
-            var searchList = document.querySelector('.search-employee-list');
-            searchList.classList.remove('open');
-        });
+       
 
         //field validation
         $(document).ready(function() {
-			
+            
+
             let token1 = sessionStorage.getItem('authToken');
 
             $.ajax({
@@ -1488,68 +1312,84 @@
                 url: "/states",
                 success: function(response) {
                     console.log(response, "states");
+
+                    var selectElement = $(".state");
+                    selectElement.empty();
+                    // if (typeof {!! json_encode($permanentAddress) !!} === 'undefined') {
+
+                    var selectOption = $("<option>")
+                        .attr("value", "")
+                        .attr("disabled", "disabled")
+                        
+                         .attr("selected", "selected")
+                        .text("Select");
+                        selectElement.append(selectOption);
+            //         }else{
+            //             var selectOption = $("<option>")
+            //     .attr("value", "")
+            //     .attr("disabled", "disabled")
+            //     .text("Select");
+
+            // selectElement.append(selectOption);
+            //         }
+
                    
-var selectElement = $(".state"); 
-selectElement.empty(); 
 
-
-var selectOption = $("<option>")
-    .attr("value", "")
-    .attr("disabled", "disabled")
-    .attr("selected", "selected")
-    .text("Select");
-
-selectElement.append(selectOption);
-
-$.each(response?.data, function(index, item) {
-    var option = $("<option>")
-        .attr("value", item.id)
-        .text(item.name);
-    selectElement.append(option);
-});
-
-         $.ajax({
-                type: "get",
-                url: "/droplocation",
-              
-                success: function(response) {
-                    console.log(response, "responseee");
                     $.each(response?.data, function(index, item) {
                         var option = $("<option>")
                             .attr("value", item.id)
                             .text(item.name);
-
-                        $(".dropLocation").append(option);
-
+                            
+           
+       
+        
+                        selectElement.append(option);
                     });
-                }
-            });
 
-                   
-var selectElement = $(".residentialState");
-selectElement.empty(); 
+                 
+
+                    $.ajax({
+                        type: "get",
+                        url: "/droplocation",
+
+                        success: function(response) {
+                            console.log(response, "responseee");
+                            $.each(response?.data, function(index, item) {
+                                var option = $("<option>")
+                                    .attr("value", item.id)
+                                    .text(item.name);
+
+                                $(".dropLocation").append(option);
+
+                            });
+                        }
+                    });
 
 
-var selectOption = $("<option>")
-    .attr("value", "")
-    .attr("disabled", "disabled")
-    .attr("selected", "selected")
-    .text("Select");
+                    var selectElement = $(".residentialState");
+                    selectElement.empty();
 
-selectElement.append(selectOption);
 
-response.data.sort(function(a, b) {
-    return a.name.localeCompare(b.name);
-});
+                    var selectOption = $("<option>")
+                        .attr("value", "")
+                        .attr("disabled", "disabled")
+                        .attr("selected", "selected")
+                        .text("Select");
 
-$.each(response.data, function(index, item) {
-    var option = $("<option>")
-        .attr("value", item.id)
-        .text(item.name);
+                    selectElement.append(selectOption);
 
-    
-    selectElement.append(option);
-});
+                    response.data.sort(function(a, b) {
+                        return a.name.localeCompare(b.name);
+                    });
+
+                    $.each(response.data, function(index, item) {
+                        var option = $("<option>")
+                            .attr("value", item.id)
+                            .text(item.name);
+
+
+                        selectElement.append(option);
+                    });
 
                 }
             });
@@ -1627,615 +1467,853 @@ $.each(response.data, function(index, item) {
             });
 
 
-			var currentMonth = new Date().getMonth();
+            var currentMonth = new Date().getMonth();
 
-            
+
             $('.appraisalCycle option:eq(' + (currentMonth + 1) + ')').prop('selected', true);
 
 
-			$('.modelBillable').change(function () {
-				var modelBillable = $(this).val();
-				if(modelBillable == 'buffer'){
-					$('.contributionDiv').show();
-				}else{
-					$('.contributionDiv').hide();
-				}
+            $('.modelBillable').change(function() {
+                var modelBillable = $(this).val();
+                if (modelBillable == 'Billable') {
+                    $('.contributionDiv').show();
+                } else {
+                    $('.contributionDiv').hide();
+                }
 
-			})
+            })
 
 
-        $(".SKID").on("keyup", function (){
-            
-            let skidValues = $(this).val();
-            console.log('skidValue:', skidValues);
-           if (/^SK/.test(skidValues)) {
-              if (skidValues.length > 8) {
-             $(this).val(skidValues.slice(0, 8));
-              // Update the value of the current input field
-           }
-   
-          } else {
-            $(this).addClass("error-input");
-            $("#errorSKID").text('Invalid SKID: Must start with "SK"');
-           }
-           checkSkid(skidValues);
-        });
+            $(".SKID").on("keyup", function() {
 
-        function checkSkid(skidValues) {
-            $.ajaxSetup({
-                         headers: {
-                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                             }
-                          });
-           
-            $.ajax({
-                url: "/check/skid", 
-                method: "POST",
-                data: {
-                    skid: skidValues
-                },
-                success: function (response) {
-                    if (response.exists) {
-                        $(".SKID").addClass("error-input");
-                        $("#errorSKID").text("SKID already exists");
-                    } else {
-                        // $(".SKID").removeClass("error-input");
-                        // $("#errorSKID").text("");
+                let skidValues = $(this).val();
+                console.log('skidValue:', skidValues);
+
+                if (/^SK\d{1,6}$/.test(skidValues)) {
+                    if (skidValues.length >= 6) {
+                        $(this).val(skidValues.slice(0, 8));
                     }
-                },
-                error: function () {
-                    console.log("An error occurred while checking SKID.");
+
+                } else {
+                    $(this).addClass("error-input");
+                    $("#errorSKID").text(
+                        'Invalid SKID: Must start with "SK" followed by numeric characters');
+                }
+
+                checkSkid(skidValues);
+            });
+
+            $(".SKID").on("keypress", function(e) {
+                if ($(this).val().length >= 8) {
+                    e.preventDefault();
                 }
             });
-        }
-            
 
-			
-        var employmentStatus = $('.employmentStatus').val();
-
-        $('.dateOfNoticeDiv').hide();
-        $('.permanentDateDiv').hide();
-       
-        // $('.ijpDiv').hide();
-        // $('.pipDiv').hide();
-        // $('.historyDiv').hide();
-
-        if (employmentStatus === 'Active') {
-			$('.dateOfExitDiv').hide();
-			$('.dateOfExitReasonDiv').hide();
-			$("#errorDateOfExit").html("");
-            $(".dateOfExit").removeClass("error-input");
-			$("#errorExitReason").html("");
-            $(".exitReason").removeClass("error-input");
-			let error = {}
-			let workFromHome = $(".workFromHome").val()
-			let isTraniee = $(".isTraniee").val()
-			let shiftTiming = $(".shiftTiming").val()
-			let dateOfJoining = $(".dateOfJoining").val()
-			let serviceStatus = $(".serviceStatus").val()
-			let appraisalCycle = $(".appraisalCycle").val()
-			let revenueEarning = $(".revenueEarning").val()
-			let noticeStatus = $(".noticeStatus").val()
-
-			if (!workFromHome) {
-                    error = {
-                        ...error,
-                        workFromHome: "WFO/WFH is required"
+            function checkSkid(skidValues) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                }
+                });
 
-				if (!isTraniee) {
-                    error = {
-                        ...error,
-                        isTraniee: "Is traniee is required"
+                $.ajax({
+                    url: "/check/skid",
+                    method: "POST",
+                    data: {
+                        skid: skidValues
+                    },
+                    success: function(response) {
+                        if (response.exists) {
+                            $(".SKID").addClass("error-input");
+                            $("#errorSKID").text("SKID already exists");
+                        } else {
+                            // $(".SKID").removeClass("error-input");
+                            // $("#errorSKID").text("");
+                        }
+                    },
+                    error: function() {
+                        console.log("An error occurred while checking SKID.");
                     }
-                }
+                });
+            }
 
-				if (!shiftTiming) {
-                    error = {
-                        ...error,
-                        shiftTiming: "Shift Timing is required"
+            $(".email").on("keyup", function() {
+                let emailvalues = $(this).val();
+                if (emailvalues != "") {
+                    if (isValidEmail(emailvalues)) {
+
+                        $(this).removeClass("error-input");
+                        $("#errorEmail").text('');
+                    } else {
+
+                        $(this).addClass("error-input");
+                        $("#errorEmail").text('Invalid email format');
                     }
+                    checkEmail(emailvalues)
                 }
 
-				if (!dateOfJoining) {
-                    error = {
-                        ...error,
-                        dateOfJoining: "Date of joining is required"
+            })
+
+            function checkEmail(emailValues) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                }
+                });
 
-				if (!serviceStatus) {
-                    error = {
-                        ...error,
-                        serviceStatus: "Service status is required"
+                $.ajax({
+                    url: "/check/email",
+                    method: "POST",
+                    data: {
+                        email: emailValues
+                    },
+                    success: function(response) {
+                        if (response.exists) {
+                            $(".email").addClass("error-input");
+                            $("#errorEmail").text("Email already exists");
+                        } else {
+
+                        }
+                    },
+                    error: function() {
+                        console.log("An error occurred while checking Email.");
                     }
-                }
+                });
+            }
 
-				if (!appraisalCycle) {
-                    error = {
-                        ...error,
-                        appraisalCycle: "Appraisal cycle is required"
+            function isValidEmail(email) {
+
+                var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                return emailRegex.test(email);
+            }
+
+            $('.pin').on("keyup", function() {
+                let pinValues = $('.pin').val();
+                if (isValidPin(pinValues)) {
+                    $(this).removeClass("error-input");
+                    $("#errorPin").text('');
+                } else {
+                    $(this).addClass("error-input");
+                    $("#errorPin").text('Invalid PIN: Must be a 6-digit number');
+                }
+            });
+
+            $('.pin').on("keydown", function(event) {
+    let key = event.key;
+    
+    if (!/^\d$|Backspace/.test(key)) {
+      event.preventDefault();
+    }
+  });
+
+  $('.residentialPin').on("keydown", function(event) {
+    let key = event.key;
+    
+    if (!/^\d$|Backspace/.test(key)) {
+      event.preventDefault();
+    }
+  });
+
+            $('.residentialPin').on("keyup", function(event) {
+                let pinValues = $('.residentialPin').val();
+                if (isValidPin(pinValues)) {
+
+                    $(this).removeClass("error-input");
+                    $("#errorResidentialPin").text('');
+                } else {
+                    event.preventDefault();
+                    $(this).addClass("error-input");
+                    $("#errorResidentialPin").text('Invalid PIN: Must be a 6-digit number');
+                }
+            });
+
+
+            function isValidPin(pin) {
+                // Regular expression to check for 6-digit number
+                var pinRegex = /^\d{6}$/;
+                return pinRegex.test(pin);
+            }
+
+
+            $(".pin").on("keypress", function(e) {
+                if ($(this).val().length >= 6) {
+                    e.preventDefault();
+                }
+            });
+
+            $('.aadhaar').on("keyup", function() {
+    var aadhaarValues = $('.aadhaar').val();
+    if (isValidAadhaar(aadhaarValues)) {
+      
+        $(this).removeClass("error-input");
+        $("#errorAadhaar").text('');
+    } else {
+      
+        $(this).addClass("error-input");
+        $("#errorAadhaar").text('Invalid Aadhaar Card No.: Must be a 12-digit number');
+    }
+    checkAadhar(aadhaarValues);
+});
+
+function isValidAadhaar(aadhaar) {
+    var aadhaarRegex = /^\d{12}$/;
+    return aadhaarRegex.test(aadhaar);
+}
+
+function checkAadhar(aadhaarValues) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                }
+                });
 
-				if (!revenueEarning) {
-                    error = {
-                        ...error,
-                        revenueEarning: "Revenue Earning is required"
+                $.ajax({
+                    url: "/check/aadhaar",
+                    method: "POST",
+                    data: {
+                        aadhaar: aadhaarValues
+                    },
+                    success: function(response) {
+                        if (response.exists) {
+                            $(".aadhaar").addClass("error-input");
+                            $("#errorAadhaar").text("Aadhaar already exists");
+                        } else {
+
+                        }
+                    },
+                    error: function() {
+                        console.log("An error occurred while checking Aadhaar.");
                     }
+                });
+            }
+
+$(".aadhaar").on("keypress", function(e) {
+                if ($(this).val().length >= 12) {
+                    e.preventDefault();
                 }
+            });
 
-				if (!noticeStatus) {
-                    error = {
-                        ...error,
-                        noticeStatus: "Notice Status is required"
-                    }
+            $('.aadhaar').on("keydown", function(event) {
+    let key = event.key;
+    
+    if (!/^\d$|Backspace/.test(key)) {
+      event.preventDefault();
+    }
+  });
+
+  $('.phone').on("keydown", function(event) {
+    let key = event.key;
+    
+    if (!/^[\d+\-]$|Backspace/.test(key)) {
+      event.preventDefault();
+    }
+  });
+
+  $(".phone").on("keypress", function(e) {
+                if ($(this).val().length >= 13) {
+                    e.preventDefault();
                 }
+            });
 
-				if (error.workFromHome) {
-                    $("#errorWorkFromHome").html(error.workFromHome);
-                    $("#errorWorkFromHome").addClass("text-danger");
-                    $(".workFromHome").addClass("error-input");
-                } else {
-                    $("#errorWorkFromHome").removeClass("text-danger");
-                    $(".WorkFromHome").removeClass("error-input");
-                  
+            $('.emergencyContact').on("keydown", function(event) {
+    let key = event.key;
+    
+    if (!/^[\d+\-]$|Backspace/.test(key)) {
+      event.preventDefault();
+    }
+  });
+
+  $(".emergencyContact").on("keypress", function(e) {
+                if ($(this).val().length >= 13) {
+                    e.preventDefault();
                 }
+            });
 
-				if (error.isTraniee) {
-                    $("#errorIsTraniee").html(error.isTraniee);
-                    $("#errorIsTraniee").addClass("text-danger");
-                    $(".isTraniee").addClass("error-input");
-                } else {
-                    $("#errorIsTraniee").removeClass("text-danger");
-                    $(".isTraniee").removeClass("error-input");
-                  
+            $(".age").on("keypress", function(e) {
+                if ($(this).val().length >= 2) {
+                    e.preventDefault();
                 }
+            });
 
-				if (error.shiftTiming) {
-                    $("#errorShiftTiming").html(error.shiftTiming);
-                    $("#errorShiftTiming").addClass("text-danger");
-                    $(".shiftTiming").addClass("error-input");
-                } else {
-                    $("#errorShiftTiming").removeClass("text-danger");
-                    $(".shiftTiming").removeClass("error-input");
-                  
-                }
 
-				if (error.dateOfJoining) {
-                    $("#errorDateOfJoining").html(error.dateOfJoining);
-                    $("#errorDateOfJoining").addClass("text-danger");
-                    $(".dateOfJoining").addClass("error-input");
-                } else {
-                    $("#errorDateOfJoining").removeClass("text-danger");
-                    $(".dateOfJoining").removeClass("error-input");
-                  
-                }
+  $('.age').on("keydown", function(event) {
+    let key = event.key;
+    
+    if (!/^\d$|Backspace/.test(key)) {
+      event.preventDefault();
+    }
+  });
 
-				if (error.serviceStatus) {
-                    $("#errorServiceStatus").html(error.serviceStatus);
-                    $("#errorServiceStatus").addClass("text-danger");
-                    $(".serviceStatus").addClass("error-input");
-                } else {
-                    $("#errorServiceStatus").removeClass("text-danger");
-                    $(".serviceStatus").removeClass("error-input");
-                  
-                }
+  $('.salary').on("keydown", function(event) {
+    let key = event.key;
+    
+    if (!/^\d$|Backspace/.test(key)) {
+      event.preventDefault();
+    }
+  });
 
-				if (error.appraisalCycle) {
-                    $("#errorAppraisalCycle").html(error.appraisalCycle);
-                    $("#errorAppraisalCycle").addClass("text-danger");
-                    $(".appraisalCycle").addClass("error-input");
-                } else {
-                    $("#errorAppraisalCycle").removeClass("text-danger");
-                    $(".appraisalCycle").removeClass("error-input");
-                  
-                }
+  
 
-				if (error.revenueEarning) {
-                    $("#errorRevenueEarning").html(error.revenueEarning);
-                    $("#errorRevenueEarning").addClass("text-danger");
-                    $(".revenueEarning").addClass("error-input");
-                } else {
-                    $("#errorRevenueEarning").removeClass("text-danger");
-                    $(".revenueEarning").removeClass("error-input");
-                  
-                }
 
-				if (error.noticeStatus) {
-                    $("#errorNoticeStatus").html(error.noticeStatus);
-                    $("#errorNoticeStatus").addClass("text-danger");
-                    $(".noticeStatus").addClass("error-input");
-                } else {
-                    $("#errorNoticeStatus").removeClass("text-danger");
-                    $(".noticeStatus").removeClass("error-input");
-                  
-                }
 
-				 if (Object.keys(error).length === 0) {
 
-                    let activeStep = $('.step.active').data('target');
-                    Steps(activeStep, 'next');
-                  
-                }
-            
-        } else if(employmentStatus === 'Inactive') {
-			        $("#errorWorkFromHome").html("");
-                    $(".workFromHome").removeClass("error-input");
-					$("#errorIsTraniee").html("");
-                    $(".isTraniee").removeClass("error-input");
-					$("#errorShiftTiming").html("");
-                    $(".shiftTiming").removeClass("error-input");
-					$("#errorDateOfJoining").html("");
-                    $(".dateOfJoining").removeClass("error-input");
-					$("#errorServiceStatus").html("");
-                    $(".serviceStatus").removeClass("error-input");
-					$("#errorAppraisalCycle").html("");
-                    $(".appraisalCycle").removeClass("error-input");
-					$("#errorNoticeStatus").html("");
-                    $(".noticeStatus").removeClass("error-input");
-					$("#errorRevenueEarning").html("");
-                    $(".revenueEarning").removeClass("error-input");
 
-					let error = {}
-			        let dateOfExit = $(".dateOfExit").val()
-			        let exitReason = $(".exitReason").val()
+            var employmentStatus = $('.employmentStatus').val();
 
-					if (!dateOfExit) {
-                    error = {
-                        ...error,
-                        dateOfExit: "Date Of Exit is required"
-                    }
-                }
-
-				if (!exitReason) {
-                    error = {
-                        ...error,
-                        exitReason: "Exit Reason is required"
-                    }
-                }
-
-				if (error.dateOfExit) {
-                    $("#errorDateOfExit").html(error.dateOfExit);
-                    $("#errorDateOfExit").addClass("text-danger");
-                    $(".dateOfExit").addClass("error-input");
-                } else {
-                    $("#errorDateOfExit").removeClass("text-danger");
-                    $(".dateOfExit").removeClass("error-input");
-                  
-                }
-
-				if (error.exitReason) {
-                    $("#errorExitReason").html(error.exitReason);
-                    $("#errorExitReason").addClass("text-danger");
-                    $(".exitReason").addClass("error-input");
-                } else {
-                    $("#errorExitReason").removeClass("text-danger");
-                    $(".exitReason").removeClass("error-input");
-                  
-                }
-
-				 if (Object.keys(error).length === 0) {
-
-                    let activeStep = $('.step.active').data('target');
-                    Steps(activeStep, 'next');
-                  
-                }
-				
-        }else {
-
-		}
-	$('.employmentStatus').change(function () {
-		$('.dateOfExitDiv').hide();
-		$('.dateOfExitReasonDiv').hide();
-        var employmentStatus = $(this).val();
-
-        if (employmentStatus === 'Active') {
-			$("#errorDateOfExit").html("");
-            $(".dateOfExit").removeClass("error-input");
-			$("#errorExitReason").html("");
-            $(".exitReason").removeClass("error-input");
-			let error = {}
-			let workFromHome = $(".workFromHome").val()
-			let isTraniee = $(".isTraniee").val()
-			let shiftTiming = $(".shiftTiming").val()
-			let dateOfJoining = $(".dateOfJoining").val()
-			let serviceStatus = $(".serviceStatus").val()
-			let appraisalCycle = $(".appraisalCycle").val()
-			let revenueEarning = $(".revenueEarning").val()
-			let noticeStatus = $(".noticeStatus").val()
-
-			if (!workFromHome) {
-                    error = {
-                        ...error,
-                        workFromHome: "WFO/WFH is required"
-                    }
-                }
-
-				if (!isTraniee) {
-                    error = {
-                        ...error,
-                        isTraniee: "Is traniee is required"
-                    }
-                }
-
-				if (!shiftTiming) {
-                    error = {
-                        ...error,
-                        shiftTiming: "Shift Timing is required"
-                    }
-                }
-
-				if (!dateOfJoining) {
-                    error = {
-                        ...error,
-                        dateOfJoining: "Date of joining is required"
-                    }
-                }
-
-				if (!serviceStatus) {
-                    error = {
-                        ...error,
-                        serviceStatus: "Service status is required"
-                    }
-                }
-
-				if (!appraisalCycle) {
-                    error = {
-                        ...error,
-                        appraisalCycle: "Appraisal cycle is required"
-                    }
-                }
-
-				if (!revenueEarning) {
-                    error = {
-                        ...error,
-                        revenueEarning: "Revenue Earning is required"
-                    }
-                }
-
-				if (!noticeStatus) {
-                    error = {
-                        ...error,
-                        noticeStatus: "Notice Status is required"
-                    }
-                }
-
-				if (error.workFromHome) {
-                    $("#errorWorkFromHome").html(error.workFromHome);
-                    $("#errorWorkFromHome").addClass("text-danger");
-                    $(".workFromHome").addClass("error-input");
-                } else {
-                    $("#errorWorkFromHome").removeClass("text-danger");
-                    $(".WorkFromHome").removeClass("error-input");
-                  
-                }
-
-				if (error.isTraniee) {
-                    $("#errorIsTraniee").html(error.isTraniee);
-                    $("#errorIsTraniee").addClass("text-danger");
-                    $(".isTraniee").addClass("error-input");
-                } else {
-                    $("#errorIsTraniee").removeClass("text-danger");
-                    $(".isTraniee").removeClass("error-input");
-                  
-                }
-
-				if (error.shiftTiming) {
-                    $("#errorShiftTiming").html(error.shiftTiming);
-                    $("#errorShiftTiming").addClass("text-danger");
-                    $(".shiftTiming").addClass("error-input");
-                } else {
-                    $("#errorShiftTiming").removeClass("text-danger");
-                    $(".shiftTiming").removeClass("error-input");
-                  
-                }
-
-				if (error.dateOfJoining) {
-                    $("#errorDateOfJoining").html(error.dateOfJoining);
-                    $("#errorDateOfJoining").addClass("text-danger");
-                    $(".dateOfJoining").addClass("error-input");
-                } else {
-                    $("#errorDateOfJoining").removeClass("text-danger");
-                    $(".dateOfJoining").removeClass("error-input");
-                  
-                }
-
-				if (error.serviceStatus) {
-                    $("#errorServiceStatus").html(error.serviceStatus);
-                    $("#errorServiceStatus").addClass("text-danger");
-                    $(".serviceStatus").addClass("error-input");
-                } else {
-                    $("#errorServiceStatus").removeClass("text-danger");
-                    $(".serviceStatus").removeClass("error-input");
-                  
-                }
-
-				if (error.appraisalCycle) {
-                    $("#errorAppraisalCycle").html(error.appraisalCycle);
-                    $("#errorAppraisalCycle").addClass("text-danger");
-                    $(".appraisalCycle").addClass("error-input");
-                } else {
-                    $("#errorAppraisalCycle").removeClass("text-danger");
-                    $(".appraisalCycle").removeClass("error-input");
-                  
-                }
-
-				if (error.revenueEarning) {
-                    $("#errorRevenueEarning").html(error.revenueEarning);
-                    $("#errorRevenueEarning").addClass("text-danger");
-                    $(".revenueEarning").addClass("error-input");
-                } else {
-                    $("#errorRevenueEarning").removeClass("text-danger");
-                    $(".revenueEarning").removeClass("error-input");
-                  
-                }
-
-				if (error.noticeStatus) {
-                    $("#errorNoticeStatus").html(error.noticeStatus);
-                    $("#errorNoticeStatus").addClass("text-danger");
-                    $(".noticeStatus").addClass("error-input");
-                } else {
-                    $("#errorNoticeStatus").removeClass("text-danger");
-                    $(".noticeStatus").removeClass("error-input");
-                  
-                }
-
-				 if (Object.keys(error).length === 0) {
-
-                    let activeStep = $('.step.active').data('target');
-                    Steps(activeStep, 'next');
-                  
-                }
-            
-        } else if(employmentStatus === 'Inactive') {
-			          $('.dateOfExitDiv').show();
-			         $('.dateOfExitReasonDiv').show();
-			        $("#errorWorkFromHome").html("");
-                    $(".workFromHome").removeClass("error-input");
-					$("#errorIsTraniee").html("");
-                    $(".isTraniee").removeClass("error-input");
-					$("#errorShiftTiming").html("");
-                    $(".shiftTiming").removeClass("error-input");
-					$("#errorDateOfJoining").html("");
-                    $(".dateOfJoining").removeClass("error-input");
-					$("#errorServiceStatus").html("");
-                    $(".serviceStatus").removeClass("error-input");
-					$("#errorAppraisalCycle").html("");
-                    $(".appraisalCycle").removeClass("error-input");
-					$("#errorNoticeStatus").html("");
-                    $(".noticeStatus").removeClass("error-input");
-					$("#errorRevenueEarning").html("");
-                    $(".revenueEarning").removeClass("error-input");
-
-					let error = {}
-			        let dateOfExit = $(".dateOfExit").val()
-			        let exitReason = $(".exitReason").val()
-
-					if (!dateOfExit) {
-                    error = {
-                        ...error,
-                        dateOfExit: "Date Of Exit is required"
-                    }
-                }
-
-				if (!exitReason) {
-                    error = {
-                        ...error,
-                        exitReason: "Exit Reason is required"
-                    }
-                }
-
-				if (error.dateOfExit) {
-                    $("#errorDateOfExit").html(error.dateOfExit);
-                    $("#errorDateOfExit").addClass("text-danger");
-                    $(".dateOfExit").addClass("error-input");
-                } else {
-                    $("#errorDateOfExit").removeClass("text-danger");
-                    $(".dateOfExit").removeClass("error-input");
-                  
-                }
-
-				if (error.exitReason) {
-                    $("#errorExitReason").html(error.exitReason);
-                    $("#errorExitReason").addClass("text-danger");
-                    $(".exitReason").addClass("error-input");
-                } else {
-                    $("#errorExitReason").removeClass("text-danger");
-                    $(".exitReason").removeClass("error-input");
-                  
-                }
-
-				 if (Object.keys(error).length === 0) {
-
-                    let activeStep = $('.step.active').data('target');
-                    Steps(activeStep, 'next');
-                  
-                }
-				
-        }else {
-
-		}
-    });
-
-	$('.serviceStatus').change(function () {
-        var serviceStatus = $(this).val();
-
-        if (serviceStatus === 'Permanent') {
-			$('.permanentDateDiv').show();
-			let error = {}
-			let permanentDate = $(".permanentDate").val()
-
-			if (!permanentDate) {
-                    error = {
-                        ...error,
-                        permanentDate: "Permanent Date is required"
-                    }
-                }
-
-			if (error.permanentDate) {
-                    $("#errorPermanentDate").html(error.permanentDate);
-                    $("#errorPermanentDate").addClass("text-danger");
-                    $(".permanentDate").addClass("error-input");
-                } else {
-                    $("#errorPermanentDate").removeClass("text-danger");
-                    $(".permanentDate").removeClass("error-input");
-                  
-                }
-
-				if (Object.keys(error).length === 0) {
-
-                let activeStep = $('.step.active').data('target');
-               Steps(activeStep, 'next');
-
-                     }
-
-		}else{
-			$('.permanentDateDiv').hide();
-			$("#errorPermanentDate").html("");
-             $(".permanentDate").removeClass("error-input");
-		}
-	})
-
-    $('.noticeStatus').change(function () {
-
-        var noticeStatus = $(this).val();
-        if(noticeStatus === 'Under Notice'){
-            $('.dateOfNoticeDiv').show();
-            let error = {}
-			let dateOfNotice = $(".dateOfNotice").val()
-
-			if (!dateOfNotice) {
-                    error = {
-                        ...error,
-                        dateOfNotice: "Date Of Notice is required"
-                    }
-                }
-
-                if (error.dateOfNotice) {
-                    $("#errorDateOfNotice").html(error.permanentDate);
-                    $("#errorDateOfNotice").addClass("text-danger");
-                    $(".dateOfNotice").addClass("error-input");
-                } else {
-                    $("#errorDateOfNotice").removeClass("text-danger");
-                    $(".dateOfNotice").removeClass("error-input");
-                  
-                }
-
-				if (Object.keys(error).length === 0) {
-
-                      let activeStep = $('.step.active').data('target');
-                       Steps(activeStep, 'next');
-
-                     }
-        }else{
             $('.dateOfNoticeDiv').hide();
-            $("#errorDateOfNotice").html("");
-             $(".dateOfNotice").removeClass("error-input");
-        }
+            $('.permanentDateDiv').hide();
+            $(".sameAddress").hide();
 
-    })
+            // $('.ijpDiv').hide();
+            // $('.pipDiv').hide();
+            // $('.historyDiv').hide();
+
+            if (employmentStatus === 'Active') {
+                $('.dateOfExitDiv').hide();
+                $('.dateOfExitReasonDiv').hide();
+                $("#errorDateOfExit").html("");
+                $(".dateOfExit").removeClass("error-input");
+                $("#errorExitReason").html("");
+                $(".exitReason").removeClass("error-input");
+                let error = {}
+                let workFromHome = $(".workFromHome").val()
+                let isTraniee = $(".isTraniee").val()
+                let shiftTiming = $(".shiftTiming").val()
+                let dateOfJoining = $(".dateOfJoining").val()
+                let serviceStatus = $(".serviceStatus").val()
+                let appraisalCycle = $(".appraisalCycle").val()
+                let revenueEarning = $(".revenueEarning").val()
+                let noticeStatus = $(".noticeStatus").val()
+
+                if (!workFromHome) {
+                    error = {
+                        ...error,
+                        workFromHome: "WFO/WFH is required"
+                    }
+                }
+
+                if (!isTraniee) {
+                    error = {
+                        ...error,
+                        isTraniee: "Is traniee is required"
+                    }
+                }
+
+                if (!shiftTiming) {
+                    error = {
+                        ...error,
+                        shiftTiming: "Shift Timing is required"
+                    }
+                }
+
+                if (!dateOfJoining) {
+                    error = {
+                        ...error,
+                        dateOfJoining: "Date of joining is required"
+                    }
+                }
+
+                if (!serviceStatus) {
+                    error = {
+                        ...error,
+                        serviceStatus: "Service status is required"
+                    }
+                }
+
+                if (!appraisalCycle) {
+                    error = {
+                        ...error,
+                        appraisalCycle: "Appraisal cycle is required"
+                    }
+                }
+
+                if (!revenueEarning) {
+                    error = {
+                        ...error,
+                        revenueEarning: "Revenue Earning is required"
+                    }
+                }
+
+                if (!noticeStatus) {
+                    error = {
+                        ...error,
+                        noticeStatus: "Notice Status is required"
+                    }
+                }
+
+                if (error.workFromHome) {
+                    $("#errorWorkFromHome").html(error.workFromHome);
+                    $("#errorWorkFromHome").addClass("text-danger");
+                    $(".workFromHome").addClass("error-input");
+                } else {
+                    $("#errorWorkFromHome").removeClass("text-danger");
+                    $(".WorkFromHome").removeClass("error-input");
+
+                }
+
+                if (error.isTraniee) {
+                    $("#errorIsTraniee").html(error.isTraniee);
+                    $("#errorIsTraniee").addClass("text-danger");
+                    $(".isTraniee").addClass("error-input");
+                } else {
+                    $("#errorIsTraniee").removeClass("text-danger");
+                    $(".isTraniee").removeClass("error-input");
+
+                }
+
+                if (error.shiftTiming) {
+                    $("#errorShiftTiming").html(error.shiftTiming);
+                    $("#errorShiftTiming").addClass("text-danger");
+                    $(".shiftTiming").addClass("error-input");
+                } else {
+                    $("#errorShiftTiming").removeClass("text-danger");
+                    $(".shiftTiming").removeClass("error-input");
+
+                }
+
+                if (error.dateOfJoining) {
+                    $("#errorDateOfJoining").html(error.dateOfJoining);
+                    $("#errorDateOfJoining").addClass("text-danger");
+                    $(".dateOfJoining").addClass("error-input");
+                } else {
+                    $("#errorDateOfJoining").removeClass("text-danger");
+                    $(".dateOfJoining").removeClass("error-input");
+
+                }
+
+                if (error.serviceStatus) {
+                    $("#errorServiceStatus").html(error.serviceStatus);
+                    $("#errorServiceStatus").addClass("text-danger");
+                    $(".serviceStatus").addClass("error-input");
+                } else {
+                    $("#errorServiceStatus").removeClass("text-danger");
+                    $(".serviceStatus").removeClass("error-input");
+
+                }
+
+                if (error.appraisalCycle) {
+                    $("#errorAppraisalCycle").html(error.appraisalCycle);
+                    $("#errorAppraisalCycle").addClass("text-danger");
+                    $(".appraisalCycle").addClass("error-input");
+                } else {
+                    $("#errorAppraisalCycle").removeClass("text-danger");
+                    $(".appraisalCycle").removeClass("error-input");
+
+                }
+
+                if (error.revenueEarning) {
+                    $("#errorRevenueEarning").html(error.revenueEarning);
+                    $("#errorRevenueEarning").addClass("text-danger");
+                    $(".revenueEarning").addClass("error-input");
+                } else {
+                    $("#errorRevenueEarning").removeClass("text-danger");
+                    $(".revenueEarning").removeClass("error-input");
+
+                }
+
+                if (error.noticeStatus) {
+                    $("#errorNoticeStatus").html(error.noticeStatus);
+                    $("#errorNoticeStatus").addClass("text-danger");
+                    $(".noticeStatus").addClass("error-input");
+                } else {
+                    $("#errorNoticeStatus").removeClass("text-danger");
+                    $(".noticeStatus").removeClass("error-input");
+
+                }
+
+                if (Object.keys(error).length === 0) {
+
+                    let activeStep = $('.step.active').data('target');
+                    Steps(activeStep, 'next');
+
+                }
+
+            } else if (employmentStatus === 'Inactive') {
+                $("#errorWorkFromHome").html("");
+                $(".workFromHome").removeClass("error-input");
+                $("#errorIsTraniee").html("");
+                $(".isTraniee").removeClass("error-input");
+                $("#errorShiftTiming").html("");
+                $(".shiftTiming").removeClass("error-input");
+                $("#errorDateOfJoining").html("");
+                $(".dateOfJoining").removeClass("error-input");
+                $("#errorServiceStatus").html("");
+                $(".serviceStatus").removeClass("error-input");
+                $("#errorAppraisalCycle").html("");
+                $(".appraisalCycle").removeClass("error-input");
+                $("#errorNoticeStatus").html("");
+                $(".noticeStatus").removeClass("error-input");
+                $("#errorRevenueEarning").html("");
+                $(".revenueEarning").removeClass("error-input");
+
+                let error = {}
+                let dateOfExit = $(".dateOfExit").val()
+                let exitReason = $(".exitReason").val()
+
+                if (!dateOfExit) {
+                    error = {
+                        ...error,
+                        dateOfExit: "Date Of Exit is required"
+                    }
+                }
+
+                if (!exitReason) {
+                    error = {
+                        ...error,
+                        exitReason: "Exit Reason is required"
+                    }
+                }
+
+                if (error.dateOfExit) {
+                    $("#errorDateOfExit").html(error.dateOfExit);
+                    $("#errorDateOfExit").addClass("text-danger");
+                    $(".dateOfExit").addClass("error-input");
+                } else {
+                    $("#errorDateOfExit").removeClass("text-danger");
+                    $(".dateOfExit").removeClass("error-input");
+
+                }
+
+                if (error.exitReason) {
+                    $("#errorExitReason").html(error.exitReason);
+                    $("#errorExitReason").addClass("text-danger");
+                    $(".exitReason").addClass("error-input");
+                } else {
+                    $("#errorExitReason").removeClass("text-danger");
+                    $(".exitReason").removeClass("error-input");
+
+                }
+
+                if (Object.keys(error).length === 0) {
+
+                    let activeStep = $('.step.active').data('target');
+                    Steps(activeStep, 'next');
+
+                }
+
+            } else {
+
+            }
+            $('.employmentStatus').change(function() {
+                $('.dateOfExitDiv').hide();
+                $('.dateOfExitReasonDiv').hide();
+                var employmentStatus = $(this).val();
+
+                if (employmentStatus === 'Active') {
+                    $("#errorDateOfExit").html("");
+                    $(".dateOfExit").removeClass("error-input");
+                    $("#errorExitReason").html("");
+                    $(".exitReason").removeClass("error-input");
+
+                   
+                    let error = {}
+                    let workFromHome = $(".workFromHome").val()
+                    let isTraniee = $(".isTraniee").val()
+                    let shiftTiming = $(".shiftTiming").val()
+                    let dateOfJoining = $(".dateOfJoining").val()
+                    let serviceStatus = $(".serviceStatus").val()
+                    let appraisalCycle = $(".appraisalCycle").val()
+                    let revenueEarning = $(".revenueEarning").val()
+                    let noticeStatus = $(".noticeStatus").val()
+
+                    if (!workFromHome) {
+                        error = {
+                            ...error,
+                            workFromHome: "WFO/WFH is required"
+                        }
+                    }
+
+                    if (!isTraniee) {
+                        error = {
+                            ...error,
+                            isTraniee: "Is traniee is required"
+                        }
+                    }
+
+                    if (!shiftTiming) {
+                        error = {
+                            ...error,
+                            shiftTiming: "Shift Timing is required"
+                        }
+                    }
+
+                    if (!dateOfJoining) {
+                        error = {
+                            ...error,
+                            dateOfJoining: "Date of joining is required"
+                        }
+                    }
+
+                    if (!serviceStatus) {
+                        error = {
+                            ...error,
+                            serviceStatus: "Service status is required"
+                        }
+                    }
+
+                    if (!appraisalCycle) {
+                        error = {
+                            ...error,
+                            appraisalCycle: "Appraisal cycle is required"
+                        }
+                    }
+
+                    if (!revenueEarning) {
+                        error = {
+                            ...error,
+                            revenueEarning: "Revenue Earning is required"
+                        }
+                    }
+
+                    if (!noticeStatus) {
+                        error = {
+                            ...error,
+                            noticeStatus: "Notice Status is required"
+                        }
+                    }
+
+                    if (error.workFromHome) {
+                        $("#errorWorkFromHome").html(error.workFromHome);
+                        $("#errorWorkFromHome").addClass("text-danger");
+                        $(".workFromHome").addClass("error-input");
+                    } else {
+                        $("#errorWorkFromHome").removeClass("text-danger");
+                        $(".WorkFromHome").removeClass("error-input");
+
+                    }
+
+                    if (error.isTraniee) {
+                        $("#errorIsTraniee").html(error.isTraniee);
+                        $("#errorIsTraniee").addClass("text-danger");
+                        $(".isTraniee").addClass("error-input");
+                    } else {
+                        $("#errorIsTraniee").removeClass("text-danger");
+                        $(".isTraniee").removeClass("error-input");
+
+                    }
+
+                    if (error.shiftTiming) {
+                        $("#errorShiftTiming").html(error.shiftTiming);
+                        $("#errorShiftTiming").addClass("text-danger");
+                        $(".shiftTiming").addClass("error-input");
+                    } else {
+                        $("#errorShiftTiming").removeClass("text-danger");
+                        $(".shiftTiming").removeClass("error-input");
+
+                    }
+
+                    if (error.dateOfJoining) {
+                        $("#errorDateOfJoining").html(error.dateOfJoining);
+                        $("#errorDateOfJoining").addClass("text-danger");
+                        $(".dateOfJoining").addClass("error-input");
+                    } else {
+                        $("#errorDateOfJoining").removeClass("text-danger");
+                        $(".dateOfJoining").removeClass("error-input");
+
+                    }
+
+                    if (error.serviceStatus) {
+                        $("#errorServiceStatus").html(error.serviceStatus);
+                        $("#errorServiceStatus").addClass("text-danger");
+                        $(".serviceStatus").addClass("error-input");
+                    } else {
+                        $("#errorServiceStatus").removeClass("text-danger");
+                        $(".serviceStatus").removeClass("error-input");
+
+                    }
+
+                    if (error.appraisalCycle) {
+                        $("#errorAppraisalCycle").html(error.appraisalCycle);
+                        $("#errorAppraisalCycle").addClass("text-danger");
+                        $(".appraisalCycle").addClass("error-input");
+                    } else {
+                        $("#errorAppraisalCycle").removeClass("text-danger");
+                        $(".appraisalCycle").removeClass("error-input");
+
+                    }
+
+                    if (error.revenueEarning) {
+                        $("#errorRevenueEarning").html(error.revenueEarning);
+                        $("#errorRevenueEarning").addClass("text-danger");
+                        $(".revenueEarning").addClass("error-input");
+                    } else {
+                        $("#errorRevenueEarning").removeClass("text-danger");
+                        $(".revenueEarning").removeClass("error-input");
+
+                    }
+
+                    if (error.noticeStatus) {
+                        $("#errorNoticeStatus").html(error.noticeStatus);
+                        $("#errorNoticeStatus").addClass("text-danger");
+                        $(".noticeStatus").addClass("error-input");
+                    } else {
+                        $("#errorNoticeStatus").removeClass("text-danger");
+                        $(".noticeStatus").removeClass("error-input");
+
+                    }
+
+                    if (Object.keys(error).length === 0) {
+
+                        let activeStep = $('.step.active').data('target');
+                        Steps(activeStep, 'next');
+
+                    }
+
+                } else if (employmentStatus === 'Inactive') {
+                    $('.dateOfExitDiv').show();
+                    $('.dateOfExitReasonDiv').show();
+                    $("#errorWorkFromHome").html("");
+                    $(".workFromHome").removeClass("error-input");
+                    $("#errorIsTraniee").html("");
+                    $(".isTraniee").removeClass("error-input");
+                    $("#errorShiftTiming").html("");
+                    $(".shiftTiming").removeClass("error-input");
+                    $("#errorDateOfJoining").html("");
+                    $(".dateOfJoining").removeClass("error-input");
+                    $("#errorServiceStatus").html("");
+                    $(".serviceStatus").removeClass("error-input");
+                    $("#errorAppraisalCycle").html("");
+                    $(".appraisalCycle").removeClass("error-input");
+                    $("#errorNoticeStatus").html("");
+                    $(".noticeStatus").removeClass("error-input");
+                    $("#errorRevenueEarning").html("");
+                    $(".revenueEarning").removeClass("error-input");
+
+                    $(".wfoStar").html("")
+                    $(".shiftTimingStar").html("")
+                    $(".noticeStatusStar").html("")
+
+
+                    let error = {}
+                    let dateOfExit = $(".dateOfExit").val()
+                    let exitReason = $(".exitReason").val()
+
+                    if (!dateOfExit) {
+                        error = {
+                            ...error,
+                            dateOfExit: "Date Of Exit is required"
+                        }
+                    }
+
+                    if (!exitReason) {
+                        error = {
+                            ...error,
+                            exitReason: "Exit Reason is required"
+                        }
+                    }
+
+                    if (error.dateOfExit) {
+                        $("#errorDateOfExit").html(error.dateOfExit);
+                        $("#errorDateOfExit").addClass("text-danger");
+                        $(".dateOfExit").addClass("error-input");
+                    } else {
+                        $("#errorDateOfExit").removeClass("text-danger");
+                        $(".dateOfExit").removeClass("error-input");
+
+                    }
+
+                    if (error.exitReason) {
+                        $("#errorExitReason").html(error.exitReason);
+                        $("#errorExitReason").addClass("text-danger");
+                        $(".exitReason").addClass("error-input");
+                    } else {
+                        $("#errorExitReason").removeClass("text-danger");
+                        $(".exitReason").removeClass("error-input");
+
+                    }
+
+                    if (Object.keys(error).length === 0) {
+
+                        let activeStep = $('.step.active').data('target');
+                        Steps(activeStep, 'next');
+
+                    }
+
+                } else {
+
+                }
+            });
+
+            $('.serviceStatus').change(function() {
+                var serviceStatus = $(this).val();
+
+                if (serviceStatus === 'Permanent') {
+                    $('.permanentDateDiv').show();
+                    let error = {}
+                    let permanentDate = $(".permanentDate").val()
+
+                    if (!permanentDate) {
+                        error = {
+                            ...error,
+                            permanentDate: "Permanent Date is required"
+                        }
+                    }
+
+                    if (error.permanentDate) {
+                        $("#errorPermanentDate").html(error.permanentDate);
+                        $("#errorPermanentDate").addClass("text-danger");
+                        $(".permanentDate").addClass("error-input");
+                    } else {
+                        $("#errorPermanentDate").removeClass("text-danger");
+                        $(".permanentDate").removeClass("error-input");
+
+                    }
+
+                    if (Object.keys(error).length === 0) {
+
+                        let activeStep = $('.step.active').data('target');
+                        Steps(activeStep, 'next');
+
+                    }
+
+                } else {
+                    $('.permanentDateDiv').hide();
+                    $("#errorPermanentDate").html("");
+                    $(".permanentDate").removeClass("error-input");
+                }
+            })
+
+            $('.noticeStatus').change(function() {
+
+                var noticeStatus = $(this).val();
+                if (noticeStatus === 'Under Notice') {
+                    $('.dateOfNoticeDiv').show();
+                    let error = {}
+                    let dateOfNotice = $(".dateOfNotice").val()
+
+                    if (!dateOfNotice) {
+                        error = {
+                            ...error,
+                            dateOfNotice: "Date Of Notice is required"
+                        }
+                    }
+
+                    if (error.dateOfNotice) {
+                        $("#errorDateOfNotice").html(error.permanentDate);
+                        $("#errorDateOfNotice").addClass("text-danger");
+                        $(".dateOfNotice").addClass("error-input");
+                    } else {
+                        $("#errorDateOfNotice").removeClass("text-danger");
+                        $(".dateOfNotice").removeClass("error-input");
+
+                    }
+
+                    if (Object.keys(error).length === 0) {
+
+                        let activeStep = $('.step.active').data('target');
+                        Steps(activeStep, 'next');
+
+                    }
+                } else {
+                    $('.dateOfNoticeDiv').hide();
+                    $("#errorDateOfNotice").html("");
+                    $(".dateOfNotice").removeClass("error-input");
+                }
+
+            })
+
+
+
 
 
             $("#next").on("click", function() {
@@ -2244,7 +2322,10 @@ $.each(response.data, function(index, item) {
                 let SKID = $(".SKID").val()
                 let phone = $(".phone").val()
                 let age = $(".age").val();
+                let email = $('.email').val();
                 let emergencyContect = $(".emergencyContact").val()
+                let errorSkidInput = $("#errorSKID").html();
+                let errorEmailInput = $("#errorEmail").html();
 
                 if (!name) {
                     error = {
@@ -2252,7 +2333,7 @@ $.each(response.data, function(index, item) {
                         name: "Name is required"
                     }
                 }
-                if (!SKID) {
+                if (!SKID || errorSkidInput != "") {
                     error = {
                         ...error,
                         skid: "SKID is required"
@@ -2277,6 +2358,10 @@ $.each(response.data, function(index, item) {
                     error.emergencyContect = "Please Enter only Number";
                 }
 
+                if (errorEmailInput != "") {
+                    error.email = "Please Enter Email";
+                }
+
 
                 // Display error messages
                 if (error.name) {
@@ -2284,6 +2369,8 @@ $.each(response.data, function(index, item) {
                     $(".error-name").addClass("error-input");
                     $("#errorName").addClass("text-danger");
                     $(".name").addClass("error-input");
+
+
                 } else {
                     $("#name").removeClass("text-danger");
                     $(".name").removeClass("error-input");
@@ -2334,11 +2421,18 @@ $.each(response.data, function(index, item) {
 
 
 
+                if (Object.keys(error).length > 0) {
+                    scrollToFirstError();
+                    return;
+                }
+
+                
+
                 if (Object.keys(error).length === 0) {
 
                     let activeStep = $('.step.active').data('target');
                     Steps(activeStep, 'next');
-					
+
                     // alert("Form submitted successfully!");
                 }
             });
@@ -2346,6 +2440,7 @@ $.each(response.data, function(index, item) {
 
 
             $('.sameAddress').change(function() {
+                
                 if ($(this).is(':checked')) {
                     $('.residentialStreetAddress').val($('.streetAddress1').val());
                     $('.residentialStreetAddress2').val($('.streetAddress2').val());
@@ -2400,7 +2495,17 @@ $.each(response.data, function(index, item) {
                     $('.residentialState').prop("readonly", false).prop("disabled", false);
                     $('.residentialPin').prop("readonly", false).prop("disabled", false);
                 }
+            
             });
+
+            $('.streetAddress1, .area, .state, .pin').on('keyup', function() {
+  if ($('.streetAddress1').val() !== "" && $('.area').val() !== "" && $('.state').val() !== "" && $('.pin').val() !== "") {
+     $(".sameAddress").show();
+  } else {
+    $(".sameAddress").hide();
+  }
+});
+
 
             // $(".step").on('click', function(e) {
             // 	let activeStep = $('.step.active').data('target');
@@ -2428,7 +2533,7 @@ $.each(response.data, function(index, item) {
                     case '#test-vl-4':
                         stepFour(clickType)
                         $("#next").css("display", "none");
-                        
+
                         break;
                     case '#test-vl-5':
                         stepFive(clickType)
@@ -2448,10 +2553,10 @@ $.each(response.data, function(index, item) {
                         formData.append('image', file);
 
                         $.ajaxSetup({
-                         headers: {
-                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                             }
-                          });
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
 
                         $.ajax({
                             url: '/fileUpload', // Replace with the URL of your PHP file handling the upload
@@ -2494,10 +2599,10 @@ $.each(response.data, function(index, item) {
                         formData.append('image', file);
 
                         $.ajaxSetup({
-                         headers: {
-                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                             }
-                          });
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
 
                         $.ajax({
                             url: '/aadhar/upload', // Replace with the URL of your PHP file handling the upload
@@ -2506,7 +2611,8 @@ $.each(response.data, function(index, item) {
                             processData: false,
                             contentType: false,
                             success: function(response) {
-                                const uploadedImage = document.getElementById('uploadedAadharImage');
+                                const uploadedImage = document.getElementById(
+                                    'uploadedAadharImage');
                                 const iconElement = document.querySelector('.aadhar-img i');
                                 if (response) {
                                     uploadedImage.src = response?.url;
@@ -2551,8 +2657,6 @@ $.each(response.data, function(index, item) {
 
                 var imageElement = document.getElementById('uploadedImage');
                 var imageSrc = imageElement.getAttribute('src');
-
-                console.log(imageSrc, "imageSrc");
 
               
 
@@ -2600,7 +2704,7 @@ $.each(response.data, function(index, item) {
                         }
                         if (clickType == 'submit' || clickType == 'next') {
                             $('#previous').css('display', 'block');
-							toastr.success('Basic Information submitted successfully!')
+                            toastr.success('Basic Information submitted successfully!')
                             stepper3.next();
                         }
                     },
@@ -2619,6 +2723,9 @@ $.each(response.data, function(index, item) {
                     let area = $('.area').val()
                     let state = $('.state').val()
                     let pin = $('.pin').val()
+
+                    let errorPinInput = $("#errorPin").html();
+                    let errorResidentialPinInput = $("#errorResidentialPin").html();
 
                     let sameAddress = $(".sameAddress").prop("checked");
 
@@ -2664,6 +2771,10 @@ $.each(response.data, function(index, item) {
                         }
                     }
 
+                    // if (errorResidentialPinInput != "") {
+                    //        error.residentialPin = "Invalid PIN: Must be a 6-digit number"
+                    // }
+
                     if (error.residentialStreetAddress) {
 
                         $("#errorResidentialStreetAddress").html(error.residentialStreetAddress);
@@ -2677,7 +2788,6 @@ $.each(response.data, function(index, item) {
                     }
 
                     if (error.residentialArea) {
-                        console.log(error.area);
                         $("#errorResidentialArea").html(error.residentialArea);
                         $(".residentialArea").addClass("error-input");
                         $("#errorResidentialArea").addClass("text-danger");
@@ -2689,7 +2799,7 @@ $.each(response.data, function(index, item) {
                     }
 
                     if (error.residentialState) {
-                        console.log(error.area);
+                      
                         $("#errorResidentialState").html(error.residentialState);
                         $(".residentialState").addClass("error-input");
                         $("#errorResidentialState").addClass("text-danger");
@@ -2701,7 +2811,7 @@ $.each(response.data, function(index, item) {
                     }
 
                     if (error.residentialPin) {
-                        console.log(error.area);
+                       
                         $("#errorResidentialPin").html(error.residentialPin);
                         $(".residentialPin").addClass("error-input");
                         $("#errorResidentialPin").addClass("text-danger");
@@ -2750,6 +2860,12 @@ $.each(response.data, function(index, item) {
                             pin: "PIN is required"
                         }
                     }
+
+                    if (errorPinInput != "") {
+                        error.pin = "Invalid PIN: Must be a 6-digit number"
+                        
+                    }
+
 
                     if (error.streetAdrress) {
 
@@ -2825,6 +2941,11 @@ $.each(response.data, function(index, item) {
                         }
                     });
 
+                    if (Object.keys(error).length > 0) {
+                        scrollToFirstError();
+                        return;
+                    }
+
                     if (Object.keys(error).length === 0) {
                         $.ajax({
                             type: "POST",
@@ -2837,7 +2958,7 @@ $.each(response.data, function(index, item) {
                                     //alert("Form submitted successfully!");
                                 }
                                 if (clickType == 'submit' || clickType == 'next') {
-									toastr.success('Address submitted successfully!')
+                                    toastr.success('Address submitted successfully!')
                                     stepper3.next();
                                 }
                             }
@@ -2860,9 +2981,19 @@ $.each(response.data, function(index, item) {
                     let sourceOfHiringRequest = $('.sourceOfHiringRequest').val()
                     let isTraniee = $('.isTraniee').val()
                     let salary = $('.salary').val()
-					let revenueEarning = $('.revenueEarning').val()
+                    let revenueEarning = $('.revenueEarning').val()
+                    let aadhaar = $('.aadhaar').val()
 
-					if (!revenueEarning) {
+                    let errorAadhaarInput = $("#errorAadhaar").html();
+
+                    if (!aadhaar || errorAadhaarInput != "") {
+                        error = {
+                            ...error,
+                            aadhaar: "Aadhaar is required"
+                        }
+                    }
+
+                    if (!revenueEarning) {
                         error = {
                             ...error,
                             revenueEarning: "Revenue Earning is required"
@@ -2923,6 +3054,18 @@ $.each(response.data, function(index, item) {
                         error.salary = "Please Enter only Number";
                     }
 
+                    if (error.aadhaar) {
+
+                        $("#errorAadhaar").html(error.aadhaar);
+                        $(".aadhaar").addClass("error-input");
+                        $("#errorAadhaar").addClass("text-danger");
+
+                    } else {
+                        $("#errorAadhaar").html("");
+                        $(".aadhaar").removeClass("error-input");
+                        $("#errorAadhaar").removeClass("text-danger");
+                    }
+
                     if (error.salary) {
 
                         $("#errorSalary").html(error.salary);
@@ -2959,7 +3102,7 @@ $.each(response.data, function(index, item) {
                         $("#errorIsTraniee").removeClass("text-danger");
                     }
 
-					if (error.revenueEarning) {
+                    if (error.revenueEarning) {
 
                         $("#errorRevenueEarning").html(error.revenueEarning);
                         $(".revenueEarning").addClass("error-input");
@@ -3041,6 +3184,7 @@ $.each(response.data, function(index, item) {
                         employmentStatus: $(".employmentStatus").val(),
                         dateOfJoining: $(".dateOfJoining").val(),
                         aadharImage: aadharImageSrc,
+                        aadhaarNumber: Number($(".aadhaar").val()),
                         shiftTiming: $(".shiftTiming").val(),
                         serviceStatus: $(".serviceStatus").val(),
                         appraisalCycle: $(".appraisalCycle").val(),
@@ -3063,20 +3207,25 @@ $.each(response.data, function(index, item) {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
+
+                    if (Object.keys(error).length > 0) {
+                        scrollToFirstError();
+                        return;
+                    }
                     if (Object.keys(error).length === 0) {
 
                         $.ajax({
                             type: "POST",
                             url: "/employee/additional/info",
                             data: {
-                                    data: stepThreeData,
+                                data: stepThreeData,
                             },
                             success: function(response) {
                                 if (response) {
                                     //alert("Form submitted successfully!");
                                 }
                                 if (clickType == 'submit' || clickType == 'next') {
-									toastr.success('Employee Information submitted successfully!')
+                                    toastr.success('Employee Information submitted successfully!')
                                     $("#submit").css("display", "block");
                                     $("#next").css("display", "none");
                                     stepper3.next();
@@ -3094,11 +3243,11 @@ $.each(response.data, function(index, item) {
                 $("#asssignProcessTbody tr").each(function() {
                     var row = $(this);
                     var rowData = {
-                    spanId: Number(row.find(".assignspanId").text()),
-                    clientId: Number(row.find(".assignclientId").text()),
-                    processId:Number( row.find(".assignprocessId").text()),
-                    billableStatus: row.find(".assignbillable").text(),
-                    contribution: row.find(".contribution").text(),
+                        spanId: Number(row.find(".assignspanId").text()),
+                        clientId: Number(row.find(".assignclientId").text()),
+                        processId: Number(row.find(".assignprocessId").text()),
+                        billableStatus: row.find(".assignbillable").text(),
+                        contribution: row.find(".contribution").text(),
                     };
 
                     tableData.push(rowData);
@@ -3141,17 +3290,17 @@ $.each(response.data, function(index, item) {
                     url: "/employee/proccess/assignment",
                     data: {
                         data: stepFourData,
-                     },
+                    },
                     success: function(response) {
                         // if (clickType == 'submit' || clickType == 'next') {
                         // 	stepper3.next();
                         // }
                         if (clickType == 'next') {
-							toastr.success('Process Assignment submitted successfully!')
+                            toastr.success('Process Assignment submitted successfully!')
                             stepper3.next();
                         }
                         if (clickType == 'submit') {
-							toastr.success('Process Assignment submitted successfully!')
+                            toastr.success('Process Assignment submitted successfully!')
                             window.location.replace("http://127.0.0.1:8000/activeEmployee");
                         }
 
@@ -3166,29 +3315,29 @@ $.each(response.data, function(index, item) {
                 $("#asssignIjpTbody tr").each(function() {
                     var row = $(this);
                     var statusElement = row.find(".ijpStatus");
-    var statusText = statusElement.text().trim();
+                    var statusText = statusElement.text().trim();
 
-    
-    var IjpStatus;
-    switch (statusText) {
-        case "Pending":
-            IjpStatus = "Pending";
-            break;
-        case "Processing":
-            IjpStatus = "Processing";
-            break;
-        case "Completed":
-            IjpStatus = "Completed";
-            break;
-        default:
-           
-            IjpStatus = "Unknown";
-    }
+
+                    var IjpStatus;
+                    switch (statusText) {
+                        case "Pending":
+                            IjpStatus = "Pending";
+                            break;
+                        case "Processing":
+                            IjpStatus = "Processing";
+                            break;
+                        case "Completed":
+                            IjpStatus = "Completed";
+                            break;
+                        default:
+
+                            IjpStatus = "Unknown";
+                    }
                     var rowData = {
                         IjpName: row.find(".ijpName").text(),
                         IjpDateOfApplication: row.find(".dateOfApplication").text(),
                         IjpStatus: IjpStatus,
-						IjpBillableStatus: row.find(".ijpBillableStatus").text(),
+                        IjpBillableStatus: row.find(".ijpBillableStatus").text(),
                         IjpClosure: row.find(".dateOfClosure").text(),
                         IjpSpan: row.find(".ijpSpan").text(),
                         IjpProcess: row.find(".ijpProcess").text(),
@@ -3235,8 +3384,8 @@ $.each(response.data, function(index, item) {
                 };
 
                 const stepFiveData = JSON.stringify(dataObject);
-				
-				$.ajaxSetup({
+
+                $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
@@ -3250,7 +3399,7 @@ $.each(response.data, function(index, item) {
                     },
                     data: {
                         data: stepFiveData,
-                     },
+                    },
                     success: function(response) {
                         // if (clickType == 'submit' || clickType == 'next') {
                         // 	//window.location.replace("http://localhost/sunKnowledge/employee");
@@ -3258,11 +3407,11 @@ $.each(response.data, function(index, item) {
                         // }
 
                         if (clickType == 'next') {
-							toastr.success('IJP submitted successfully!')
+                            toastr.success('IJP submitted successfully!')
                             stepper3.next();
                         }
                         if (clickType == 'submit') {
-							toastr.success('IJP submitted successfully!')
+                            toastr.success('IJP submitted successfully!')
                             window.location.replace("http://127.0.0.1:8000/activeEmployee");
                         }
                     }
@@ -3286,12 +3435,12 @@ $.each(response.data, function(index, item) {
 						<div class="col-12 col-md-6 col-lg-12 col-xl-6">
 							<label for="input2" class="form-label">Relationship</label>
 							<select id="input7" name="relationWithRelative" class="form-select relationWithRelative">
-								<option value="" selected></option>
-								<option value="Sibling">Sibling</option>
-								<option value="Spouse">Spouse</option>
-								<option value="Partner">Partner</option>
-								<option value="Parent">Parent</option>
-								<option value="Cousin">Cousin</option>
+								<option value="" disabled selected>Select</option>
+                                <option value="Cousin">Cousin</option>
+                                                            <option value="Parent">Parent</option>
+                                                            <option value="Partner">Partner</option>
+                                                            <option value="Sibling">Sibling</option>
+                                                            <option value="Spouse">Spouse</option>
 							</select>
 						</div>
 					</div>
@@ -3333,41 +3482,41 @@ $.each(response.data, function(index, item) {
 
 
             let newRowCounter = 0;
-        let arr = [];
-        if (newRowCounter == 0) {
-          $("#asssignProcessTbody").append("No Data Found");
-        }
+            let arr = [];
+            if (newRowCounter == 0) {
+                $("#asssignProcessTbody").append("No Data Found");
+            }
 
-        $("#addProcessButton").click(function () {
-           
-          let row = $("#asssignProcessTbody").find(`tr[data-row-id]`).length;
-          let spanId = $(".modelSpan").val();
-          let spanName = $(".modelSpan option:selected").text();
-          let clientId = $(".modelClient").val();
-          let clientName = $(".modelClient option:selected").text();
-          let processId = $(".modelProcess").val();
-          let processName = $(".modelProcess option:selected").text();
-          let billableStatus = $(".modelBillable").val();
-          let contribution = $(".modelContribution").val();
+            $("#addProcessButton").click(function() {
 
-          arr.push({
-            spanId: spanId,
-            clientId: clientId,
-            processId: processId,
-            billableStatus: billableStatus,
-            contribution: contribution,
-          });
-          console.log(arr);
-          newRowCounter++;
+                let row = $("#asssignProcessTbody").find(`tr[data-row-id]`).length;
+                let spanId = $(".modelSpan").val();
+                let spanName = $(".modelSpan option:selected").text();
+                let clientId = $(".modelClient").val();
+                let clientName = $(".modelClient option:selected").text();
+                let processId = $(".modelProcess").val();
+                let processName = $(".modelProcess option:selected").text();
+                let billableStatus = $(".modelBillable").val();
+                let contribution = $(".modelContribution").val();
 
-          if (
-            spanId != "" ||
-            clientId != "" ||
-            processId != "" ||
-            billableStatus != "" ||
-            contribution != ""
-          ) {
-            const newRow = `
+                arr.push({
+                    spanId: spanId,
+                    clientId: clientId,
+                    processId: processId,
+                    billableStatus: billableStatus,
+                    contribution: contribution,
+                });
+                console.log(arr);
+                newRowCounter++;
+
+                if (
+                    spanId != "" ||
+                    clientId != "" ||
+                    processId != "" ||
+                    billableStatus != "" ||
+                    contribution != ""
+                ) {
+                    const newRow = `
 				<tr data-row-id="${row}">
 					<td class="assignspanId" style = "display: none;">${spanId}</td>
 					<td class="assignspan">${spanName}</td>
@@ -3385,74 +3534,74 @@ $.each(response.data, function(index, item) {
 					</td>
 				</tr>
 			`;
-            if (newRowCounter == 1) {
-              $("#asssignProcessTbody").html("");
-            }
-            $("#asssignProcessTbody").append(newRow);
-            $(".editModal").modal("hide");
-            $(".editModal").find("input, select").val("");
-          }
-        });
+                    if (newRowCounter == 1) {
+                        $("#asssignProcessTbody").html("");
+                    }
+                    $("#asssignProcessTbody").append(newRow);
+                    $(".editModal").modal("hide");
+                    $(".editModal").find("input, select").val("");
+                }
+            });
 
-        $("#asssignProcessTbody").on("click", ".delete-row", function () {
-          newRowCounter--;
-          $(this).closest("tr").remove();
-          if (newRowCounter == 0) {
-            $("#asssignProcessTbody").append("No Data Found");
-          }
-        });
+            $("#asssignProcessTbody").on("click", ".delete-row", function() {
+                newRowCounter--;
+                $(this).closest("tr").remove();
+                if (newRowCounter == 0) {
+                    $("#asssignProcessTbody").append("No Data Found");
+                }
+            });
 
-        let editedRowId;
+            let editedRowId;
 
-        $("#asssignProcessTbody").on("click", ".editAssignRow", function () {
-          $("#updateProcessButton").css("display", "block");
-          $("#addProcessButton").css("display", "none");
+            $("#asssignProcessTbody").on("click", ".editAssignRow", function() {
+                $("#updateProcessButton").css("display", "block");
+                $("#addProcessButton").css("display", "none");
 
-          let row = $(this).closest("tr");
-          let spanValue = row.find(".assignspanId").text();
-          let clientValue = row.find(".assignclientId").text();
-          let processValue = row.find(".assignprocessId").text();
-          let assignValue = row.find(".assignbillable").text();
-          let contributionValue = row.find(".contribution").text();
+                let row = $(this).closest("tr");
+                let spanValue = row.find(".assignspanId").text();
+                let clientValue = row.find(".assignclientId").text();
+                let processValue = row.find(".assignprocessId").text();
+                let assignValue = row.find(".assignbillable").text();
+                let contributionValue = row.find(".contribution").text();
 
-          editedRowId = row.data("row-id");
+                editedRowId = row.data("row-id");
 
-          $(".modelSpan").val(spanValue);
-          $(".modelClient").val(clientValue);
-          $(".modelProcess").val(processValue);
-          $(".modelBillable").val(assignValue);
-          $(".modelContribution").val(contributionValue);
+                $(".modelSpan").val(spanValue);
+                $(".modelClient").val(clientValue);
+                $(".modelProcess").val(processValue);
+                $(".modelBillable").val(assignValue);
+                $(".modelContribution").val(contributionValue);
 
-          $(".editModal").modal("show");
-        });
+                $(".editModal").modal("show");
+            });
 
-        $("#updateProcessButton").click(function () {
-          let editedSpanValue = $(".modelSpan").val();
-          let editedClientValue = $(".modelClient").val();
-          let editedProcessValue = $(".modelProcess").val();
-          let editedBillableValue = $(".modelBillable").val();
-          let editedContributionValue = $(".modelContribution").val();
-          let editedspanName = $(".modelSpan option:selected").text();
-          let editedclientName = $(".modelClient option:selected").text();
-          let editedprocessName = $(".modelProcess option:selected").text();
+            $("#updateProcessButton").click(function() {
+                let editedSpanValue = $(".modelSpan").val();
+                let editedClientValue = $(".modelClient").val();
+                let editedProcessValue = $(".modelProcess").val();
+                let editedBillableValue = $(".modelBillable").val();
+                let editedContributionValue = $(".modelContribution").val();
+                let editedspanName = $(".modelSpan option:selected").text();
+                let editedclientName = $(".modelClient option:selected").text();
+                let editedprocessName = $(".modelProcess option:selected").text();
 
-          let rowToUpdate = $("#asssignProcessTbody").find(
-            `tr[data-row-id="${editedRowId}"]`
-          );
-          rowToUpdate.find(".assignspan").text(editedspanName);
-          rowToUpdate.find(".assignspanId").text(editedSpanValue);
+                let rowToUpdate = $("#asssignProcessTbody").find(
+                    `tr[data-row-id="${editedRowId}"]`
+                );
+                rowToUpdate.find(".assignspan").text(editedspanName);
+                rowToUpdate.find(".assignspanId").text(editedSpanValue);
 
-          rowToUpdate.find(".assignclient").text(editedclientName);
-          rowToUpdate.find(".assignclientId").text(editedClientValue);
+                rowToUpdate.find(".assignclient").text(editedclientName);
+                rowToUpdate.find(".assignclientId").text(editedClientValue);
 
-          rowToUpdate.find(".assignprocess").text(editedprocessName);
-          rowToUpdate.find(".assignprocessId").text(editedProcessValue);
+                rowToUpdate.find(".assignprocess").text(editedprocessName);
+                rowToUpdate.find(".assignprocessId").text(editedProcessValue);
 
-          rowToUpdate.find(".assignbillable").text(editedBillableValue);
-          rowToUpdate.find(".contribution").text(editedContributionValue);
+                rowToUpdate.find(".assignbillable").text(editedBillableValue);
+                rowToUpdate.find(".contribution").text(editedContributionValue);
 
-          $(".editModal").modal("hide");
-        });
+                $(".editModal").modal("hide");
+            });
 
             let arr2 = [];
             let RowCounter = 0;
@@ -3462,7 +3611,7 @@ $.each(response.data, function(index, item) {
                 let IjpName = $('.modalIjpName').val();
                 let IjpDateOfApplication = $('.MIDOA').val();
                 let IjpProcess = $('.modalIjpProcess').val();
-				let IjpStatus = $('.modalIjpStatus').val();
+                let IjpStatus = $('.modalIjpStatus').val();
                 let IjpBillableStatus = $('.modalBillableIjpStatus').val();
                 let IjpClosure = $('.MIDOC').val();
                 let IjpSpan = $('.modalIjpSpan').val();
@@ -3473,7 +3622,7 @@ $.each(response.data, function(index, item) {
                     IjpName: IjpName,
                     IjpDateOfApplication: IjpDateOfApplication,
                     IjpProcess: IjpProcess,
-					IjpBillableStatus: IjpBillableStatus,
+                    IjpBillableStatus: IjpBillableStatus,
                     IjpStatus: IjpStatus,
                     IjpClosure: IjpClosure,
                     IjpSpan: IjpSpan,
@@ -3483,7 +3632,8 @@ $.each(response.data, function(index, item) {
 
 
                 RowCounter++;
-                if (IjpName != "" || IjpDateOfApplication != "" || IjpProcess != "" || IjpStatus != "" || IjpBillableStatus != "" ||
+                if (IjpName != "" || IjpDateOfApplication != "" || IjpProcess != "" || IjpStatus != "" ||
+                    IjpBillableStatus != "" ||
                     IjpClosure != "" || IjpSpan != "" || IjpClient != "") {
 
                     const newRow = `
@@ -3500,22 +3650,22 @@ $.each(response.data, function(index, item) {
             switch (IjpStatus) {
                 case 'Pending':
                     return `
-                        <div class="d-flex align-items-center text-danger">
-                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
-                            <span>Pending</span>
-                        </div>`;
+                                        <div class="d-flex align-items-center text-danger">
+                                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
+                                            <span>Pending</span>
+                                        </div>`;
                 case 'Processing':
                     return `
-                        <div class="d-flex align-items-center text-primary">
-                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
-                            <span>Processing</span>
-                        </div>`;
+                                        <div class="d-flex align-items-center text-primary">
+                                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
+                                            <span>Processing</span>
+                                        </div>`;
                 case 'Completed':
                     return `
-                        <div class="d-flex align-items-center text-success">
-                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
-                            <span>Completed</span>
-                        </div>`;
+                                        <div class="d-flex align-items-center text-success">
+                                            <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
+                                            <span>Completed</span>
+                                        </div>`;
                 default:
                     return ''; 
             }
@@ -3596,9 +3746,10 @@ $.each(response.data, function(index, item) {
                 rowToUpdate.find(".ijpProcess").text(editedProcessValue);
                 rowToUpdate.find(".ijpClient").text(editedClientValue);
                 let ijpStatusCell = rowToUpdate.find(".ijpStatus");
-    ijpStatusCell.find("i").removeClass(); // Remove existing classes from the <i> element
-    ijpStatusCell.find("i").addClass(getStatusIconClass(editedStatusValue)); // Set the appropriate class for the <i> element
-    ijpStatusCell.find("span").text(editedStatusValue); // Update the text content
+                ijpStatusCell.find("i").removeClass(); // Remove existing classes from the <i> element
+                ijpStatusCell.find("i").addClass(getStatusIconClass(
+                    editedStatusValue)); // Set the appropriate class for the <i> element
+                ijpStatusCell.find("span").text(editedStatusValue); // Update the text content
 
 
                 $(".editIjpModal").modal("hide");
@@ -3607,17 +3758,17 @@ $.each(response.data, function(index, item) {
         });
 
         function getStatusIconClass(status) {
-    switch (status) {
-        case 'Pending':
-            return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-danger';
-        case 'Processing':
-            return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-primary';
-        case 'Completed':
-            return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-success';
-        default:
-            return ''; // Handle other cases as needed
-    }
-}
+            switch (status) {
+                case 'Pending':
+                    return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-danger';
+                case 'Processing':
+                    return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-primary';
+                case 'Completed':
+                    return 'bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1 text-success';
+                default:
+                    return ''; // Handle other cases as needed
+            }
+        }
 
         function createObjectFromArrays(keys, values) {
             if (keys.length !== values.length) {
@@ -3642,6 +3793,17 @@ $.each(response.data, function(index, item) {
                 return false; // It contains alphabetic characters or is empty.
             } else {
                 return true; // It's a phone number (contains only numeric characters).
+            }
+        }
+
+        function scrollToFirstError() {
+            const firstErrorField = $('.error-input').first();
+
+            if (firstErrorField.length > 0) {
+                $('html, body').animate({
+                    scrollTop: firstErrorField.offset().top - 100 // Adjust the offset as needed
+                }, 'fast');
+                firstErrorField.focus();
             }
         }
     </script>

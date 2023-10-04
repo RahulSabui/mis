@@ -105,6 +105,7 @@ class EmployeeService
     }
     public function createOrUpdateEmployeeInfo($data)
     {
+        // dd($data);
         $employeeId = $data['employeeId'];
         $employeeAdditionalInfo = EmployeeAdditionalInfo::where('employeeId', $employeeId)->first();
 
@@ -115,6 +116,7 @@ class EmployeeService
             'employmentStatus' => isset($data["employmentStatus"]) ? $data["employmentStatus"] : null,
             'dateOfJoining' => isset($data["dateOfJoining"]) && $data["dateOfJoining"] != "" ? date_create_from_format('m-d-Y', $data["dateOfJoining"])->format('Y-m-d') : null,
             'aadharImage' => isset($data["aadharImage"]) ? json_encode($data["aadharImage"]) : null,
+            'aadhaarNumber' => isset($data["aadhaarNumber"]) ? $data["aadhaarNumber"] : null,
             'shiftTiming' => isset($data["shiftTiming"]) ? $data["shiftTiming"] : null,
             'serviceStatus' => isset($data["serviceStatus"]) ? $data["serviceStatus"] : null,
             'appraisalCycle' => isset($data["appraisalCycle"]) ? $data["appraisalCycle"] : null,
@@ -388,5 +390,18 @@ class EmployeeService
         ->first();
 
         return $dataLog;
+    }
+    public function employeesData($id){
+        $employee = Employee::with(['address', 'additionalInfo', 'ijp'])
+    ->where('id', $id)
+    ->first();
+
+    $employees = $employee->toArray(); 
+    $addressInfo = $employee->address ? $employee->address->toArray() : null;
+    $additionalInfo = $employee->additionalInfo ? $employee->additionalInfo->toArray() : null;
+    $ijpInfo = $employee->ijp ? $employee->ijp->toArray() : null;
+    //return [$basicInfo , $addressInfo, $additionalInfo, $ijpInfo];
+    return $employees;
+
     }
 }

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Droplocation extends Model
 {
-    protected $table = 'loaction'; 
+    protected $table = 'droplocation'; 
     use HasFactory;
 }

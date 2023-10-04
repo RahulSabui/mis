@@ -6,6 +6,7 @@ use App\Models\Designation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Employee;
+use App\Models\EmployeeAdditionalInfo;
 use App\Models\Droplocation;
 class GlobalService
 {
@@ -14,11 +15,11 @@ class GlobalService
     }
 
     public function designation(){
-        return $data =  Designation::all();
+        return $data =  Designation::orderBy('name', 'asc')->get();
     }
 
     public function span(){
-        return $data =  DB::table('span')->get();
+        return $data =  DB::table('span')->orderBy('id', 'asc')->get();
     }
 
     
@@ -54,6 +55,20 @@ class GlobalService
     public function skidChecking($skid)
     {
         $exists = Employee::where('skid', '=', $skid)->exists();
+
+        return $exists;
+    }
+
+    public function emailChecking($email)
+    {
+        $exists = Employee::where('email', '=', $email)->exists();
+
+        return $exists;
+    }
+
+    public function aadhaarChecking($aadhaar)
+    {
+        $exists = EmployeeAdditionalInfo::where('aadhaarNumber', '=', $aadhaar)->exists();
 
         return $exists;
     }

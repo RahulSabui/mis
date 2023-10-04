@@ -117,11 +117,11 @@ class GlobalController extends Controller
         }
     }
 
-    public function checkSkid(Request $request)
-    {
-        try {
-            $skid = $request->input('skid');
-            $exists = $this->GlobalService->skidChecking($skid);
+public function checkSkid(Request $request)
+{
+    try {
+        $skid = $request->input('skid');
+        $exists = $this->GlobalService->skidChecking($skid);
 
             return response()->json(['exists' => $exists]);
         } catch (\Exception $e) {
@@ -131,6 +131,34 @@ class GlobalController extends Controller
             ], 500);
         }
     }
+
+public function checkEmail(Request $request){
+    try {
+        $email = $request->input('email');
+        $exists = $this->GlobalService->emailChecking($email);
+
+        return response()->json(['exists' => $exists]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+}
+
+public function checkAadhaar(Request $request){
+    try {
+        $email = $request->input('aadhaar');
+        $exists = $this->GlobalService->aadhaarChecking($email);
+
+        return response()->json(['exists' => $exists]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+}
 
     public function spans()
     {

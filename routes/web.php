@@ -41,7 +41,10 @@ Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function ()
     Route::post('/fileUpload', [GlobalController::class, 'fileUpload'])->name('fileUpload');
     Route::post('/aadhar/upload', [GlobalController::class, 'aadharUpload'])->name('aadharUpload');
     Route::post('/check/skid', [GlobalController::class, 'checkSkid'])->name('checkSkid');
+    Route::post('/check/email', [GlobalController::class, 'checkEmail'])->name('checkEmail');
+    Route::post('/check/aadhaar', [GlobalController::class, 'checkAadhaar'])->name('checkAadhaar');
 
+    Route::get('/employee/{id}', [EmployeeController::class, 'editEmployee'])->name('editEmployee');
 
 
 

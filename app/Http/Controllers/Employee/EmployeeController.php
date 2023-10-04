@@ -150,11 +150,29 @@ class EmployeeController extends Controller
         }
     }
 
-    public function activeEmployee()
+    public function editEmployee($id)
     {
         try {
             // $activeEmployeeDetails = $this->employeeService->activeEmployeelist(null, null, null, null);
             // dd( $activeEmployeeDetails);
+
+            $employees = $this->employeeService->employeesData($id);
+
+            //dd($employees['name']);
+           
+            if ($employees) {
+                return view('employees.employeeAdd',['employee' => $employees]);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function activeEmployee(){
+        try {
             $empArr = [];
             $page = request()->input('page', 1);
             $limit = request()->input('limit', 10);
