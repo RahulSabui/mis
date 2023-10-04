@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('title', 'employeeAdd')
 @section('content')
+<style>
+    .disabled-step {
+    pointer-events: none;
+    opacity: 0.5; /* Optionally reduce opacity to visually indicate disabled state */
+    cursor: not-allowed; /* Optionally change cursor to indicate non-interactivity */
+}
+</style>
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-sm-flex align-items-center">
@@ -48,7 +55,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                             </div>
                         </div>
 
-                        <div class="step" data-target="#test-vl-2">
+                        <div class="step disabled-step" id="test-vl-22"  data-target="#test-vl-2">
                             <div class="step-trigger" role="tab" id="stepper3trigger2" aria-controls="test-vl-2">
                                 <div class="bs-stepper-circle"><i class='bx bx-file fs-4'></i></div>
                                 <div class="">
@@ -58,7 +65,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                             </div>
                         </div>
 
-                        <div class="step" data-target="#test-vl-3">
+                        <div class="step disabled-step" id="test-vl-33" data-target="#test-vl-3">
                             <div class="step-trigger" role="tab" id="stepper3trigger3" aria-controls="test-vl-3">
                                 <div class="bs-stepper-circle"><i class='bx bxs-graduation fs-4'></i></div>
                                 <div class="">
@@ -68,7 +75,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                             </div>
                         </div>
 
-                        <div class="step processAssignmentDiv" data-target="#test-vl-4">
+                        <div class="step processAssignmentDiv disabled-step" id="test-vl-44" data-target="#test-vl-4">
                             <div class="step-trigger" role="tab" id="stepper3trigger4" aria-controls="test-vl-4">
                                 <div class="bs-stepper-circle"><i class="lni lni-write fs-5"></i></div>
                                 <div class="">
@@ -286,7 +293,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                                                         <label for="input2" class="form-label">Relationship</label>
-                                                        <select id="input7" name="relationWithRelative[]" class="form-select lookup relationWithRelative">
+                                                        <select id="input7" name="relationWithRelative[]" class="form-select relationWithRelative">
                                                             <option disabled value="" selected>Select</option>
                                                             <option value="Cousin">Cousin</option>
                                                             <option value="Parent">Parent</option>
@@ -1257,11 +1264,12 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
             maxDate: 'today',
         });
 
-       
 
         //field validation
         $(document).ready(function() {
-            
+
+
+                  
 
             let token1 = sessionStorage.getItem('authToken');
 
@@ -1710,7 +1718,7 @@ $(".aadhaar").on("keypress", function(e) {
   });
 
   $(".phone").on("keypress", function(e) {
-                if ($(this).val().length >= 13) {
+                if ($(this).val().length >= 10) {
                     e.preventDefault();
                 }
             });
@@ -1724,7 +1732,7 @@ $(".aadhaar").on("keypress", function(e) {
   });
 
   $(".emergencyContact").on("keypress", function(e) {
-                if ($(this).val().length >= 13) {
+                if ($(this).val().length >= 10) {
                     e.preventDefault();
                 }
             });
@@ -2342,7 +2350,7 @@ $(".aadhaar").on("keypress", function(e) {
                 if (!phone) {
                     error = {
                         ...error,
-                        phone: "phone is required"
+                        phone: "Phone is required"
                     }
                 } else if (!checkNumber(phone)) {
                     error.phone = "Please Enter only Number";
@@ -2703,6 +2711,7 @@ $(".aadhaar").on("keypress", function(e) {
                             $('#id').val(response.id);
                         }
                         if (clickType == 'submit' || clickType == 'next') {
+                            $('#test-vl-22').removeClass('disabled-step');
                             $('#previous').css('display', 'block');
                             toastr.success('Basic Information submitted successfully!')
                             stepper3.next();
@@ -2958,6 +2967,7 @@ $(".aadhaar").on("keypress", function(e) {
                                     //alert("Form submitted successfully!");
                                 }
                                 if (clickType == 'submit' || clickType == 'next') {
+                                    $('#test-vl-33').removeClass('disabled-step');
                                     toastr.success('Address submitted successfully!')
                                     stepper3.next();
                                 }
@@ -3225,6 +3235,7 @@ $(".aadhaar").on("keypress", function(e) {
                                     //alert("Form submitted successfully!");
                                 }
                                 if (clickType == 'submit' || clickType == 'next') {
+                                    $('#test-vl-44').removeClass('disabled-step');
                                     toastr.success('Employee Information submitted successfully!')
                                     $("#submit").css("display", "block");
                                     $("#next").css("display", "none");
