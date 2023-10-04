@@ -22,6 +22,9 @@ Route::get('/reporting/manager/{id}', [GlobalController::class, 'repotingManager
 
 Route::get('/droplocation', [GlobalController::class, 'droplocation'])->name('droplocation');
 
+Route::get('/fetch-designation-and-employees', [GlobalController::class, 'fetchDesignationAndEmployees']);
+
+
 Route::middleware(['App\Http\Middleware\checkAuthenticated'])->group(function () {
 
     Route::get('/', [dashboardController::class, 'dashboard'])->name('dashboard');

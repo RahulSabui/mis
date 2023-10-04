@@ -191,6 +191,22 @@ public function checkAadhaar(Request $request){
             ->first(); // Add this to execute the query and retrieve the results
     }
 
+    public function fetchDesignationAndEmployees()
+{
+    $query = "
+    SELECT ebi.name AS employee_name, ebi.id as employee_id , d.name AS designation_name
+    FROM employee_basic_info ebi
+    JOIN employee_additional_info eai ON ebi.id = eai.employeeId
+    JOIN designation d ON eai.designationId = d.id
+    WHERE d.name IS NOT NULL;
+";
+
+
+$employees = DB::select($query);
+
+return response()->json($employees);
+}
+
 
 
 }

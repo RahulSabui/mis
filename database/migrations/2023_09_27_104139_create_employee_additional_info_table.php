@@ -27,7 +27,6 @@ return new class extends Migration {
             $table->string('shiftTiming')->nullable();
             $table->string('salary')->nullable();
             $table->string('appraisalCycle')->nullable();
-            $table->string('aadharImage')->nullable();
             $table->string('typeOfMedicalInsurance')->nullable();
             $table->string('chronicMedicalCondition')->nullable();
             $table->string('noticeStatus')->nullable();

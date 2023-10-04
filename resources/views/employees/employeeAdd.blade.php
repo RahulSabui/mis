@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('title', 'employeeAdd')
 @section('content')
+
 <style>
     .disabled-step {
     pointer-events: none;
-    opacity: 0.5; /* Optionally reduce opacity to visually indicate disabled state */
-    cursor: not-allowed; /* Optionally change cursor to indicate non-interactivity */
+    opacity: 0.5; 
+    cursor: not-allowed; 
 }
 </style>
     <div class="page-content">
@@ -29,7 +30,7 @@
 @php echo '<pre>';
 
 if(isset($employee)){
-   print_r($employee); 
+   //print_r($employee); 
    $permanentAddress = json_decode($employee['address']['permanentAddress'], true);
 $residentialAddress = json_decode($employee['address']['residentialAddress'], true);
 }
@@ -166,22 +167,23 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                                         <label for="input2" class="form-label">Gender</label>
-                                        <select name="gender" class="form-select lookup gender">
+                                        <select id="input7" name="gender" class="form-select gender">
                                             <option value="" disabled selected>Select</option>
+                                            <option value="Woman" @if(isset($employee['gender']) && $employee['gender'] === 'Woman') selected @endif>Woman</option>
+                                            <option value="Man" @if(isset($employee['gender']) && $employee['gender'] === 'Man') selected @endif>Man</option>
+                                            <option value="Transgender Woman" @if(isset($employee['gender']) && $employee['gender'] === 'Transgender Woman') selected @endif>Transgender Woman</option>
+                                            <option value="Transgender Man" @if(isset($employee['gender']) && $employee['gender'] === 'Transgender Man') selected @endif>Transgender Man</option>
+                                            <option value="Non-Binary" @if(isset($employee['gender']) && $employee['gender'] === 'Non-Binary') selected @endif>Non-Binary</option>
                                             <option value="Agender" @if(isset($employee['gender']) && $employee['gender'] === 'Agender') selected @endif>Agender</option>
                                             <option value="Gender not listed" @if(isset($employee['gender']) && $employee['gender'] === 'Gender not listed') selected @endif>Gender not listed</option>
-                                            <option value="Man" @if(isset($employee['gender']) && $employee['gender'] === 'Man') selected @endif>Man</option>
-                                            <option value="Non-Binary" @if(isset($employee['gender']) && $employee['gender'] === 'Non-Binary') selected @endif>Non-Binary</option>
                                             <option value="Prefer not to state" @if(isset($employee['gender']) && $employee['gender'] === 'Prefer not to state') selected @endif>Prefer not to state</option>
-                                            <option value="Transgender Man" @if(isset($employee['gender']) && $employee['gender'] === 'Transgender Man') selected @endif>Transgender Man</option>
-                                            <option value="Transgender Woman" @if(isset($employee['gender']) && $employee['gender'] === 'Transgender Woman') selected @endif>Transgender Woman</option>
-                                            <option value="Woman" @if(isset($employee['gender']) && $employee['gender'] === 'Woman') selected @endif>Woman</option>
+
                                             
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                                         <label for="input3" class="form-label">Religion</label>
-                                        <select name="religion" class="form-select lookup religion">
+                                        <select id="input7" name="religion" class="form-select religion">
                                             <option value="" disabled selected>Select</option>
                                             <option value="Bahaism" @if(isset($employee['religion']) && $employee['religion'] === 'Bahaism') selected @endif>Bahaism</option>
                                             <option value="Buddhism" @if(isset($employee['religion']) && $employee['religion'] === 'Buddhism') selected @endif>Buddhism</option>
@@ -198,7 +200,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-2">
                                         <label for="input2" class="form-label">Blood Group</label>
-                                        <select name="bloodGroup" class="form-select lookup bloodGroup">
+                                        <select id="input7" name="bloodGroup" class="form-select bloodGroup">
                                             <option value="" disabled selected>Select</option>
                                             <option value="A-" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'A-') selected @endif>A-</option>
 <option value="A+" @if(isset($employee['bloodGroup']) && $employee['bloodGroup'] === 'A+') selected @endif>A+</option>
@@ -443,7 +445,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                                 <div class="my-4 d-sm-flex justify-content-between">
                                     <h5>Residential Address</h5>
                                     <div class="form-check">
-                                        <input class="form-check-input sameAddress" type="checkbox" name="sameAddress"
+                                        <input class="form-check-input sameAddress" disabled type="checkbox" name="sameAddress"
                                             value="" @if(isset($employee['address']['isSameAsPermanentAddress'])) checked @endif id="flexCheckDefault">
                                         <label class="form-check-label same-as" for="flexCheckDefault">
                                             Same as Permanent Address
@@ -654,7 +656,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
 
                                         <span class="error-message" id="errorAppraisalCycle"></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-4 col-lg-6">
+                                    {{-- <div class="col-sm-6 col-md-4 col-lg-6">
                                         <label for="input2" class="form-label">Reporting</label>
                                         <select name="reporting" class="form-select lookup reporting">
                                             <option disabled selected value="">Select</option>
@@ -668,6 +670,22 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                                          <option> Deputy manager</option>
                                          <option>TL</option>
                                          <option> SME </option> -->
+                                        </select>
+                                    </div> --}}
+
+                                    <div class="col-sm-6 col-md-4 col-lg-6">
+                                        <label for="single-select-optgroup-field" class="form-label">Reporting</label>
+                                        <select class="form-select reporting"  name="reporting" id="single-select-optgroup-field" >
+                                            <option disabled value="" selected>Select</option>
+                                            <optgroup label="Group 1">
+                                                <option>Reactive</option>
+                                                <option>Solution</option>
+                                                <option>Conglomeration</option>
+                                            </optgroup>
+                                            <optgroup label="Group 2">
+                                                <option>Algoritm</option>
+                                                <option>Holistic</option>
+                                            </optgroup>
                                         </select>
                                     </div>
 
@@ -703,6 +721,15 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                                         </select>
                                         <span class="error-message" id="errorRevenueEarning"></span>
                                     </div>
+
+                                    <div class="col-sm-6 col-md-4 col-lg-6 ">
+                                        <label for="input3" class="form-label ">Span</label>
+                                        <select id="input7" name="" class="form-select  Span1">
+                                            <option value="" disabled selected>Select</option>
+                                          
+                                        </select>
+                                       
+                                    </div>
                                     <hr class="mt-4 mb-2" />
 
                                     <div class="col-sm-6 col-md-4 col-lg-6">
@@ -711,7 +738,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                                         <select id="input7" name="noticeStatus" class="form-select noticeStatus">
                                             <option value="" disabled>Select</option>
                                             <option value="Under Notice">Under Notice</option>
-                                            <option selected value="Not">Not</option>
+                                            <option selected value="Not">No</option>
                                         </select>
                                         <span class="error-message" id="errorNoticeStatus"></span>
                                     </div>
@@ -771,9 +798,12 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                                                     <div class="row g-3">
                                                         <div class="col-12">
                                                             <label for="input2" class="form-label">Span</label>
+                                                            {{-- <input class="form-select modelSpan" type="text" value="" name=""> --}}
                                                             <select class="form-select modelSpan" name="modelSpan"
-                                                                data-placeholder="">
-                                                                <option value="" disabled selected>Select</option>
+                                                            data-placeholder="">
+                                                               
+                                                                <option value="" disabled selected></option>
+                                                             
                                                                
                                                             </select>
                                                         </div>
@@ -1223,7 +1253,7 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
         <div class="card last-card">
             <div class="card-body">
                 <div class="d-md-flex d-grid align-items-center gap-3 justify-content-end">
-                    <button class="btn btn-outline-secondary y px-md-4">Cancel</button>
+                    <button class="btn btn-outline-secondary y px-md-4" id="cancel">Cancel</button>
                     <button class="btn btn-secondary px-md-4" style="display: none;" id="previous">Previous</button>
                     <button class="btn btn-primary px-md-4" style="display: block;" id="next">Next</button>
                     <button class="btn btn-success px-md-4" style="display: none;" id="submit">Submit</button>
@@ -1268,7 +1298,12 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
         //field validation
         $(document).ready(function() {
 
+            const cancelButton = document.getElementById('cancel');
 
+cancelButton.addEventListener('click', function () {
+  
+    window.location.replace("http://127.0.0.1:8000/activeEmployee"); 
+});
                   
 
             let token1 = sessionStorage.getItem('authToken');
@@ -1309,11 +1344,130 @@ $permanentAddress = isset($permanentAddress) ? $permanentAddress : [];
                             .attr("value", item.id)
                             .text(item.name);
 
-                        $(".modelSpan").append(option);
+                        $(".Span1").append(option);
+                       
 
                     });
                 }
             });
+
+
+
+           
+            $(".Span1").on("change", function() {
+        //     var selectedValue = $(this).val();
+        // console.log("Change event on Span1 fired.",selectedValue);
+
+        var selectedOption = $(this).find(":selected");
+    
+    // Get the HTML content and value of the selected option
+    var selectedHTML = selectedOption.html();
+    var selectedValue = selectedOption.val();
+
+    // Log the selected HTML and value (for demonstration)
+    console.log("Selected HTML: ", selectedHTML);
+    console.log("Selected Value: ", selectedValue);
+
+    // Now you can use the selected HTML and value as needed.
+    
+//     $(".modelSpan").val(selectedValue);
+
+    
+
+//     // Clear existing options in modelSpan
+//     $(".modelSpan").empty();
+
+//     // Create a new option with the selected HTML and value
+//     var newOption = $("<option>")
+//         .attr("value", selectedValue)
+//         .html(selectedHTML);
+    
+
+// // Append the new option to modelSpan
+// $(".modelSpan").append(newOption);
+
+var firstOption = $(".modelSpan option:first");
+                console.log(firstOption,'ajajja');
+
+// Add the "selected" attribute to the first option
+firstOption.attr("value", selectedValue);
+firstOption.html(selectedHTML);
+
+
+
+
+        
+            // $.ajax({
+            //     type: "get",
+            //     url: "/spans",
+            //     success: function (response) {
+            //         $.each(response?.data, function(index, item) {
+            //             var option = $("<option>")
+            //                 .attr("value", item.id)
+            //                 .text(item.name);
+            //                 $(".modelSpan").append(option);
+            //                 if (item.id == selectedValue) {
+            //                     console.log('working',item.id,selectedValue)
+            //         // Add the 'selected' attribute to the matching option
+            //         $(".modelSpan option[value='" + item.id + "']").prop("selected", true);
+            //         $(".modelSpan").append('<option value="" disabled selected>anand</option>');
+            //     }
+
+            //         });
+                   
+            //     }
+            // });
+        });
+
+
+
+
+        $.ajax({
+    url: '/fetch-designation-and-employees',
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
+        // Clear existing options
+        $('#single-select-optgroup-field').empty();
+
+        // Add the disabled and selected "Select" option
+        $('#single-select-optgroup-field').append('<option value="" disabled selected>Select</option>');
+
+        // Create an object to group employees by designation
+        var groupedEmployees = {};
+
+       
+        $.each(data, function(index, employeeData) {
+            var designationName = employeeData.designation_name;
+            var employeeId = employeeData.employee_id;
+            var employeeName = employeeData.employee_name;
+
+            if (!groupedEmployees[designationName]) {
+                groupedEmployees[designationName] = [];
+            }
+
+            groupedEmployees[designationName].push({ id: employeeId, name: employeeName });
+        });
+
+        
+        $.each(groupedEmployees, function(designationName, employees) {
+            var optgroup = $('<optgroup label="' + designationName + '">');
+
+            $.each(employees, function(index, employee) {
+                optgroup.append('<option value="' + employee.id + '">' + employee.name + '</option>');
+            });
+
+            $('#single-select-optgroup-field').append(optgroup);
+        });
+    }
+});
+
+
+
+         
+           
+               
+
 
             $.ajax({
                 type: "get",
@@ -1711,6 +1865,10 @@ $(".aadhaar").on("keypress", function(e) {
 
   $('.phone').on("keydown", function(event) {
     let key = event.key;
+
+    if ($(this).val().length === 0 && key === '0') {
+        event.preventDefault();
+    }
     
     if (!/^[\d+\-]$|Backspace/.test(key)) {
       event.preventDefault();
@@ -1725,6 +1883,10 @@ $(".aadhaar").on("keypress", function(e) {
 
             $('.emergencyContact').on("keydown", function(event) {
     let key = event.key;
+
+    if ($(this).val().length === 0 && key === '0') {
+        event.preventDefault();
+    }
     
     if (!/^[\d+\-]$|Backspace/.test(key)) {
       event.preventDefault();
@@ -1770,7 +1932,7 @@ $(".aadhaar").on("keypress", function(e) {
 
             $('.dateOfNoticeDiv').hide();
             $('.permanentDateDiv').hide();
-            $(".sameAddress").hide();
+            //$(".sameAddress").hide();
 
             // $('.ijpDiv').hide();
             // $('.pipDiv').hide();
@@ -2508,9 +2670,9 @@ $(".aadhaar").on("keypress", function(e) {
 
             $('.streetAddress1, .area, .state, .pin').on('keyup', function() {
   if ($('.streetAddress1').val() !== "" && $('.area').val() !== "" && $('.state').val() !== "" && $('.pin').val() !== "") {
-     $(".sameAddress").show();
+     $(".sameAddress").removeAttr('disabled');
   } else {
-    $(".sameAddress").hide();
+    $(".sameAddress").attr('disabled', 'disabled');
   }
 });
 
@@ -3478,6 +3640,7 @@ $(".aadhaar").on("keypress", function(e) {
             });
 
             $('#openProcess').click(function() {
+                
                 $('.contributionDiv').hide();
                 $("#updateProcessButton").css("display", "none");
                 $("#addProcessButton").css("display", "block");
@@ -3499,7 +3662,8 @@ $(".aadhaar").on("keypress", function(e) {
             }
 
             $("#addProcessButton").click(function() {
-
+               
+                
                 let row = $("#asssignProcessTbody").find(`tr[data-row-id]`).length;
                 let spanId = $(".modelSpan").val();
                 let spanName = $(".modelSpan option:selected").text();
