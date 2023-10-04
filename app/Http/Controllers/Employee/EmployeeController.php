@@ -159,9 +159,9 @@ class EmployeeController extends Controller
             $employees = $this->employeeService->employeesData($id);
 
             //dd($employees['name']);
-           
+
             if ($employees) {
-                return view('employees.employeeAdd',['employee' => $employees]);
+                return view('employees.employeeAdd', ['employee' => $employees]);
             }
         } catch (\Exception $e) {
             return response()->json([
@@ -171,7 +171,8 @@ class EmployeeController extends Controller
         }
     }
 
-    public function activeEmployee(){
+    public function activeEmployee()
+    {
         try {
             $empArr = [];
             $page = request()->input('page', 1);
@@ -182,10 +183,9 @@ class EmployeeController extends Controller
             $activeEmployeeDetails = $this->employeeService->activeEmployeelist($page, $limit, $spanId, $designationId);
 
             foreach ($activeEmployeeDetails[0] as $key => $value) {
-                // return $value;
                 $dd = DB::table('employee_basic_info')->select(
                     'employee_basic_info.id AS employee_id',
-                    
+
                     'employee_basic_info.name AS name',
                     'employee_additional_info.designationId',
                     'designation.name AS designationName'
@@ -199,7 +199,7 @@ class EmployeeController extends Controller
                 $empArr[] = [
                     "name" => $value['name'],
                     "skid" => $value['skid'],
-                    "employeeImage"=>$value['employeeImage'],
+                    "employeeImage" => $value['employeeImage'],
                     "designationName" => $value['designationName'],
                     "spanName" => $value['spanName'],
                     "reportingId" => $dd,
@@ -236,7 +236,8 @@ class EmployeeController extends Controller
     }
 
 
-    public function searchActiveEmployee() {
+    public function searchActiveEmployee()
+    {
         try {
             $empArr = [];
             $page = request()->input('page', 1);
@@ -269,7 +270,7 @@ class EmployeeController extends Controller
 
             }
             $data = [
-                'list'=> $empArr,
+                'list' => $empArr,
                 'activeEmployeeDetails' => $activeSearchEmployeeDetails
             ];
             return response()->json([
@@ -283,7 +284,7 @@ class EmployeeController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
-        
+
     }
 
 
@@ -310,49 +311,61 @@ class EmployeeController extends Controller
     public function dateFilterActiveEmployee(Request $request)
     {
         try {
+
             $empArr = [];
             $date = request()->input('date');
-            $logOfActiveEmployee = $this->employeeService->dataLogOfActiveEmployee($date);
-            $decodedlogOfActiveEmployee = json_decode($logOfActiveEmployee->dateLog);
-            
-            foreach ($decodedlogOfActiveEmployee as $key => $value) {
-                foreach ($value as $key => $values) {
-                    $name = isset($values->name) ? $values->name : null;
-                    $skid = isset($values->skid) ? $values->skid : null;
-                    $designationName = isset($values->designationName) ? $values->designationName : null;
-                    $reportId = isset($values->reportingId) ? $values->reportingId : null;
-                    $spanName = isset($values->spanName) ? $values->spanName : null;
-                    $email = isset($values->email) ? $values->email : null;
-                    $phone = isset($values->phone) ? $values->phone : null;
-    
-                    $dd = DB::table('employee_basic_info')->select(
-                        'employee_basic_info.id AS employee_id',
-                        'employee_basic_info.name AS name',
-                        'employee_additional_info.designationId',
-                        'designation.name AS designationName'
-                    )
-                    ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
-                    ->leftJoin('designation', 'employee_additional_info.designationId', '=', 'designation.id')
-                    ->leftJoin('designation AS reportingdesignation', 'employee_additional_info.reportingId', '=', 'reportingdesignation.id')
-                    ->where('employee_additional_info.id', $reportId)
-                    ->first();
-    
-                    $empArr[] = [
-                        "name" => $name,
-                        "skid" => $skid,
-                        "designationName" => $designationName,
-                        "spanName" => $spanName,
-                        "email" => $email,
-                        "phone" => $phone,
-                        "reportingId" => $dd,
-                    ];
-                }
-            }
-    
+            $spanId = request()->input('spanId');
+            $designationId = request()->input('designationId');
+            $spanId = (request()->input('spanId') != 'undefined') ? json_decode(request()->input('spanId')) : [];
+            $designationId = (request()->input('designationId') != 'undefined') ? json_decode(request()->input('designationId')) : [];
+
+            // echo"<pre>";print_r($designationId);
+            // echo"<pre>";print_r($spanId);
+            // echo"<pre>";print_r($date);
+
+            // die;
+
+            $logOfActiveEmployee = $this->employeeService->dataLogOfActiveEmployee($date, $spanId, $designationId);
+            // $decodedlogOfActiveEmployee = json_decode($logOfActiveEmployee->dateLog);
+
+            // foreach ($decodedlogOfActiveEmployee as $key => $value) {
+            //     foreach ($value as $key => $values) {
+            //         $name = isset($values->name) ? $values->name : null;
+            //         $skid = isset($values->skid) ? $values->skid : null;
+            //         $designationName = isset($values->designationName) ? $values->designationName : null;
+            //         $reportId = isset($values->reportingId) ? $values->reportingId : null;
+            //         $spanName = isset($values->spanName) ? $values->spanName : null;
+            //         $email = isset($values->email) ? $values->email : null;
+            //         $phone = isset($values->phone) ? $values->phone : null;
+
+            //         $dd = DB::table('employee_basic_info')->select(
+            //             'employee_basic_info.id AS employee_id',
+            //             'employee_basic_info.name AS name',
+            //             'employee_additional_info.designationId',
+            //             'designation.name AS designationName'
+            //         )
+            //         ->leftJoin('employee_additional_info', 'employee_basic_info.id', '=', 'employee_additional_info.employeeId')
+            //         ->leftJoin('designation', 'employee_additional_info.designationId', '=', 'designation.id')
+            //         ->leftJoin('designation AS reportingdesignation', 'employee_additional_info.reportingId', '=', 'reportingdesignation.id')
+            //         ->where('employee_additional_info.id', $reportId)
+            //         ->first();
+
+            //         $empArr[] = [
+            //             "name" => $name,
+            //             "skid" => $skid,
+            //             "designationName" => $designationName,
+            //             "spanName" => $spanName,
+            //             "email" => $email,
+            //             "phone" => $phone,
+            //             "reportingId" => $dd,
+            //         ];
+            //     }
+            // }
+
             return response()->json([
                 'success' => true,
                 'data' => $logOfActiveEmployee,
-                'list'=>$empArr
+                'list' => $empArr
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -361,5 +374,5 @@ class EmployeeController extends Controller
             ], 500);
         }
     }
-    
+
 }

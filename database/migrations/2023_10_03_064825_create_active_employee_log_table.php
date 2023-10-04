@@ -17,7 +17,22 @@ return new class extends Migration
             $table->id();
             $table->integer('userId');
             $table->string('date');
-            $table->json('dateLog');
+            $table->integer('employeeId');
+            $table->string('name');
+            $table->string('skid');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('reportingManger');
+            $table->integer('reportingId');
+            $table->string('spanId');
+            $table->string('spanName');
+            $table->string('designationId');
+            $table->string('designationName');
+            $table->string('billable');
+            $table->string('isTrainee');
+            $table->string('UnderNotice');
+            $table->string('Probation');
+            $table->string('Revenue');
             $table->timestamps();
         });
     }

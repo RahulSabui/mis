@@ -368,6 +368,7 @@
 
 
             $("#submitButton").click(function(event) {
+                $(".date-format").val( dateFormat);
                 event.preventDefault();
                 let spanSelect = $("#spanSelect").val();
                 let clientSelect = $("#clientSelect").val();
@@ -418,6 +419,7 @@
                         <span class="closebtn">×</span>
                     </div>`
                 );
+
                 const newChip2 = $(
                     `   <div class = "clientVal" style="display: none;"> 
                             ${$("#clientSelect option:selected").val()} 
@@ -428,9 +430,11 @@
                             ×</span>
                         </div>`
                 );
+
                 const newChip3 = $(
                     `<div class = "processVal" style="display: none;"> ${$("#processSelect option:selected").val()} </div><div class='chip'>${'Process: ' +  $("#processSelect option:selected").text()}<span class='closebtn' onclick='$(this).parent().remove()'>×</span></div>`
                 );
+
                 const newChip4 = $(
                     `<div class="chip">
                         <div class="desginationVal" style="display: none;">
@@ -450,6 +454,7 @@
                 if (processSelect !== "") {
                     newChip3.insertAfter($(".chipHr"));
                 }
+
                 if (designationSelect !== "") {
                     newChip4.insertAfter($(".chipHr"));
 
@@ -458,6 +463,8 @@
                 // $(".switcher-wrapper").removeClass("switcher-toggled");
                 // $(".switcher-btn").removeClass("d-none");
                 // })
+
+                
                 getList(page, limit, selectedValue)
 
                 $("#spanSelect").val("");
@@ -557,23 +564,8 @@
 
 
             $(document).on('click', '#apply', function(){
-                $.ajax({
-                    type: "GET",
-                    url: `/date/filter/active/employee?date=${$("#date").val()}`,
-                    success: function (response) {
-                        let parseResponse =  JSON.parse(response.data.dateLog)
-                        console.log(parseResponse);
-                        // dataForLog(JSON.parse(response.data.dateLog))
-                        $("#active_count").html(parseResponse?.allCount?.activeCount);
-                        $("#billable_count").html(parseResponse?.allCount?.billableCount);
-                        $("#buffer_count").html(parseResponse?.allCount?.bufferCount);
-                        $("#under_notice_count").html(parseResponse?.allCount?.probationCount);
-                        $("#trainee_count").html(parseResponse?.allCount?.traineeCount);
-                        $("#probation_count").html(parseResponse?.allCount?.underNoticeCount);
-                        graphForDesignation({data:parseResponse});
-                        graphForSpan({data:parseResponse});
-                    }
-                });
+               
+                dataForLog($("#date").val());
             })
 
         });
@@ -612,9 +604,9 @@
                     $("#active_count").html(response?.data?.allCount?.activeCount);
                     $("#billable_count").html(response?.data?.allCount?.billableCount);
                     $("#buffer_count").html(response?.data?.allCount?.bufferCount);
-                    $("#under_notice_count").html(response?.data?.allCount?.probationCount);
+                    $("#probation_count").html(response?.data?.allCount?.probationCount);
                     $("#trainee_count").html(response?.data?.allCount?.traineeCount);
-                    $("#probation_count").html(response?.data?.allCount?.underNoticeCount);
+                    $("#under_notice_count").html(response?.data?.allCount?.underNoticeCount);
                     graphForDesignation(response);
                     graphForSpan(response);
                     data(response);
@@ -623,8 +615,24 @@
             });
         }
 
-        function dataForLog(response) { 
-            console.log(response, "response");
+        function dataForLog(date) { 
+            $.ajax({
+                    type: "GET",
+                    url: `/date/filter/active/employee?date=${date}`,
+                    success: function (response) {
+                        // dataForLog(JSON.parse(response.data.dateLog))
+                        $("#active_count").html(response?.data?.activeCount);
+                        $("#billable_count").html(response?.data?.billableCount);
+                        $("#buffer_count").html(response?.data?.bufferCount);
+                        $("#probation_count").html(response?.data?.probationCount);
+                        $("#trainee_count").html(response?.data?.traineeCount);
+                        $("#under_notice_count").html(response?.data?.underNoticeCount);
+                        graphForDesignation(response);
+                        graphForSpan(response);
+                        data(response);
+                        pagination(1, response);
+                    }
+                });
         }
 
         function data(response) {
@@ -699,7 +707,7 @@
             let res = response?.data?.activeEmployeeDetails;
             let paginationHtml = ''
 
-            if (res?.last_page != 1) {
+            if (res?.last_page != 1 ) {
                 paginationHtml += `<li class="page-item ${Number(res?.current_page) == 1 ? 'disabled' : ''}">
 													<a class="page-link" 
 														tabindex="-1" aria-disabled="true">Previous</a>
@@ -751,7 +759,7 @@
                     scales: {
                         x: {
                             max: Math.max(...data, 10),
-                            beginAtZero: true, // Start x-axis at zero
+                            beginAtZero: true, // Start x-axis at zero'
                         },
                         y: {
                             beginAtZero: true, // Start y-axis at zero
@@ -762,7 +770,6 @@
         }
 
         function graphForDesignation(response) {
-            console.log(response, "sjsjjsjs");
             createChart(
                 'EmployeeByDesignation',
                 'bar',
